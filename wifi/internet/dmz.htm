@@ -1,0 +1,213 @@
+<!--#include file="../include/head2.htm"-->
+<style type="text/css">
+#dmzIpDiv font
+{
+	color:#00F;
+}
+</style>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			网络管理
+		</a>
+		>> DMZ
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				DMZ
+			  
+			</div>
+			<div class="zk">
+				收起
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="blacktitle">
+			  开启DMZ功能可以将内网某一个设备的IP映射到外网，方便从外网访问到该设备。
+	  </div>
+        <div id="setdmz" class="vistbiaodan">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="20%">
+						<span>
+							功能开关:
+						</span>
+					</td>
+					<td width="80%" align="left">
+                         <input type="checkbox" id="function" name="function" /><label for="function"></label>
+					</td>
+				</tr>
+				<tr id="setwifibiaodan">
+					<td colspan="2">
+                    <form id="setDMZform" method="post" action="">
+						<div class="setwifibiaodan">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="20%">
+										<span>
+											DMZIP:
+										</span>
+									</td>
+									<td valign="middle">
+										<label id="ipAddress"></label><input class="{required:true,messages:{required:'请输入DMZIP'},checkIpOrport:true,checkgatewayIP:true} textinput8" type="text" id="dmzIp" name="dmzIp" />
+                                        <input type="hidden" id="gateway" />
+									</td>
+								</tr>
+                                <tr>
+									<td>
+										<span>
+											DMZ状态:
+										</span>
+									</td>
+									<td valign="middle">
+										<div id="dmzIpDiv">未生效</div>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<div class="wifibut">
+											<div class="inxiaobut">
+												<button class="xiaobtn" type="submit">
+													保存生效
+												</button>
+											</div>
+											<div class="clear">
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+                        </form>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			getdmz(true);
+		});
+		
+		function clickdmz(state){
+		$("input[name='function']").bind("click",
+		function(e) {
+			var theEvent = window.event || e;
+			var theObj = theEvent.target || theEvent.srcElement;
+			var selectedvalue = $(this).is(':checked');
+			if (selectedvalue) {
+				if(state)
+				{
+					$("input[name='function']").attr("checked", false);
+					layer.alert('端口转发开启了，不可以设置DMZ');
+				}
+				else{
+				$("#setwifibiaodan").stop().slideDown(0);
+				}
+			} else {
+				Closedmz();
+				$("#setwifibiaodan").stop().slideUp(0);
+			}
+		});}
+		
+		
+		
+		
+		
+		function getdmz(state)
+		{
+			if(state){
+			$('#setdmz').hide();
+			}
+			$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/get_dmz_info",function(result)
+	        {
+			if(result.code=='0'){
+		    $('#setdmz').show();
+			$('#gateway').val(result.lanip.split(".")[3]);
+			if(result.status==1){
+			$("input[name='function']").attr("checked", true);
+			$("#dmzIpDiv").html('<font>IP地址:'+result.ip+"已生效</font>");
+			$("#dmzIp").val(result.ip.split(".")[3]);
+			}
+			if(result.status==2)
+			{
+				clickdmz(true);
+			}
+			$("#ipAddress").html(setIp(result.lanip));
+			clickdmz(false);
+			var selectedvalue = $("input[name='function']").is(':checked');
+			if (selectedvalue){
+				$("#setwifibiaodan").stop().slideDown(0);
+			} else {
+				$("#setwifibiaodan").stop().slideUp(0);
+			}
+			}else{layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);}
+			});
+		}
+		
+		function Closedmz()
+		{
+			index = layer.load(0, {shade: [0.5,'#252525']});
+			$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/close_dmz",function(result)
+	        {
+			if(result.code=='0'){
+				reloaddmz();
+			}else{layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);}
+			});
+		}
+		
+		function reloaddmz()
+		{
+			$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/reload_dmz",function(result)
+	        {
+			if(result.code=='0'){
+				layer.close(index);
+			}else{layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);}
+			});
+		}
+		
+		
+		
+		
+		$(function() {
+			$(".blacktitle").show();
+			$(".zk").click(function() {
+				if ($(".zk").text() == "展开") {
+					$(".zk").text("收起");
+					$(".blacktitle").stop().slideDown(500);
+				} else {
+					$(".zk").text("展开");
+					$(".blacktitle").stop().slideUp(500);
+				}
+			});
+		});
+		
+		function setIp(ip)
+	   {
+		
+		var ipSplit=[];
+		var strs = ip.split(".");
+		
+        for (var i=0;i<strs.length-1;i++ )
+        {
+			
+           ipSplit.push(strs[i]);
+        }
+        return ipSplit.join('.') + '.';
+	   }
+	</script>
+</body>
+
+</html>

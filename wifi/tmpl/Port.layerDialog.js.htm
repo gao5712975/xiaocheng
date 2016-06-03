@@ -1,0 +1,458 @@
+<script src="../js/jquery.tmpl.min.js" type="text/javascript">
+</script>
+<script type="text/x-jquery-tmpl" id="Port">
+  	<div class="VPNDialogTable">
+	<form id="setPortform" method="post" action="">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="20%">
+				<span>
+					名称:
+				</span>
+			</td>
+			<td width="80%">
+				<input id="portName" name="portName" class="{required:true,messages:{required:'请输入名称'},maxlength:127}  textinput5" type="text" />
+				<div class="Prompt3"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>
+					协议:
+				</span>
+			</td>
+			<td>
+				<select id="sel_h" name="sel_h">
+					<option value="1">TCP</option>
+					<option value="2">UDP</option>
+					<option value="3">TCP和UDP</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>
+					外部端口:
+				</span>
+			</td>
+			<td>
+				<input id="outPort" name="outPort" class="{required:true,messages:{required:'请输入外部端口'},checkport:true} textinput5" type="text" />
+				<div class="Prompt3"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>
+					内部IP地址:
+				</span>
+			</td>
+			<td>
+				<label id="labePortId"></label><input id="insideIpAddress" name="insideIpAddress" class="{required:true,messages:{required:'请输入内部IP地址'},checkIpOrport:true,checkgatewayIP:true} textinput14" type="text" />
+				<div class="Prompt3"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>
+					内部端口:
+				</span>
+			</td>
+			<td>
+				<input id="insidePort" name="insidePort" class="{required:true,messages:{required:'请输入内部端口'},checkport:true}  textinput5" type="text" />
+				<div class="Prompt3"></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="VPNDialogbut">
+					<button class="xiaobtn" type="submit">
+						确定
+						</button>
+				</div>
+			</td>
+		</tr>
+	</table>
+	</form>
+	</div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="scope">
+  	<div class="VPNDialogTable">
+	<form id="setScopeform" method="post" action="">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="20%">
+				<span>
+					名称:
+				</span>
+			</td>
+			<td width="80%">
+				<input id="scopeName" name="scopeName" class="{required:true,messages:{required:'请输入名称'},maxlength:127}  textinput5" type="text" />
+				<div class="Prompt3"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>
+					协议:
+				</span>
+			</td>
+			<td>
+				<select id="sel_y" name="sel_y">
+					<option value="1">TCP</option>
+					<option value="2">UDP</option>
+					<option value="3">TCP和UDP</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>
+					起始端口:
+				</span>
+			</td>
+			<td>
+				<input id="startPort" name="startPort" class="{required:true,messages:{required:'请输入起始端口'},checkport:true}  textinput5" type="text" />
+				<div class="Prompt3"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>
+					结束端口:
+				</span>
+			</td>
+			<td>
+				<input id="endPort" name="endPort" class="{required:true,messages:{required:'请输入结束端口'},checkport:true}  textinput5" type="text" />
+				<div class="Prompt3"></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>
+					目标IP:
+				</span>
+			</td>
+			<td>
+				<label id="labeScopeId"></label><input id="targetIp" name="targetIp" class="{required:true,messages:{required:'请输入目标IP'},checkIpOrport:true,checkgatewayIP:true}  textinput14" type="text" />
+				<div class="Prompt3"></div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="VPNDialogbut">
+					<button class="xiaobtn" type="submit">
+						确定
+						</button>
+				</div>
+			</td>
+		</tr>
+	</table>
+	</form>
+	</div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="PortList">
+<div class="vpnblackbai">
+                        <div class="blackbaititle">
+			端口转发规则 <font>（指定外部端口号映射到内部ip指定端口）</font>
+			</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr">
+							<tr>
+                                <td width="20%">
+									名称
+								</td>
+								<td width="20%">
+									协议
+								</td>
+								<td width="15%">
+									外部端口
+								</td>
+								<td width="20%">
+									内部IP地址
+								</td>
+								<td width="15%">
+									内部端口
+								</td>
+                                <td width="10%">
+									操作
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+				{{if list.length > 0 }}
+				<tr>
+					<td>
+					{{each(i,port) list}}
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="baixian">
+                                <tr>
+                                <td width="20%">
+									${port.name}
+								</td>
+								<td width="20%">
+									{{if port.proto==1}}
+									TCP
+									{{else port.proto==2}}
+									UDP
+									{{else}}
+						            TCP和UDP
+						            {{/if}}	
+								</td>
+								<td width="15%">
+									${port.srcport}
+								</td>
+								<td width="20%">
+									${port.destip}
+								</td>
+								<td width="15%">
+									${port.destport}
+								</td>
+                                <td width="10%">
+								  <a onclick="delPort('${port.srcport}')" class="ddnsfont" href="javascript:;">删除</a>
+								</td>
+							</tr>
+						</table>
+						{{/each}}
+					</td>
+				</tr>
+				{{/if}}	
+                <tr>
+									<td>
+											<div class="shoubtn">
+												<a id="portbtn" href="javascript:;">+ 手动添加 +</a>
+											</div>
+									</td>
+								</tr>
+			</table>
+		</div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="scopeList">
+<div class="vpnblackbai">
+                        <div class="blackbaititle">
+			范围转发规则 <font>（外部指定多个端口号映射到内部指定ip）</font>
+			</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr">
+							<tr>
+                                <td width="20%">
+									名称
+								</td>
+								<td width="20%">
+									协议
+								</td>
+								<td width="15%">
+									起始端口
+								</td>
+								<td width="15%">
+									结束端口
+								</td>
+								<td width="20%">
+									目标IP
+								</td>
+                                <td width="10%">
+									操作
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+				{{if list.length > 0 }}
+				<tr>
+					<td>
+					{{each(i,port2) list}}
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="baixian">
+                                <tr>
+                                <td width="20%">
+									${port2.name}
+								</td>
+								<td width="20%">
+									{{if port2.proto==1}}
+									TCP
+									{{else port2.proto==2}}
+									UDP
+									{{else}}
+						            TCP和UDP
+						            {{/if}}	
+								</td>
+								<td width="15%">
+									${port2.srcport.f}
+								</td>
+								<td width="15%">
+									${port2.srcport.t}
+								</td>
+								<td width="20%">
+                                    ${port2.destip}
+								</td>
+                                <td width="10%">
+									<a onclick="delPort('${port2.srcport.f}')" class="ddnsfont" href="javascript:;">删除</a>
+								</td>
+							</tr>
+						</table>
+						{{/each}}
+					</td>
+				</tr>
+				{{/if}}
+                <tr>
+									<td>
+											<div class="shoubtn">
+												<a id="scopebtn" href="javascript:;">
+				+ 手动添加 +
+			</a>
+											</div>
+                                            <div class="portbut">
+												<a id="vpnbtn" class="xiaobtn">
+													保存并生效
+												</a>
+											</div>
+									</td>
+								</tr>
+			</table>
+		</div>
+</script>
+
+
+<script src="../js/jquery.selectlist.js">
+</script>
+<script type="text/javascript">
+    var index,status;
+    $('#Portdialogtable').html($("#Port").html());
+	$('#scopedialogtable').html($("#scope").html());
+	function portbtnClick(){
+	$("#portbtn").click(function() {
+		if(status==2)
+		 {
+			 layer.alert('由于DMZ功能开启,无法设置端口转发');
+		 }else{
+		index=layer.open({
+			type: 1,
+			title: '新建端口转发规则',
+			area: ['500px', 'auto'],
+			shadeClose: false,
+			content: $('#Portdialogtable')
+		});}
+	})
+	}
+	
+	function ScopebtnClick(){
+	$("#scopebtn").click(function() {
+		if(status==2)
+		 {
+			 layer.alert('由于DMZ功能开启,无法设置端口转发');
+		 }else{
+		index=layer.open({
+			type: 1,
+			title: '新建范围转发规则',
+			area: ['500px', 'auto'],
+			shadeClose: false,
+			content: $('#scopedialogtable')
+		});}
+	})
+	}
+	
+	function apply()
+	{
+		$("#vpnbtn").click(function() {
+		   index = layer.load(0, {shade: [0.5,'#252525']});
+		   $.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/redirect_apply",function(result)
+	        {
+			if(result.code=='0'){
+				layer.close(index);
+			    layer.alert('操作成功');
+			}else{layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);}
+			});
+		
+		});
+	}
+	
+	$('select').selectlist({
+		zIndex: 10,
+		width: 259,
+		height: 39,
+		borderRadius: 5
+	});
+	
+	function GetPortList()
+	{
+		$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/port_forward_info",{ftype:1},function(result)
+	        {
+			status=result.status;
+			if(result.code=='0'){
+				$('#labePortId').empty();
+				$('#portListDiv').empty();
+				$('#labePortId').html(setIp(result.ip));
+				$('#gateway').val(result.ip.split(".")[3]);
+				$('#PortList').tmpl(result).appendTo('#portListDiv');
+				portbtnClick();
+			}else{layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);}
+			});
+	}
+	
+	function delPort(port)
+	{
+		index = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/delete_redirect",
+	data: {
+		port:port
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			GetPortList();
+			GetScopeList();
+			layer.close(index);
+			layer.alert('删除成功');
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	}
+	
+	function GetScopeList()
+	{
+		$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/port_forward_info",{ftype:2},function(result)
+	        {
+			status=result.status;
+			if(result.code=='0'){
+				$('#labeScopeId').empty();
+				$('#scopeListDiv').empty();
+				$('#labeScopeId').html(setIp(result.ip));
+				$('#scopeList').tmpl(result).appendTo('#scopeListDiv');
+				ScopebtnClick();
+				apply();
+			}else{layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);}
+			});
+	}
+	
+	   function setIp(ip)
+	   {
+		
+		var ipSplit=[];
+		var strs = ip.split(".");
+		
+        for (var i=0;i<strs.length-1;i++ )
+        {
+			
+           ipSplit.push(strs[i]);
+        }
+        return ipSplit.join('.') + '.';
+	   }
+</script>

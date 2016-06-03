@@ -1,0 +1,51 @@
+<!--#include file="../include/head2.htm"-->
+<script src="../js/jquery.selectlist.js" type="text/javascript"></script>
+<style>
+.shuju tr td table tr td{ text-indent:125px}
+.setwificontext{ text-align:left}
+.setwificontext .vpnbiaodan{ text-align:left;}
+.setwificontext .vpnbiaodan tr td{ text-indent:65px}
+</style>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			网络管理
+		</a>
+		>> 运行状态
+	</div>
+	<!--内容-->
+	<div class="setwificontext ">
+		<div class="setwifilab">
+			<div class="laleft">
+				运行状态
+			  
+			</div>
+			<div class="clear">
+		    </div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="vpnbiaodan">
+			<div class="vpnblackbai">
+             <div class="Logrank"><font>模式:</font>
+            <label id="PatternTypeName"></label>
+             </div>
+             <div id="PatternTypeDiv"></div>
+		</div>
+		</div>
+	</div>
+    <!--弹层界面-->
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../tmpl/operation.tmpl.js.htm"-->
+    <script type="text/javascript">
+	$(function() {
+			GetPatternlist();
+	});
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,558 @@
+<script src="../js/jquery.tmpl.min.js" type="text/javascript">
+</script>
+<script type="text/x-jquery-tmpl" id="RouterType">
+<div id="luyou">
+              <div class="operationheng">外网信息</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									上网模式：{{= (wan_info.details.wanType).toUpperCase()}}
+									{{if wan_info.linked=='0'}}
+                                    （网线未连接）
+						            {{else}}
+            						
+									{{if wan_info.status=='0'}}
+                                    （网络未联网）
+						            {{else}}
+            						（网络已联网）
+						            {{/if}}	
+									
+						            {{/if}}	
+								</td>
+								<td width="33%">
+									IP地址：
+									{{if wan_info.hasOwnProperty('ipv4') }}
+									{{= wan_info.ipv4[0].ip}}
+									{{/if}}	
+								</td>
+								<td width="33%">
+								
+									子网掩码：
+									{{if wan_info.hasOwnProperty('ipv4') }}
+									{{= wan_info.ipv4[0].mask}}
+									{{/if}}	
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr3">
+                                <tr>
+								<td width="34%">
+									默认网关：{{= wan_info.gateWay}}
+								</td>
+								<td width="33%">
+									主DNS：{{= wan_info.dnsAddrs}}
+								</td>
+								<td width="33%">
+                                MAC地址：{{= wan_info.mac}}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									备用DNS：{{= wan_info.dnsAddrs1}}
+								</td>
+								<td width="33%">
+								</td>
+								<td width="33%">
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+			</table>
+             
+              <div class="operationheng">内网信息</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									路由器IP：{{= lan_info.ipv4[0].ip}}
+								</td>
+								<td width="33%">
+									子网掩码：{{= lan_info.ipv4[0].mask}}
+								</td>
+								<td width="33%">
+									MAC地址：{{= lan_info.mac}}
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr4">
+                                <tr>
+								<td width="34%">
+									默认网关：{{= lan_info.gateWay}}
+								</td>
+								<td width="33%">
+									DHCP服务：
+									{{if lan_info.is_dhcp_open=='0'}}
+                                    关闭
+						            {{else}}
+            						开启
+						            {{/if}}	
+								</td>
+								<td width="33%">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+             
+              <div class="operationheng">无线网络信息</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									WiFi名称：{{= wireless.ssid}}
+								</td>
+								<td width="33%">
+									加密方式：
+									{{if wireless.encryption=='none'}}
+                          无加密
+                         {{else wireless.encryption=='psk2'}}
+                          强加密（WPA2）
+						 {{else}}
+						  混合加密（WPA/WPA2）
+						 {{/if}}
+								</td>
+								<td width="33%">
+									信道：
+									{{if wireless.channel=='0'}}
+									自动
+									{{else}}
+						  {{= wireless.channel}}
+						 {{/if}}
+									
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr4">
+                                <tr>
+								<td width="34%">
+									BSSID：{{= wireless.bssid}}
+								</td>
+								<td width="33%">
+									客户端连接数：{{= wireless.count}}
+								</td>
+								<td width="33%">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+             {{if wireless_guest.status=='1'}}
+             <div class="operationheng">访客网络</div>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									WiFi名称：{{= wireless_guest.ssid}}
+								</td>
+								<td width="33%">
+									加密方式：
+									{{if wireless_guest.encryption=='none'}}
+                          无加密
+                         {{else wireless_guest.encryption=='psk2'}}
+                          强加密（WPA2）
+						 {{else}}
+						  混合加密（WPA/WPA2）
+						 {{/if}}
+								</td>
+								<td width="33%">
+									密码：{{= wireless_guest.password}}
+								</td>
+							</tr>
+						</table>
+             {{/if}}	
+            <div class="operationheng">数据统计</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="shuju">
+				<tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr">
+							<tr>
+								<td width="30%">
+									
+								</td>
+								<td width="23%">
+									广域网
+								</td>
+								<td width="23%">
+									局域网
+								</td>
+								<td width="24%">
+									无线
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+				<tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr3">
+                                <tr>
+								<td width="30%">
+									接收的数据包数
+								</td>
+								<td width="23%">
+									{{= wan_stats.rx_packets}}
+								</td>
+								<td width="23%">
+									{{= lan_stats.rx_packets}}
+								</td>
+								<td width="24%">
+									{{= wlan_stats.rx_packets}}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="30%">
+									接收的字节数
+								</td>
+								<td width="23%">
+									{{= wan_stats.rx_bytes}}
+								</td>
+								<td width="23%">
+									{{= lan_stats.rx_bytes}}
+								</td>
+								<td width="24%">
+									{{= wlan_stats.rx_bytes}}
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr3">
+                                <tr>
+								<td width="30%">
+									传送的数据包数
+								</td>
+								<td width="23%">
+									{{= wan_stats.tx_packets}}
+								</td>
+								<td width="23%">
+									{{= lan_stats.tx_packets}}
+								</td>
+								<td width="24%">
+									{{= wlan_stats.tx_packets}}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="30%">
+									传送的字节数
+								</td>
+								<td width="23%">
+									{{= wan_stats.tx_bytes}}
+								</td>
+								<td width="23%">
+									{{= lan_stats.tx_bytes}}
+								</td>
+								<td width="24%">
+									{{= wlan_stats.tx_bytes}}
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+			</table>
+            </div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="wirelessType">
+<div id="zhongji">
+            
+            <div class="operationheng">无线中继信息</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									WiFi名称：{{= wifiClientinfo.ssid}}
+								</td>
+								<td width="33%">
+									状态：{{if wifiClientinfo.status=='0'}}
+                                    连接失败
+						            {{else}}
+            						连接正常
+						            {{/if}}	
+								</td>
+								<td width="33%">
+								加密方式：
+									{{if wifiClientinfo.encryption=='none'}}
+                          无加密
+                         {{else wifiClientinfo.encryption=='psk2'}}
+                          强加密（WPA2）
+						 {{else}}
+						  混合加密（WPA/WPA2）
+						 {{/if}}
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+			</table>
+             
+                <div class="operationheng">无线网络信息</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									WiFi名称：{{= wireless.ssid}}
+								</td>
+								<td width="33%">
+								加密方式：
+									{{if wireless.encryption=='none'}}
+                          无加密
+                         {{else wireless.encryption=='psk2'}}
+                          强加密（WPA2）
+						 {{else}}
+						  混合加密（WPA/WPA2）
+						 {{/if}}
+								</td>
+								<td width="33%">
+									信道：{{if wireless.channel=='0'} }
+									自动
+									{{else}}
+						  {{= wireless.channel}}
+						 {{/if}}
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr4">
+                                <tr>
+								<td width="34%">
+									BSSID：{{= wireless.bssid}}
+								</td>
+								<td width="33%">
+									客户端连接数：{{= wireless.count}}
+								</td>
+								<td width="33%">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			
+			<div class="operationheng">内网信息</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									路由器IP：{{= lan_info.ipv4[0].ip}}
+								</td>
+								<td width="33%">
+									子网掩码：{{= lan_info.ipv4[0].mask}}
+								</td>
+								<td width="33%">
+									MAC地址：{{= lan_info.mac}}
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr4">
+                                <tr>
+								<td width="34%">
+									默认网关：{{= lan_info.gateWay}}
+								</td>
+								<td width="33%">
+									DHCP服务：
+									{{if lan_info.is_dhcp_open=='0'}}
+                                    关闭
+						            {{else}}
+            						开启
+						            {{/if}}	
+								</td>
+								<td width="33%">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+            </div>
+</script>
+<script type="text/x-jquery-tmpl" id="WiredType">
+<div id="zhongji">
+            
+        
+             
+              
+             
+               <div class="operationheng">无线网络信息</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									WiFi名称：{{= wireless.ssid}}
+								</td>
+								<td width="33%">
+								加密方式：
+									{{if wireless.encryption=='none'}}
+                          无加密
+                         {{else wireless.encryption=='psk2'}}
+                          强加密（WPA2）
+						 {{else}}
+						  混合加密（WPA/WPA2）
+						 {{/if}}
+								</td>
+								<td width="33%">
+									信道：{{= wireless.channel}}
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr4">
+                                <tr>
+								<td width="34%">
+									BSSID：{{= wireless.bssid}}
+								</td>
+								<td width="33%">
+									客户端连接数：{{= wireless.count}}
+								</td>
+								<td width="33%">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			
+			<div class="operationheng">内网信息</div>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr2">
+							<tr>
+								<td width="34%">
+									路由器IP：{{= lan_info.ipv4[0].ip}}
+								</td>
+								<td width="33%">
+									子网掩码：{{= lan_info.ipv4[0].mask}}
+								</td>
+								<td width="33%">
+									MAC地址：{{= lan_info.mac}}
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+                <tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="blacktr4">
+                                <tr>
+								<td width="34%">
+									默认网关：{{= lan_info.gateWay}}
+								</td>
+								<td width="33%">
+									DHCP服务：
+									{{if lan_info.is_dhcp_open=='0'}}
+                                    关闭
+						            {{else}}
+            						开启
+						            {{/if}}	
+								</td>
+								<td width="33%">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+            </div>
+</script>
+<script type="text/javascript">
+   function GetPatternlist()
+   {
+			$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/get_route_status",function(result)
+            {
+	            if(result.code=='0') 
+	            {
+					if(result.mode==0){
+					$('#PatternTypeName').html('路由器模式');
+					$('#PatternTypeDiv').empty();
+					$('#RouterType').tmpl(result).appendTo('#PatternTypeDiv')
+					}else if(result.mode==1)
+					{
+					$('#PatternTypeName').html('无线中继模式');
+					$('#PatternTypeDiv').empty();
+					$('#wirelessType').tmpl(result).appendTo('#PatternTypeDiv')
+					}else
+					{
+					$('#PatternTypeName').html('有线中继模式');
+					$('#PatternTypeDiv').empty();
+					$('#WiredType').tmpl(result).appendTo('#PatternTypeDiv')
+					}
+				}
+				else
+				{
+	                layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	            }
+	        });
+	} 
+</script>

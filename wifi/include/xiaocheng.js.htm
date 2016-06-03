@@ -1,0 +1,1416 @@
+<script type="text/javascript">
+var reg = /^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$/;
+var index,index2,serverIP,Subnet,setinterl,startIP;
+var wanType,pppoename,pppoepwd,staticip,staticmask,staticgateway,staticdns,static2dns,wifissid,wifipassword,currentId;
+var _oldPwd,_newPwd,oldPwd,newPwd,nonce,requestData;
+var wifiip,ssidName,relayssid,relayIp,relaypwd,data="",encryption,versionurl,filesize,visitorcount=true,firmwareCount=1;
+function guided() {
+	$(".networkcontext").show();
+        $(".Internet").hide();
+        $(".wificontext").hide();
+        $(".router").hide();
+		$(".loadcontext").hide();
+		$(".successcontext").hide();
+    $("#testing").click(function () {
+    index = layer.load(0, {shade: [0.5,'#252525']});
+	$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/detect_wan_type",function(result)
+    {
+	if(result.code=='0') 
+	{
+	  layer.close(index);
+	  if(result.wanType==1)
+	  {
+		  $('.Ince').html('小橙检测到您使用的是 <lable id="lableType">宽带拨号</lable> 连接方式');
+		  $.jqtab("#tabs", "#content", "click", "0");
+	  }
+	  else if(result.wanType==2)
+	  
+	  {
+		  $('.Ince').html('小橙检测到您使用的是 <lable id="lableType">动态IP</lable> 连接方式');
+		  $.jqtab("#tabs", "#content", "click", "1");
+	  }
+	  else if(result.wanType==99)
+	  {
+		  $('.Ince').html('外网端口没有连通');
+		  $.jqtab("#tabs", "#content", "click", "1");
+	  }
+	  else
+	  {
+		  $('.Ince').html('无法检测上网方式');
+		  $.jqtab("#tabs", "#content", "click", "1");
+	  }
+	  $(".networkcontext").hide();
+      $(".Internet").show();
+      $(".wificontext").hide();
+      $(".router").hide();
+      $(".loadcontext").hide();
+      $(".successcontext").hide();
+	}else{layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);}});
+    })
+}
+ $("#PPPoEForm").validate({
+     submitHandler:function(form){
+       //index = layer.load(0, {shade: [0.5,'#252525']});
+	    wanType = "pppoe";
+    	pppoename = $("#internetName").val();
+    	pppoepwd = $("#internetpwd").val();
+        setTimeout(function () {
+		//layer.close(index);
+        $(".networkcontext").hide();
+        $(".Internet").hide();
+        $(".wificontext").show();
+        $(".router").hide();
+		$(".loadcontext").hide();
+		$(".successcontext").hide();}, 1000);},
+		errorPlacement : function(error, element){ 
+         error.appendTo(element.parent().next());  }
+    });
+$("#DynamicIP").click(function () {
+    //index = layer.load(0, {shade: [0.5,'#252525']});
+	 wanType = "dhcp";
+    setTimeout(function () {
+		//layer.close(index);
+        $(".networkcontext").hide();
+        $(".Internet").hide();
+        $(".wificontext").show();
+        $(".router").hide();
+		$(".loadcontext").hide();
+		$(".successcontext").hide();
+    }, 1000);
+})
+$("#JinForm").validate({
+     submitHandler:function(form){
+       //index = layer.load(0, {shade: [0.5,'#252525']});
+	  wanType = "staticip";
+      staticip = $("#ip").val();
+      staticmask = $("#mask").val();
+      staticgateway = $("#gateway").val();
+      staticdns = $("#dns").val();
+      static2dns = $("#bdns").val();
+        setTimeout(function () {
+		//layer.close(index);
+        $(".networkcontext").hide();
+        $(".Internet").hide();
+        $(".wificontext").show();
+        $(".router").hide();
+		$(".loadcontext").hide();
+		$(".successcontext").hide();}, 1000);},
+		errorPlacement : function(error, element){ 
+         error.appendTo(element.parent().next());  }
+    });
+$(".skip").click(function () {
+	wanType = "dhcp";
+    $(".networkcontext").hide();
+    $(".Internet").hide();
+    $(".wificontext").show();
+    $(".router").hide();
+	$(".loadcontext").hide();
+	$(".successcontext").hide();
+})
+$(".last").click(function () {
+    $(".networkcontext").show();
+    $(".Internet").hide();
+    $(".wificontext").hide();
+    $(".router").hide();
+	$(".loadcontext").hide();
+	$(".successcontext").hide();
+	$("#testing").attr("class", "btn").text("没问题，下一步")
+})
+$("#wifiForm").validate({
+     submitHandler:function(form){
+        //index = layer.load(0, {shade: [0.5,'#252525']});
+		wifissid = $("#wifiName").val();
+        wifipassword = $("#wifipwd").val();
+        setTimeout(function () {
+			//layer.close(index);
+            $(".networkcontext").hide();
+            $(".Internet").hide();
+            $(".wificontext").hide();
+            $(".router").show();
+			$(".loadcontext").hide();
+			$(".successcontext").hide();
+        }, 1000);},
+		errorPlacement : function(error, element){ 	
+		var isOk = (error.text().indexOf("密码") < 0);
+		if(!isOk){
+			 error.appendTo(element.parent().parent().next()); 
+			}else{
+         error.appendTo(element.parent().next()); 
+			}}
+    });
+function wifiReturnback() {
+    $(".networkcontext").hide();
+    $(".Internet").show();
+    $(".wificontext").hide();
+    $(".router").hide();
+	$(".loadcontext").hide();
+	$(".successcontext").hide();
+}
+
+$("#wificheck").click(function () {
+    if ($("#wificheck").is(':checked')) {
+        $("#routerpwd").val(routerpwdHidden);
+        var errorMsg = '';
+        $("#routerpwddiv").attr("class", "text1");
+        $("#routerpwderror").text(errorMsg);
+    } else {
+        $("#routerpwd").val("");
+        $("#routerpwd").focus()
+    }
+})
+
+
+
+
+function routerreturnback() {
+    $(".networkcontext").hide();
+    $(".Internet").hide();
+    $(".wificontext").show();
+    $(".router").hide();
+	$(".loadcontext").hide();
+	$(".successcontext").hide();
+}
+
+
+$("#routerForm").validate({
+     submitHandler:function(form){
+	  
+	  index = layer.load(0, {shade: [0.5, '#252525']});
+var nonce, oldPwd, newPwd,routerName,routerpwd;
+nonce = encrypt.init();
+oldPwd = encrypt.encPwd('admin');
+newPwd = encrypt.encPwd($("#routerpwd").val());
+routerpwd=$("#routerpwd").val()
+routerName=$("#routerName").val();
+$.ajax({
+	url: 'http://192.168.1.3/cgi-bin/luci/cheng/orangesystem/set_router',
+	type: "post",
+	data: {
+		name: routerName,
+		ssid: wifissid,
+		wifipassword: wifipassword,
+		encryption: 'mixed-psk',
+		nonce: nonce,
+		newPwd: newPwd,
+		oldPwd: oldPwd,
+		txpwr: 1,
+		wanType: wanType,
+		pppoename: pppoename,
+		pppoepwd: pppoepwd,
+		ip: staticip,
+		mask: staticmask,
+		gateway: staticgateway,
+		dns: staticdns,
+		dns2: static2dns
+	},
+	dataType: "json",
+	success: function(res) {
+		if (res.code == 0) {
+			$("#SSID").html(wifissid);
+			$("#WIFIPWD").html(wifipassword);
+			$("#ADMINPWD").html(routerpwd);
+			$("#SSID_FIN").html(wifissid);
+			$("#WIFIPWD_FIN").html(wifipassword);
+			$("#ADMINPWD_FIN").html(routerpwd);
+
+			setTimeout(function() {
+				layer.close(index);
+				$(".networkcontext").hide();
+				$(".Internet").hide();
+				$(".wificontext").hide();
+				$(".router").hide();
+				$(".loadcontext").show();
+				$(".successcontext").hide();
+				setTimeout(function() {
+					$(".networkcontext").hide();
+					$(".Internet").hide();
+					$(".wificontext").hide();
+					$(".router").hide();
+					$(".loadcontext").hide();
+					$(".successcontext").show();
+				},
+				30000);
+			},
+			1000);
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+res.code+"/错误信息："+res.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}
+});
+	  
+	  
+	  
+		},
+		errorPlacement : function(error, element){ 
+		if(error.text().indexOf("密码") !=-1){
+			 error.appendTo(element.parent().parent().next()); 
+			}else{
+         error.appendTo(element.parent().next()); } }
+    });
+$("#gohome").click(function () {
+      location.href = "index.htm";
+	})
+	
+
+$("#loginForm").validate({
+     submitHandler:function(form){
+	 index = layer.load(0, {shade: [0.5,'#252525']});
+	        var nonce = encrypt.init(),
+            encPwd = encrypt.encPwd($('#routerName').val()),
+            data = {
+                username: 'admin',
+                password: encPwd,
+                nonce: nonce,
+                init: 0
+            };
+		 
+		 var url = '<%=luci.dispatcher.build_url("cheng", "orangesystem","check_login")%>';
+            $.post( url, data, function( rsp ) {
+                var rsp = $.parseJSON( rsp );
+                if ( rsp.code == 0 ) {
+                    var redirect,
+                        token = rsp.token;
+                    
+                        redirect = buildUrl('home', token);
+
+                    window.location.href = redirect;
+                } else if ( rsp.code == 403 ) {
+                    window.location.reload();
+                } else {
+                    var errMsg = '<lable for="routerName" generated="true" class="error">密码错误</lable>';
+                    $(".Prompt").html(errMsg);
+                    $("#routerName").addClass("error");
+                    setTimeout(function (){$(".Prompt").html("");
+                    $("#routerName").removeClass("error");},5000);
+                    layer.close(index);
+                }
+            });
+     },
+		errorPlacement : function(error, element){ 
+         error.appendTo(element.parent().next());  }
+    });
+	
+	$("#routerName").blur(function(){
+    var errorlable=$('.Prompt lable').html();
+    if(errorlable=='密码错误')
+    {
+  $(".Prompt").html("");
+  $("#routerName").removeClass("error");
+    }
+});
+
+	
+function ppponeTypeForm(){ 
+ $("#ppponeTypeForm").validate({
+     submitHandler:function(form){
+		 var autoset;
+		 var selected=$("input[name='functions']").is(':checked'); 
+		if(selected){
+			autoset='1';
+			}else{
+			autoset='0';
+				}
+     index = layer.load(0, {shade: [0.5,'#252525']});
+	 
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_wan",
+	data: {
+		wanType: 'pppoe',
+		pppoeName:$('#internetName').val(),
+		pppoePwd:$('#internetpwd').val(),
+		service:$('#serverName').val(),
+		mtu:$('#transmissionUnit').val(),
+		autoset:autoset,
+		dns1:$('#masterServer').val(),
+		dns2:$('#journeyServer').val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+		GetppponeType();
+		layer.close(index);
+		layer.alert('保存成功!');
+		//setTimeout(function (){refresh()},3000);
+		refresh();
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	 
+	   },
+	   errorPlacement : function(error, element){ 
+	   if(error.text().indexOf("密码") !=-1){error.appendTo(element.parent().parent());}
+	   else{error.appendTo(element.parent()); }}
+    });
+    hideShowPwd();
+	GetppponeType();
+};
+
+
+
+
+
+
+function ppponeTypeForm2(){ 
+ $("#ppponeTypeForm2").validate({
+     submitHandler:function(form){
+		 var autoset,tiao;
+		 var seltiao=$("input[name='sel_tiao']").val();
+		 if(seltiao=='1'){tiao='local';}else{tiao='server';}
+		 var selected=$("input[name='functions']").is(':checked'); 
+		if(selected){
+			autoset='1';
+			}else{
+			autoset='0';
+				}
+     index = layer.load(0, {shade: [0.5,'#252525']});
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_wan",
+	data: {
+		wanType: 'pppoe',
+		pppoeName:$('#internetName').val(),
+		pppoePwd:$('#internetpwd').val(),
+		service:$('#serverName').val(),
+		mtu:$('#transmissionUnit').val(),
+		autoset:autoset,
+		dns1:$('#masterServer').val(),
+		dns2:$('#journeyServer').val(),
+		debugmethod:tiao,
+		logserverip:$('#LogIP').val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+		layer.close(index);
+		layer.alert('保存成功!');
+		//setTimeout(function (){refresh()},3000);
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	 
+	   },
+	   errorPlacement : function(error, element){ 
+	   if(error.text().indexOf("密码") !=-1){error.appendTo(element.parent().parent());}
+	   else{error.appendTo(element.parent()); }}
+    });
+    hideShowPwd();
+	GetppponeType();
+};
+
+
+
+
+
+
+
+function dhcpTypeForm(){ 
+ $("#dhcpTypeForm").validate({
+     submitHandler:function(form){
+     index = layer.load(0, {shade: [0.5,'#252525']});
+	 var autoset;
+		 var selected=$("input[name='functions']").is(':checked'); 
+		if(selected){
+			autoset='1';
+			}else{
+			autoset='0';
+				}
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_wan",
+	data: {
+		wanType: 'dhcp',
+		autoset:autoset,
+		dns1:$('#masterDNSServer').val(),
+		dns2:$('#journeyDNSServer').val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+		GetDHCPType();
+		layer.close(index);
+		layer.alert('保存成功!');
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	
+	   },
+	   errorPlacement : function(error, element){ 
+	   error.appendTo(element.parent());}
+    });
+	GetDHCPType();
+};
+function staticTypeForm(){ 
+ $("#staticTypeForm").validate({
+     submitHandler:function(form){
+     index = layer.load(0, {shade: [0.5,'#252525']});
+	 
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_wan",
+	data: {
+		wanType: 'static',
+		staticIp:$('#ipAddress').val(),
+		staticMask:$('#subnetMask').val(),
+		staticGateway:$('#gateway').val(),
+		dns1:$('#masterstaticServer').val(),
+		dns2:$('#journeystaticServer').val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			GetstaticType();
+		layer.close(index);
+		layer.alert('保存成功!');
+		//setTimeout(function (){refresh()},3000);
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	 
+	   },
+	   errorPlacement : function(error, element){ 
+	   error.appendTo(element.parent()); }
+    });
+	GetstaticType();
+};
+	
+	$("#blackForm").validate({
+     submitHandler:function(form){
+     index2 = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/add_mac_filter",
+	data: {
+		name:$("#facilityName").val(),
+		mode:0,
+		mac:$("#MACAddress").val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			$("#facilityName").val('');
+			$("#MACAddress").val('');
+			GetBlackEquipmentlist();
+			layer.close(index2);
+			layer.alert('拉黑成功');
+			setTimeout(function(){layer.close(index);},3000);
+		}else
+		{
+		layer.close(index2);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index2);
+		layer.alert("错误信息："+errmsg);
+	}});
+	   },
+	   errorPlacement : function(error, element){ 
+	     error.appendTo(element.next());
+		 $('#layui-layer' + index).height('auto');
+	     $('.layui-layer-content').height('auto');
+		  }
+    });
+	
+	$("#VpnForm").validate({
+     submitHandler:function(form){
+		 var tpldata={};
+		 var vpnid=$('#vpnId').val();
+		 if(vpnid==''){
+		 tpldata = {
+        oname: $('#vpnName').val(),
+		proto:$("input[name='sel_h']").val(),
+		server:$('#serverAddress').val(),
+		username:$('#vpnusername').val(),
+		password:$('#vpnpwd').val()
+                };
+		 }else
+		 {
+			 tpldata = {
+				 id:$('#vpnId').val(),
+        oname: $('#vpnName').val(),
+		proto:$("input[name='sel_h']").val(),
+		server:$('#serverAddress').val(),
+		username:$('#vpnusername').val(),
+		password:$('#vpnpwd').val()
+                };
+		 }
+		index2 = layer.load(0, {shade: [0.5,'#252525']});
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_vpn",
+	data:tpldata,
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+		GetVpnList();
+		layer.close(index2);
+		layer.alert('添加成功!');
+		setTimeout(function (){layer.close(index); window.location.reload();},3000);
+		}else
+		{
+		layer.close(index2);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index2);
+		layer.alert("错误信息："+errmsg);
+	}});
+	   },
+	   errorPlacement : function(error, element){ 
+	     error.appendTo(element.next());
+		 $('#layui-layer' + index).height('auto');
+	     $('.layui-layer-content').height('auto');
+		  }
+    });
+ 
+ function GetppponeType()
+ {
+	 $('#serverMac').val(cachePPPoE['mac']);
+	 $('#internetName').val(cachePPPoE['pppoeName']);
+	 $('#internetpwd').val(cachePPPoE['pppoePassword']);
+	
+	 if(cachePPPoE['autoset1']==1){
+      $('#serverName').val(cachePPPoE['service']);
+	 $('#transmissionUnit').val(cachePPPoE['mtu']);
+	 $("input[name='functions']").attr("checked", true);
+	 $("#waiinternet").stop().slideDown(0);
+	 if(cachePPPoE['dnscount']==2)
+	 {
+		 $('#masterServer').val(cachePPPoE['dns1']);
+		 $('#journeyServer').val(cachePPPoE['dns2']);
+	 }else if(cachePPPoE['dnscount']==1)
+	 {
+	     $('#masterServer').val(cachePPPoE['dns1']);
+	 }
+	 }
+ }
+ 
+ function GetDHCPType()
+ {
+	 $('#serverMac').val(cachePPPoE['mac']);
+	 if(cachePPPoE['autoset2']==1){
+	 $("input[name='deployDNS']").attr("checked", true);
+	 $("#waiinternet").stop().slideDown(0);
+	 if(cachePPPoE['dnscount']==2)
+	 {
+		 $('#masterDNSServer').attr('value',cachePPPoE['dns3']);
+		 $('#journeyDNSServer').attr('value',cachePPPoE['dns4']);
+	 }else if(cachePPPoE['dnscount']==1)
+	 {
+	     $('#masterDNSServer').attr('value',cachePPPoE['dns3']);
+	 }
+	 }
+ }
+ 
+ function GetstaticType()
+ {
+	 $('#serverMac').val(cachePPPoE['mac']);
+	 $('#ipAddress').attr('value',cachePPPoE['IP']);
+	 $('#subnetMask').attr('value',cachePPPoE['mask']);
+	 $('#gateway').attr('value',cachePPPoE['gateWay']);
+	 if(cachePPPoE['dnscount']==2)
+	 {
+		 $('#masterstaticServer').attr('value',cachePPPoE['dns5']);
+		 $('#journeystaticServer').attr('value',cachePPPoE['dns6']);
+	 }else
+	 {
+	     $('#masterstaticServer').attr('value',cachePPPoE['dns5']);
+	 }
+ }
+ 
+ $('#Cloning').click(function(){
+ $('#serverMac').val($('#pcmac').val());
+ });
+ 
+ $('#Recovery').click(function(){
+ $('#serverMac').val('4E:F6:3C:8B:6A:FD');
+ });
+ 
+ $("#MACForm").validate({
+     submitHandler:function(form){
+     index = layer.load(0, {shade: [0.5,'#252525']});
+	 
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_wan_mac",
+	data: {
+		mac: $('#serverMac').val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+		layer.close(index);
+		layer.alert('应用成功!');
+		//setTimeout(function (){refresh()},3000);
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	 
+	   },
+	   errorPlacement : function(error, element){ 
+	   error.appendTo(element.parent().next().next()); }
+    });
+	
+	$("#RouterIpForm").validate({
+     submitHandler:function(form){
+		 index=layer.open({
+			type: 1,
+			title: '操作提示',
+			area: ['460px', '262px'],
+			shadeClose: false,
+			content: $('#Resdialogtable')
+		});
+		serverIP=$('#serverIP').val();
+		Subnet=$('#Subnet').val(); 
+	   },
+	   errorPlacement : function(error, element){ 
+	   error.appendTo(element.parent()); }
+    });
+	
+	
+	
+	$("#DHCPForm").validate({
+     submitHandler:function(form){
+     index = layer.load(0, {shade: [0.5,'#252525']});
+	 
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_lan_dhcp",
+	data: {
+		start: $('#StartIP').val(),
+		end:$('#EndIP').val(),
+		leasetime:$('#LeaseTime').val()+"m",
+		ignore:0
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+		layer.close(index);
+		layer.alert('保存成功!');
+		//setTimeout(function (){refresh()},3000);
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	 
+	   },
+	   errorPlacement : function(error, element){ 
+	   error.appendTo(element.parent()); }
+    });
+	
+	
+	$("#EquipmentForm").validate({
+     submitHandler:function(form){
+	 var length = $("#dynamicTable tbody tr").length;
+	 if(length==0)
+	 {
+		 layer.alert('没有数据绑定!');
+	 }else{
+	 index2 = layer.load(0, {shade: [0.5,'#252525']});
+	 var json="[";
+	 for(var i=1;i<=length;i++)
+	 {
+      if(i==1){json+="{'ip':'"+$('.labipname').html()+$('#IPAddress'+i).val()+"','mac':'"+$('#MACAddress'+i).val()+"','name':'"+$('#DeviceName'+i).val()+"'}";}
+	  else{json+=",{'ip':'"+$('.labipname').html()+$('#IPAddress'+i).val()+"','mac':'"+$('#MACAddress'+i).val()+"','name':'"+$('#DeviceName'+i).val()+"'}";}
+	 }
+	 json+="]";
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/mac_bind",
+	data: {
+		data:json
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+		dhcpList(true);
+		layer.close(index2);
+		layer.alert('保存成功!');
+		layer.close(index);
+		}else
+		{
+	    layer.close(index2);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index2);
+		layer.alert("错误信息："+errmsg);
+	}});
+	 }
+	   },
+	   errorPlacement : function(error, element){ 
+	   error.appendTo(element.next()); }
+    });
+	
+	$("#setwifiForm").validate({
+     submitHandler:function(form){
+		 //询问框
+index =layer.confirm('该操作将重启Wi-Fi并导致Wi-Fi下的所有设备失去连接,是否确认修改?', {
+    btn: ['确定','取消'] //按钮
+}, function(){
+   
+    var hiddens;
+		 if($("input[name='chbchecks']").attr("checked"))
+		 {hiddens=1;}else{hiddens=0;}
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_wifi_setting",
+	data: {
+		index:1,
+		ssid:$('#wifiName').val(),
+		encryption:$("input[name='sel_f']").val(),
+		hidden:hiddens,
+		wifipwd:$('#wifiPwd').val(),
+		bandwidth:$("input[name='sel_p']").val(),
+		txpower:$("input[name='sel_h']").val(),
+		on:1,
+		channel:$("input[name='sel_d']").val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			index=layer.open({type: 1,title: '操作提示',area: ['460px', '262px'],shadeClose: false,
+			 content: '<div class="resDialog"><img src="../image/loading.gif" width="99" height="99" class="resloading" /><div class="reshen2">'+
+                      '设置已保存，网络正在重启，WiFi 设备可能漫游到其他路由器，请注意重新连接小橙路由器</div></div>'
+		                      });
+		//setTimeout(function () {getWiFi2();}, 30000);
+		setTimeout(function () {layer.close(index);
+		    layer.alert('操作成功');	}, 30000);
+		}else
+		{
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+   
+}, function(){
+    layer.close(index);
+});
+	 },
+	 errorPlacement : function(error, element){ 
+	 if(error.text().indexOf("密码") !=-1){error.appendTo(element.parent().parent().next());}
+	   else{error.appendTo(element.parent().next().next()); } }
+	 });
+	 
+	 
+	 $("#setVisitorWifiForm").validate({
+     submitHandler:function(form){
+		 //询问框
+index =layer.confirm('该操作将重启Wi-Fi并导致Wi-Fi下的所有设备失去连接,是否确认修改?', {
+    btn: ['确定','取消'] //按钮
+}, function(){
+	if(visitorcount){
+	visitorcount=false;
+   $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_wifi_setting",
+	data: {
+		index:3,
+		ssid:$('#VisitorName').val(),
+		encryption:$("input[name='sel_h']").val(),
+		wifipwd:$('#VisitorPwd').val(),
+		on:1
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			index=layer.open({type: 1,title: '操作提示',area: ['460px', '262px'],shadeClose: false,
+			 content: '<div class="resDialog"><img src="../image/loading.gif" width="99" height="99" class="resloading" /><div class="reshen2">'+
+                      '设置已保存，网络正在重启，WiFi 设备可能漫游到其他路由器，请注意重新连接小橙路由器</div></div>'
+		                      });
+			//setTimeout(function () {getvisitor2();}, 30000);
+			setTimeout(function () {layer.close(index);
+		    layer.alert('操作成功');	}, 30000);
+		}else
+		{
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});}
+}, function(){
+    layer.close(index);
+});  
+	 },
+	 errorPlacement : function(error, element){ 
+	 if(error.text().indexOf("密码") !=-1){error.appendTo(element.parent().parent());}
+	   else{error.appendTo(element.parent()); }}
+	 });
+	 
+	 	$("#setDMZform").validate({
+     submitHandler:function(form){
+		 index = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_dmz",
+	data: {
+		ip:$("#ipAddress").html()+$("#dmzIp").val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			layer.close(index);
+			window.location.reload();//刷新当前页面
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.msg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	 },
+	 errorPlacement : function(error, element){ 
+	 error.appendTo(element.parent()); }
+	 });
+	 
+	 
+	 $("#setPortform").validate({
+     submitHandler:function(form){
+		 if(status==2)
+		 {
+			 layer.alert('由于DMZ功能开启,无法设置端口转发');
+		 }else{
+		index2 = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/add_redirect",
+	data: {
+		dport:$("#insidePort").val(),
+		ip:$("#labePortId").html()+$("#insideIpAddress").val(),
+		name:$("#portName").val(),
+		proto:$("input[name='sel_h']").val(),
+		sport:$("#outPort").val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			GetPortList();
+			layer.close(index2);
+			layer.alert('添加成功');
+			setTimeout(function(){layer.close(index);},3000);
+		}else
+		{
+		layer.close(index2);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index2);
+		layer.alert("错误信息："+errmsg);
+	}});}
+	 },
+	 errorPlacement : function(error, element){ 
+	 error.appendTo(element.next());
+		 $('#layui-layer' + index).height('auto');
+	     $('.layui-layer-content').height('auto'); }
+	 });
+	 
+	 $("#setScopeform").validate({
+     submitHandler:function(form){
+		 if(status==2)
+		 {
+			 layer.alert('由于DMZ功能开启,无法设置端口转发');
+		 }else{
+		index2 = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/add_range_redirect",
+	data: {
+		fport:$("#startPort").val(),
+		ip:$("#labeScopeId").html()+$("#targetIp").val(),
+		name:$("#scopeName").val(),
+		proto:$("input[name='sel_y']").val(),
+		tport:$("#endPort").val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			GetScopeList();
+			layer.close(index2);
+			layer.alert('添加成功');
+			setTimeout(function(){layer.close(index);},3000);
+		}else
+		{
+		layer.close(index2);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index2);
+		layer.alert("错误信息："+errmsg);
+	}});}
+	 },
+	 errorPlacement : function(error, element){ 
+	 error.appendTo(element.next());
+		 $('#layui-layer' + index).height('auto');
+	     $('.layui-layer-content').height('auto');}
+	 });
+
+$("#qosForm").validate({
+     submitHandler:function(form){
+       index2 = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_band",
+	data: {
+		upload:$("#upload").val(),
+		download:$("#download").val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			layer.close(index2);
+			layer.alert('修改成功');
+			setTimeout(function(){layer.close(index);window.location.reload();},3000);
+		}else
+		{
+		layer.close(index2);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index2);
+		layer.alert("错误信息："+errmsg);
+	}});
+	    },
+		errorPlacement : function(error, element){ 
+          error.appendTo(element.next());
+		  $('#layui-layer' + index).height('auto');
+	     $('.layui-layer-content').height('auto');}
+    });
+	
+	function qosbtn(){
+	$("#qosListForm").validate({
+     submitHandler:function(form){
+    var length = $("#devices tbody tr").length;
+	
+	var json="[";
+	 for(var i=1;i<=length;i++)
+	 {
+      if(i==1){json+="{\"mac\":\""+$('#mac'+i).val()+"\",\"maxup\":\""+$('#shqos'+i).val()+"\",\"maxdown\":\""+$('#xiaqos'+i).val()+"\"}";}
+	  else{json+=",{\"mac\":\""+$('#mac'+i).val()+"\",\"maxup\":\""+$('#shqos'+i).val()+"\",\"maxdown\":\""+$('#xiaqos'+i).val()+"\"}";}
+	 }
+	 json+="]";
+	 var mode;
+	var drppattern=$("input[name='DrpPattern']").val();
+	if(drppattern==1){mode=2;}
+	else if(drppattern==2){mode=0;}
+	 index = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/qos_limits",
+	data: {
+		mode:mode,
+		data:json
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			layer.close(index);
+			layer.alert('保存成功');
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.msg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+msg);
+	}});
+    },
+		errorPlacement : function(error, element){ 
+          error.appendTo(element.next());
+		  $('#layui-layer' + index).height('auto');
+	     $('.layui-layer-content').height('auto');}
+    });
+	}
+	
+	
+	$("#PasswordForm").validate({
+     submitHandler:function(form){
+		 _oldPwd = $('#oldPwd').val();
+         _newPwd = $('#newPwd').val();
+		 nonce = encrypt.init();
+         oldPwd = encrypt.encPwd(_oldPwd);
+         newPwd = encrypt.newPwd(_oldPwd, _newPwd);
+		 index = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_name_password",
+	data:{
+		nonce:"'"+nonce+"'",
+        newPwd:"'"+newPwd+"'",
+        oldPwd:"'"+oldPwd+"'"
+		},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			layer.close(index);
+			layer.alert('修改成功');
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.msg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+msg);
+	}});
+		 
+	    },
+		errorPlacement : function(error, element){ 
+	   error.appendTo(element.parent());}
+    });
+	
+	
+	
+	$("#settimeForm").validate({
+     submitHandler:function(form){
+		 var value=$("input[name='sel_f']").val();
+		 //if(auto!=value)
+		 //{
+			//auto=$("input[name='sel_f']").val();
+			if(value==1){setNtpdauto(false);
+			setTimeDate();}else{setNtpdauto(true)}
+	     //}
+	    },
+		errorPlacement : function(error, element){ 
+	   error.appendTo(element.parent());}
+    });
+	
+	function setNtpdauto(state)
+	{
+		index = layer.load(0, {shade: [0.5,'#252525']});
+		var set;
+		if(state){set=1;}else{set=0;}
+	 $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/ntpd_open_close",
+	data:{
+		set:set
+		},
+	dataType: "json",             
+	success: function(result) {
+		   var code2=$("input[name='sel_f']").val();
+			if(code2==2){layer.close(index);layer.alert('设置成功');}
+			//if(state){code=0;}else{code=1;}
+		if(result.code!='0'){
+		layer.alert('错误码:'+result.code+"/错误信息："+result.msg);
+		}}})
+	}
+	
+	function setTimeDate()
+	{
+	var now=new Date($('#uptime').val().replace('-','/').replace('-','/'));
+	var setTimeVlue=Math.floor(now.getTime() / 1000);
+	$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/get_and_set_clock",{set:setTimeVlue},function(result)
+	{
+		layer.close(index);
+		layer.alert('设置成功');
+	});
+	}
+	
+	$("#diagnoseForm").validate({
+     submitHandler:function(form){
+     var value=$("input[name='way']").val();
+	 if(value==1){diagnosePing();}else if(value==2){diagnosetraceroute();}else if(value==3){diagnosenslookup();}
+	    },
+		errorPlacement : function(error, element){ 
+          error.appendTo(element.parent());}
+    });
+	
+	function diagnosePing()
+	{
+	  index = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/ping",
+	data: {
+		addr:$("#IpAddress").val()
+	},
+	dataType: "text",             
+	success: function(result) {
+		    $('#context').empty();
+			$('#context').html("<pre>"+result+"</pre>");
+			layer.close(index);
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	}
+	
+	function diagnosetraceroute()
+	{
+	index = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/traceroute",
+	data: {
+		addr:$("#IpAddress").val()
+	},
+	dataType: "text",             
+	success: function(result) {
+		    $('#context').empty();
+			$('#context').html("<pre>"+result+"</pre>");
+			layer.close(index);
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});	
+	}
+	
+	function diagnosenslookup()
+	{
+	index = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/nslookup",
+	timeout:180000,	
+	data: {
+		addr:$("#IpAddress").val()
+	},
+	dataType: "text",             
+	success: function(result) {
+		    $('#context').empty();
+			$('#context').html("<pre>"+result+"</pre>");
+			layer.close(index);
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});	
+	}
+	
+	$("#ddnsForm").validate({
+     submitHandler:function(form){
+    if(ddnsstate==1)
+	{url="http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/ddns_edit"}else{url="http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/add_server";enabled=1;}
+	index2 = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: url,
+	data: {
+		username:$("#serverusername").val(),
+		password:$("#serverpwd").val(),
+		domain:$("#serverName").val(),
+		enable:enabled,
+		id:$("input[name='sel_y']").val()
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			Getddnslist();
+			layer.close(index2);
+			layer.alert('保存成功');
+			setTimeout(function(){layer.close(index);window.location.reload();},3000);
+		}else
+		{
+		layer.close(index2);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.msg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index2);
+		layer.alert("错误信息："+errmsg);
+	}});
+	
+	    },
+		errorPlacement : function(error, element){ 
+          error.appendTo(element.next());
+		 $('#layui-layer' + index).height('auto');
+	     $('.layui-layer-content').height('auto');}
+    });
+	
+	$("#WirelessRelayForm").validate({
+     submitHandler:function(form){
+		 var remotessid,remoteencryption,APssid,Apencryption,APpassword;
+		 if($("#Settings").text() == "自动搜索"){remotessid=$("#interName").val();remoteencryption=$("input[name='sel_h']").val()}else{remotessid=$("input[name='sel_x']").val();remoteencryption=$("input[name='encryption']").val()} 
+		 
+		 var selectedvalue = $('#checkwifi').is(':checked');
+		if(!selectedvalue){APssid=$("#WIFIName").val();
+		Apencryption=$("input[name='sel_d']").val();
+		APpassword=$("#WIFIPwd").val();
+		}
+		 
+         layer.close(index);
+		 index = layer.open({
+					type: 1,
+					title: '操作提示',
+					area: ['500px', 'auto'],
+					shadeClose: false,
+					closeBtn: 0,
+					content: $('#Resloading').html()
+				});
+		  $.ajax({
+	type: "post",
+	url: 'http://192.168.0.164/cgi-bin/luci/cheng/networkmanager/set_wifi_repeater',
+	data: {
+		remotessid:remotessid,
+		remoteencryption:remoteencryption,
+		remotepassword:$("#interPwd").val(),
+		APssid:APssid,
+		APencryption:Apencryption,
+		APpassword:APpassword
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			wifiip=result.ip;
+			ssidName=result.ssid;
+            layer.close(index);
+			
+			index = layer.open({
+						type: 1,
+						title: '操作提示',
+						area: ['499px', '335px'],
+						shadeClose: false,
+						closeBtn: 0,
+						content: $('#backupsuress').html()
+					})
+					
+					$('#wifissid').html(ssidName);
+					$('#wifiIp').html(wifiip);
+                   
+					$("#quedingbtn").click(function() {
+						layer.close(index);
+						index=layer.open({
+			                  type: 1,
+			                  title: '操作提示',
+		                   	  area: ['460px', '262px'],
+			                  shadeClose: false,
+			                  content: $('#relayJump').html()
+		                });
+						
+					$("#Jumpqu").click(function() {
+						layer.close(index);
+					});
+					$("#Jumpque").click(function() {
+						location.href = 'http://'+wifiip;
+					});
+						//layer.close(index);
+						//location.href = "../index.htm";
+					})
+			
+		}else
+		{
+		layer.close(index);
+		index = layer.open({
+						type: 1,
+						title: '操作提示',
+						area: ['460px', '300px'],
+						shadeClose: false,
+						closeBtn: 0,
+						content: $('#errormsgDIV').html()
+					})
+					$('#errormsg').html('错误码:'+result.code+"/错误信息："+result.errmsg);
+                   
+					$("#errorbtn").click(function() {
+						layer.close(index);
+					})
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+	    },
+		errorPlacement : function(error, element){ 
+          error.appendTo(element.next());
+		 $('#layui-layer' + index).height('auto');
+	     $('.layui-layer-content').height('auto');}
+    });
+	
+	$("#setwifisetting").validate({
+     submitHandler:function(form){
+		 var hiddens;
+		 if($("input[name='chbcheck']").attr("checked"))
+		 {hiddens=1;}else{hiddens=0;}
+	    index = layer.load(0, {shade: [0.5,'#252525']});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_wifi_setting",
+	data: {
+		index:1,
+		ssid:$("#wifiName").val(),
+		encryption:$("input[name='way']").val(),
+		hidden:hiddens,
+		wifipwd:$("#wifipwd").val()
+	},
+	dataType: "text",             
+	success: function(result) {
+		    layer.close(index);
+		    layer.alert("保存成功");
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});	
+	    },
+		errorPlacement : function(error, element){ 
+	   if(error.text().indexOf("密码") !=-1){error.appendTo(element.parent().parent().next());}
+	   else{error.appendTo(element.parent().next().next()); }
+		  }
+    });
+ </script>

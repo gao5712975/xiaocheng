@@ -1,0 +1,139 @@
+<!--#include file="../include/head2.htm"-->
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			网络管理
+		</a>
+		>> DDNS
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				DDNS
+			  <font>
+					动态域名绑定
+			  </font>
+			</div>
+			<div class="zk">
+				收起
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="blacktitle">
+			  目前路由器拨号上网获得的多半都是动态IP，DDNS可以将路由器变化的外网IP和固定的域名绑定，从而用户可以在外网通过该固定域名来访问路由器。
+使用前需要到动态域名服务商申请账号。
+	  </div>
+        <div class="ddnsbiaodan">
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td colspan="2" align="left">
+						<span>
+							服务状态:
+						</span>
+                        <input type="checkbox" id="function" name="function" /><label for="function"></label>
+					</td>
+				</tr>
+				<tr id="ddnsblackbai">
+					<td colspan="2">
+						<div id="ddnslistDiv"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+    <!--弹层界面-->
+    <div id="ddnsdialogtable" style="display:none"></div>
+    <!--#include file="../tmpl/xiaocheng.layerDialog.js.htm"-->
+	<!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+	<script type="text/javascript">
+	
+		$(document).ready(function() {
+			$(".blacktitle").show();
+			$(".zk").click(function() {
+				if ($(".zk").text() == "展开") {
+					$(".zk").text("收起");
+					$(".blacktitle").stop().slideDown(500);
+				} else {
+					$(".zk").text("展开");
+					$(".blacktitle").stop().slideUp(500);
+				}
+			});
+			Getddnslist();
+			
+		});
+		$("input[name='function']").bind("click",
+		function(e) {
+			var theEvent = window.event || e;
+			var theObj = theEvent.target || theEvent.srcElement;
+			var selectedvalue = $(this).is(':checked');
+			checkddns(selectedvalue);
+		});
+		
+		function Getddnslist()
+		{
+			$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/ddns",function(result)
+            {
+	            if(result.code=='0') 
+	            {
+					if(result.on==1){
+			        $("input[name='function']").attr("checked", true);}
+					var selectedvalue = $("input[name='function']").is(':checked');
+			        if (selectedvalue) {
+				        $("#ddnsblackbai").stop().slideDown(0);
+			        } else {
+				        $("#ddnsblackbai").stop().slideUp(0);
+			        }
+					
+					$('#ddnslistDiv').empty();
+					$('#ddnslist').tmpl(result).appendTo('#ddnslistDiv');
+					ddnsbtn();
+				}
+				else
+				{
+	                layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	            }
+	        });
+		}
+
+
+function checkddns(state)
+		{
+			index = layer.load(0, {shade: [0.5,'#252525']});
+			var switchs;
+			if(state){switchs=1;}else{switchs=0;}
+			$.ajax({
+			type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/ddns_switch",
+	data: {
+		on: switchs
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+			if(state){$("#ddnsblackbai").stop().slideDown(0);}else{$("#ddnsblackbai").stop().slideUp(0);}
+		layer.close(index);
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});
+		}
+	</script>
+</body>
+
+</html>

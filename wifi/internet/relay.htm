@@ -1,0 +1,67 @@
+<!--#include file="../include/head2.htm"-->
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			网络管理
+		</a>
+		>> 工作模式
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				工作模式
+			</div>
+			<div class="zk">
+				收起
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="blacktitle">
+			  <b>无线路由器模式：</b>最常用的一种工作方式，一般将家里的宽带猫连接在无线路由的WAN口上，然后拨号上网，使用这个模式即可。<br/> 
+<b>无线中继模式：</b>路由器作为副路由器，中继主路由器的无线信号，扩展主路由的无线覆盖区域。<br/> 
+<b>有线中继模式：</b>同无线中继模式功能相同，使用网线与主路由器连接，信号相对更稳定。<br/>  
+请注意，在无线和有线中继模式下，路由器和主路由器同在一个局域网，中继时，路由器自动向主路由器获取一个新的IP地址作为新的管理地址。
+
+	  </div>
+        <div class="relaybiaodan">
+			<div class="vpnblackbai">
+                <div class="moshi">当前工作模式</div>
+                <div class="moshi2">路由器模式</div>
+                <img src="../image/raley.jpg" class="raleyImg"/>
+				<a id="RelayBtn" class="xiaobtn" href="javascript:;">切换工作模式</a>
+		</div>
+		</div>
+	</div>
+    <!--弹层界面-->
+    <div id="Relaydialogtable" style="display:none"></div>
+    <div id="schemadialogtable" style="display:none"></div>
+	<!--#include file="../tmpl/Relay.layerDialog.js.htm"-->
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+	<script type="text/javascript">
+		$(function() {
+			$(".blacktitle").show();
+			$(".zk").click(function() {
+				if ($(".zk").text() == "展开") {
+					$(".zk").text("收起");
+					$(".blacktitle").stop().slideDown(500);
+				} else {
+					$(".zk").text("展开");
+					$(".blacktitle").stop().slideUp(500);
+				}
+			});
+			GetWifiList();
+		});
+	</script>
+</body>
+
+</html>

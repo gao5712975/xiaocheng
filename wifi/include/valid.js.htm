@@ -1,0 +1,279 @@
+<script type="text/javascript">
+var reg = /^(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9])\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[1-9]|0)\.(25[0-5]|2[0-4][0-9]|[0-1]{1}[0-9]{2}|[1-9]{1}[0-9]{1}|[0-9])$/,
+reg2=/^[0-9a-zA-Z_]{1,}$/,
+regMac=/[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}:[A-F\d]{2}/,
+regshuzi=/^([0-9]*)$/,reg3=/^[0-9a-zA-Z]{1,}$/,
+regxiao=/^(\d+(?:\.\d{2})?|-1)$/,	
+regdatime=/(\d{2}|\d{4})(?:\-)?([0]{1}\d{1}|[1]{1}[0-2]{1})(?:\-)?([0-2]{1}\d{1}|[3]{1}[0-1]{1})(?:\s)?([0-1]{1}\d{1}|[2]{1}[0-3]{1})(?::)?([0-5]{1}\d{1})(?::)?([0-5]{1}\d{1})/;
+
+
+$.validator.addMethod("checkDateTime", function(value,element) {   
+        return this.optional(element) || regdatime.test(value);  
+         }, "时间格式不正确");
+
+$.validator.addMethod("checknumber", function(value,element) {   
+        return this.optional(element) || regshuzi.test(value);  
+         }, "只能输入数字"); 
+		 
+$.validator.addMethod("checkdecimal", function(value,element) {   
+        return this.optional(element) || regxiao.test(value);  
+         }, "您输入的带宽格式不正确，请输入申请网络带宽值");
+
+$.validator.addMethod("checkdecimal2", function(value,element) {   
+        return this.optional(element) || regxiao.test(value);  
+         }, "数据格式不正确");
+
+$.validator.addMethod("checkip", function(value,element) {   
+        return this.optional(element) || reg.test(value);  
+         }, "输入正确IP地址格式"); 
+
+$.validator.addMethod("checkmask", function(value, element) {         
+        return this.optional(element) || reg.test(value);  
+         }, "输入正确子网掩码格式"); 
+
+$.validator.addMethod("checkgateway", function(value, element) {         
+        return this.optional(element) || reg.test(value);  
+         }, "输入正确默认网关格式"); 
+
+$.validator.addMethod("checkdns", function(value, element) {           
+        return this.optional(element) || reg.test(value);  
+         }, "输入正确DNS格式"); 
+
+$.validator.addMethod("checkbdns", function(value, element) {          
+        return this.optional(element) || reg.test(value);  
+         }, "输入正确DNS格式"); 
+		 
+$.validator.addMethod("checkMac", function(value, element) {          
+        return this.optional(element) || regMac.test(value);  
+         }, "输入正确MAC地址格式"); 
+
+$.validator.addMethod("checkoNpwd", function(value, element) {          
+        var oldPwd = $('#oldPwd').val();
+               if(oldPwd==value){
+        return false;
+		}else{
+			return true;
+			}  
+         }, "新密码与原密码不能相同"); 
+
+$.validator.addMethod("checkspecial", function(value,element) {   
+        return this.optional(element) || reg2.test(value);  
+         }, "输入的内容不能包含特殊字符"); 
+		 
+$.validator.addMethod("checkspecial2", function(value,element) {   
+        return this.optional(element) || reg3.test(value);  
+         }, "输入的内容不能包含特殊字符"); 
+
+$.validator.addMethod("checkinterName", function(value, element) {
+        if($("#Settings").text() == "自动搜索"){
+			if(value==""){return false;}else{return true;}
+		}else{
+			return true;
+			}  
+         }, "网络名称不能为空"); 
+		 
+$.validator.addMethod("checkinterPwd", function(value, element) {          
+        if($("#Settings").text() == "自动搜索"){
+			var selevalue = $("input[name='sel_h']").val();
+			if (selevalue == 'none') {return true;} else {
+			if(value==""){return false;}else{return true;}} 
+		}else{
+			var encryption = $("input[name='encryption']").val();
+			if (encryption == 'none') {return true;} else {
+			if(value==""){return false;}else{return true;}}
+			}  
+         }, "密码不能为空"); 
+
+$.validator.addMethod("checkWIFIName", function(value, element) {
+        var selectedvalue = $('#checkwifi').is(':checked');
+		if(!selectedvalue){
+			if(value==""){return false;}else{return true;}
+		}else{
+			return true;
+			}  
+         }, "WiFi名称不能为空"); 
+
+$.validator.addMethod("checkmtu", function(value, element) {
+	    if(value!=""){
+		if(value>=576&&value<=1484){return true;}else{return false;}}else{return true;}
+         }, "最大传输单元（MTU）区间在576-1484"); 
+		 
+$.validator.addMethod("checkMaximum", function(value, element) {
+	    if(value!=""){
+		if(value>=0&&value<=100){return true;}else{return false;}}else{return true;}
+         }, "最大带宽区间在0-100");
+		 
+$.validator.addMethod("checkport", function(value, element) {
+	    if(value!=""){
+		if(value>=1&&value<=65535){return true;}else{return false;}}else{return true;}
+         }, "输入端口区间在1-65535"); 
+		 
+$.validator.addMethod("checkIpOrport", function(value, element) {
+	    if(value!=""){
+		if(value>=2&&value<=254){return true;}else{return false;}}else{return true;}
+         }, "输入IP地址区间在2-254");
+		 
+$.validator.addMethod("checkgatewayIP", function(value, element) {
+	    if(value==$('#gateway').val()){return false;}else{return true;}
+         }, "输入的IP地址与网关有冲突");
+		 
+$.validator.addMethod("checkbewtoonwifipwd", function(value, element) {
+	    if(value!=""){
+		if(value.length>=8&&value.length<=63){return true;}else{return false;}}else{return true;}
+         }, "WiFi密码位数在8-63位");
+
+$.validator.addMethod("checkChinesewifipwd", function(value, element) { 
+        if(value!=""){
+        var isOk = (escape(value).indexOf("%u") < 0);
+		return isOk
+		}else{return true;}
+         }, "输入WiFi密码不能包含汉字"); 
+		 
+$.validator.addMethod("checkbetweenIp", function(value, element) {
+	    if(value!=""){
+		if(value>=1&&value<=254){return true;}else{return false;}}else{return true;}
+         }, "IP地址范围在1-254"); 
+		 
+$.validator.addMethod("checkleaseTime", function(value, element) {
+	    if(value!=""){
+		if(value>=1&&value<=14400){return true;}else{return false;}}else{return true;}
+         }, "租约时间范围在1-14400"); 
+		 
+$.validator.addMethod("checkWIFIPwd", function(value, element) {
+        var selectedvalue = $('#checkwifi').is(':checked');
+		if(!selectedvalue){
+		var seld = $("input[name='sel_d']").val();
+		if (seld == 'none') {
+			return true;
+		} else {
+			if(value==""){return false;}else{return true;}
+		}	
+		}else{
+			return true;
+			}  
+         }, "WiFi密码不能为空"); 
+		 
+$.validator.addMethod("checkpwd", function(value, element) {          
+        var newPwd = $('#newPwd').val();
+               if(newPwd!=value){
+        return false;
+		}else{
+			return true;
+			}  
+         }, "两次密码输入不一致，请重新输入");
+
+$.validator.addMethod("checkSetTime", function(value, element) {          
+        var drpTime=$("input[name='sel_f']").val();
+               if(drpTime=='1'){
+        if(value==''){return false;}else{return true;}
+		}else{
+			return true;
+			}  
+         }, "请选择时间");
+
+$.validator.addMethod("checkLogIP", function(value, element) {          
+        var seltiao=$("input[name='sel_tiao']").val();
+               if(seltiao=='2'){
+        if(value==''){return false;}else{return true;}
+		}else{
+			return true;
+			}  
+         }, "请输入Log服务器IP地址");
+
+$.validator.addMethod("checkDigits", function(value, element) {       
+         var length = value.length;   
+               if(length<8){
+        return false;
+		}else{
+			return true;
+			}  
+         }, "输入密码不能低于8位"); 
+$.validator.addMethod("checkChinese", function(value, element) { 
+        var isOk = (escape(value).indexOf("%u") < 0);
+		return isOk
+         }, "输入内容不能包含汉字"); 
+		 
+$.validator.addMethod("masterEmpty", function(value, element) {
+	    var selected=$("input[name='functions']").is(':checked'); 
+		if(selected){
+        if(value==''){
+        return false;
+		}else{
+			return true;
+			}  }else{return true;}
+         }, "请输入首选DNS");
+$.validator.addMethod("journeyEmpty", function(value, element) {
+	    var selected=$("input[name='functions']").is(':checked'); 
+		if(selected){
+        if(value==''){
+        return false;
+		}else{
+			return true;
+			}  }else{return true;}
+         }, "请输入备选DNS");
+
+$.validator.addMethod("masterDNSEmpty", function(value, element) {
+	    var selected=$("input[name='deployDNS']").is(':checked'); 
+		if(selected){
+        if(value==''){
+        return false;
+		}else{
+			return true;
+			}  }else{return true;}
+         }, "请输入首选DNS");
+$.validator.addMethod("journeyDNSEmpty", function(value, element) {
+	    var selected=$("input[name='deployDNS']").is(':checked'); 
+		if(selected){
+        if(value==''){
+        return false;
+		}else{
+			return true;
+			}  }else{return true;}
+         }, "请输入备选DNS");
+$.validator.addMethod("wifipwdEmpty", function(value, element) {
+	    var selectValue=$("input[name='sel_f']").val();
+		if(selectValue!='none'){
+        if(value==''){
+        return false;
+		}else{
+			return true;
+			}
+		}else{return true;}
+         }, "请输入WiFi密码");
+		 
+$.validator.addMethod("relaypwdEmpty", function(value, element) {
+	    var selectValue=$("input[name='way']").val();
+		if(selectValue!='none'){
+        if(value==''){
+        return false;
+		}else{
+			return true;
+			}
+		}else{return true;}
+         }, "请输入WiFi密码");
+		 
+$.validator.addMethod("VisitorpwdEmpty", function(value, element) {
+	    var selectValue=$("input[name='sel_h']").val();
+		if(selectValue!='none'){
+        if(value==''){
+        return false;
+		}else{
+			return true;
+			}
+		}else{return true;}
+         }, "请输访客网络密码");
+
+
+$("#wifipwd").blur(function () {
+    $("#routerpwd").val($("#wifipwd").val());
+    routerpwdHidden=$("#wifipwd").val();
+})
+
+
+$("#routerpwd").keyup(function () {
+    var routerpwd = $("#routerpwd").val();
+    if (routerpwd != routerpwdHidden) {
+        $("#wificheck").prop("checked", false);
+    }
+})
+</script>

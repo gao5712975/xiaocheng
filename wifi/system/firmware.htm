@@ -1,0 +1,133 @@
+<!--#include file="../include/head2.htm"-->
+<script src="../js/ajaxfileupload.js" type="text/javascript"></script>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			系统设置
+		</a>
+		>> 固件升级
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				固件升级   <font>固件升级成功后路由会自动重启</font>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+        
+		<div class="rescontext" style="display:none" id="Version1">
+        <div class="reslab">当前版本号：<label id="softversion1"></label></div>
+        <div class="reslab4">检查更新失败，请检查网络后刷新页面重试</div>
+        <div class="reslab3"><a class="xiaobtn" id="resbtn">手动升级</a></div>
+        </div>
+        
+        
+        <div class="rescontext" style="display:none" id="Version2">
+        <div class="reslab">当前版本号：<label id="softversion2"></label></div>
+        <div class="reslab4">已是最新版本</div>
+        <div class="reslab3"></div>
+        </div>
+        
+        <div class="rescontext" style="display:none" id="Version3">
+        <div class="reslab">当前版本号：<label id="softversion3"></label></div>
+        <div class="reslab4">有新版本可用 <label id="labVersion"></label></div>
+        <div class="reslab5">新版本特性</div>
+        <div id="descript" class="reslab6">
+        <!--1.提高了系统的连接稳定性。<br/>
+            2.提高了系统的连接稳定性系统的连接稳定性。<br/>
+            3.提高了系统的连接稳定性提高了系统的连接稳定性。--> 
+        </div>
+        <div class="reslab7">
+        <div class="firmwarediv"><a class="xiaobtn" id="upgradebtn">在线升级</a></div>
+        <div class="firmwarediv"><a class="xiaobtn" id="resbtn2">手动升级</a></div>
+        <div class="clear"></div>
+        </div>
+        </div>
+        
+	</div>
+    <input type="file" name="image" id="image" style="display:none" />
+    <!--弹层界面-->
+    <div id="Firmwaredialogtable" style="display:none"></div>
+	<!--#include file="../tmpl/firmware.layerdialog.js.htm"-->
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+    <script type="text/javascript">
+    $("#resbtn2").click(function () {$("#image").click();})
+	$("#resbtn").click(function () {$("#image").click();})
+	
+	$(function() {CheckVersion();Getsoftversion();})
+	
+	function CheckVersion()
+	{
+	 $.ajax({
+	    type: "post",
+	    timeout:3000,
+	    url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/check_rom_update",
+	    data: {},
+	    dataType: "json",             
+	    success: function(result) {
+		if(result.code=='0'){
+		if(result.needUpdate=='1')
+		{
+		versionurl=result.downloadUrl;
+		filesize=result.fileSize;
+		
+		$('#descript').empty();
+		$('#descript').html("<pre>"+result.descript+"</pre>");
+		
+		$('#Version1').hide();
+		$('#Version2').hide();
+		$('#Version3').show();
+		$('#labVersion').html(result.version);
+		}
+		else{
+		$('#Version1').hide();
+		$('#Version2').show();
+		$('#Version3').hide();
+		}
+		}else
+		{
+		$('#Version1').show();
+		$('#Version2').hide();
+		$('#Version3').hide();
+		//layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+        $('#Version1').show();
+		$('#Version2').hide();
+		$('#Version3').hide();
+		//layer.alert("错误信息："+errmsg.readyState);
+	}});	
+	}
+	
+	function Getsoftversion()
+	{
+	$.ajax({
+	    type: "post",
+	    url: "http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/get_soft_version",
+	    dataType: "json",             
+	    success: function(result) {
+		if(result.code=='0'){
+			$("#softversion1").html(result.softversion);
+			$("#softversion2").html(result.softversion);
+			$("#softversion3").html(result.softversion);
+		}
+	},
+	error: function(errmsg) {
+		layer.alert("错误信息："+errmsg.readyState);
+	}});	
+	}
+    </script>
+</body>
+
+</html>

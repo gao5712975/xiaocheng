@@ -1,0 +1,112 @@
+<!--#include file="../include/head2.htm"-->
+<script src="../js/jquery.selectlist.js" type="text/javascript"></script>
+<style type="text/css">
+.uppwdcontext lable{border:0px;color:red; padding-left:15px}
+</style>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			系统设置
+		</a>
+		>> 系统诊断
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				系统诊断
+			  <font>提供对路由器的简单诊断，便于尽快发现问题</font>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="uppwdcontext pt30">
+			<form id="diagnoseForm" method="post" action="">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="20%">
+										<span>
+											诊断命令:
+									  </span>
+									</td>
+									<td width="80%" align="left">
+										<select id="way" name="way">
+					                      <option value="1">ping</option>
+					                      <option value="2">traceroute</option>
+                                          <option value="3">nslookup</option>
+				                        </select>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span class="settitle">
+											主机名或IP地址:
+										</span>
+									</td>
+									<td>
+										<input id="IpAddress" name="IpAddress" class="{required:true,messages:{required:'请输入IP地址'}} textinput5" type="text" />
+									</td>
+								</tr>
+                                <tr>
+									<td valign="top">
+										<span class="mt88">
+											执行结果:
+										</span>
+									</td>
+									<td>
+										<div id="context" class="textarea">
+                                        
+                                        </div>
+									</td>
+								</tr>
+								<tr>
+                                <td></td>
+									<td>
+										<div class="wifibut">
+											<div class="inxiaobut">
+												<button type="submit" class="xiaobtn">
+													诊断
+												</button>
+											</div>
+                                            <div class="inxiaobut">
+												<a class="xiaobtn" onclick="refresh()" href="javascript:;">
+													清空结果
+												</a>
+											</div>
+											<div class="clear">
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+                            </form>
+						</div>
+        
+        
+        
+        
+	</div>
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+     <script type="text/javascript">
+    $('select').selectlist({
+		zIndex: 10,
+		width: 259,
+		height: 39,
+		borderRadius: 5
+	});
+	
+	function refresh(){
+    window.location.reload();//刷新当前页面.
+	}
+    </script>
+</body>
+
+</html>

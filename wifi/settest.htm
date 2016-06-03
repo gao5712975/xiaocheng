@@ -1,0 +1,514 @@
+<!--#include file="include/head.htm"-->
+<script src="js/modernizr.custom.js" type="text/javascript">
+</script>
+<script src="js/hideShowPassword.js" type="text/javascript">
+</script>
+<style type="text/css">
+.setwifilab2 .wanType{ font-family:宋体; font-size:12px; color:#999999; padding-left:15px}
+.setbiaodan #Startlab{ padding-left:0px; font-family:宋体; font-size:12px; color:#333333}
+.setbiaodan #Endlab{ padding-left:0px;font-family:宋体; font-size:12px; color:#333333}
+.Prompt5{}
+.Prompt5 .error{border:0px;color:red; font-size:12px; font-family:宋体; line-height:25px; height:25px; border-radius:5px; background:#FFF2F5 none repeat scroll 0% 0%; padding:0px 12px; display:block;width:120px;font-weight:normal}
+#dynamicTable tr td .labipname{ font-family:宋体; font-size:12px; color:#333333;}
+
+</style>
+<title>
+	小橙路由 
+</title>
+</head>
+<body>
+	<!--#include file="include/top.htm"-->
+	<!--内容-->
+	<div id="content">
+		<div id="tab1" class="setwinternetcontext" style="border-radius:5px">
+        
+        
+        <div class="setwifilab">
+				网络信息
+			</div>
+			<hr class="hr2" size="1" />
+			<div id="NetworkInformation" class="setbiaodan2">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="20%">
+							<span>
+								联网类型:
+							</span>
+						</td>
+						<td width="60%" align="left">
+							<label id="InternetType"></label>
+                            <input type="hidden" id="pppoePassword"/>
+                            <input type="hidden" id="pppoeName"/>
+						</td>
+                       <td width="20%" rowspan="2">
+                        <a id="btnLog" class="xiaobtn" target="_blank" href="http://192.168.1.3/cgi-bin/luci/cheng/systemdebug/get_pppoe_log" style="display:none">
+											获取Log文件
+										</a>
+                        </td>
+					</tr>
+                    <tr>
+						<td width="20%">
+							<span>
+								联网状态：
+							</span>
+						</td>
+						<td width="60%" align="left">
+							<div id="NetworkingStatus"></div>
+                            <!--拨号成功<a class="statebtn">断开连接</a>-->
+						</td>
+                        
+					</tr>
+                    </table>
+                    </div>
+			<div class="setwifilab2">
+				上网设置<font class="wanType"></font>
+			</div>
+			<hr class="hr2" size="1" />
+<!--begin-->
+<div id="Internetsettings" class="setbiaodan">
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+			<tr>
+				<td width="20%">
+					<span>
+						联网方式:
+					</span>
+				</td>
+				<td width="80%" align="left">
+					<select id="sel_l" name="sel_l">
+						<option value="pppoe">
+							PPPOE
+						</option>
+						<option value="dhcp">
+							动态IP(DHCP)
+						</option>
+						<option value="static">
+							静态IP
+						</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+                <div id="InternetTypeDiv"></div>
+				</td>
+			</tr>
+		</table>
+</div>
+<!--end-->
+
+		</div>
+	</div>
+	<!--#include file="include/bottom.htm"-->
+	<script src="js/jquery.selectlist.js">
+	</script>
+	<script type="text/javascript">
+	var index,
+	cachePPPoE={}; 
+	
+	$(document).ready(function() {
+		getWanType();
+		Setwifiinfo();
+		DetectionNetworkType(true);
+	});
+		
+	setinterl=setInterval(function(){DetectionNetworkType(false);}, 5000);
+	
+	//获取网络信息状态
+	function DetectionNetworkType(state) {
+	$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/pppoe_status",function(result)
+	{
+	if(result.code=='0') 
+	{
+		$('#InternetType').html(result.proto.toUpperCase());
+		if(result.proto=='pppoe')
+		{
+			if(result.linked=='1')
+			{
+				switch(result.status)
+				{
+					case 1 :
+					$('#NetworkingStatus').html('正在拨号...');
+                    break;
+					case 2 :
+					$('#NetworkingStatus').html('拨号成功<a id="Disconnect" class="statebtn">断开连接</a>');
+                    break; 
+					case 3 :
+					$('#NetworkingStatus').html('拨号失败<a id="Dial" class="statebtn">重新拨号</a>');
+                    break; 
+					case 4 :
+					$('#NetworkingStatus').html('已断开<a id="Dial" class="statebtn">重新拨号</a>');
+                    break; 
+					default:
+                    break;
+				}
+			}
+			else{$('#NetworkingStatus').html("网线未连接");}
+		}
+		else if(result.proto=='dhcp')
+		{
+			if(result.linked=='1'){ if(result.status=='1'){$('#NetworkingStatus').html("已连接");}else{$('#NetworkingStatus').html("未连接");}}else{$('#NetworkingStatus').html("网线未连接");}
+		}
+		else if(result.proto=='static')
+		{
+			 if(result.linked=='1'){$('#NetworkingStatus').html("已连接");}else{$('#NetworkingStatus').html("网线未连接");}
+		}
+		
+		//断开连接
+		$('#Disconnect').click(function(){
+			index = layer.load(0, {shade: [0.5,'#252525']});
+			$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/pppoe_stop",function(result)
+	        {
+				if(result.code=='0') 
+	            {
+				   layer.close(index);
+				   layer.alert('断开连接成功!');
+				}else
+	            {
+				   layer.close(index);
+	               layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	            }
+			});
+		});
+		
+		//重新拨号
+		$('#Dial').click(function(){
+			index = layer.load(0, {shade: [0.5,'#252525']});
+			$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/pppoe_start",function(result)
+	        {
+				if(result.code=='0') 
+	            {
+				   layer.close(index);
+				   layer.alert('重新拨号成功!');
+				}else
+	            {
+				   layer.close(index);
+	               layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	            }
+			});
+		});
+		
+	}else
+		{
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	});
+}
+
+//获取建议上网方式
+function getWanType(){
+$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/detect_wan_type",function(result)
+	{
+		
+	if(result.code=='0') 
+	{
+	   if ( result.wanType == 1 ) {$('.wanType').html('经过检测，建议使用PPPoE方式(需要输入帐号与密码)');} 
+	   else if ( result.wanType == 2 ){$('.wanType').html('经过检测，建议使用DHCP方式(系统自动分配IP地址)');}
+	   else if ( result.wanType == 3 ) {$('.wanType').html('经过检测，建议使用静态IP方式');}
+	   else if ( result.wanType == 99 ) {$('.wanType').html('经过检测，你的WAN口无法连通，可能网线没插好');}
+	   else {$('.wanType').html('经过检测，无法识别你的上网类型，请手工选择上网方式');}
+	}else
+	{
+	   layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	}
+	});
+}
+
+//获取网络信息
+function Setwifiinfo(){
+$('#Internetsettings').hide();
+$('#Macclone').hide();
+$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/get_wan_info",function(result)
+{
+	if(result.code=='0') 
+	{
+		$('#Internetsettings').show();
+		$('#Macclone').show();
+		if(result.info.details.wanType=='pppoe')
+		{
+			cachePPPoE['mac'] = result.info.mac;
+			cachePPPoE['pppoeName'] = result.pppoeName;
+            cachePPPoE['pppoePassword'] = result.pppoePassword;
+			var service=result.info.details.service;
+			var mtu=result.info.mtu;
+			var dnslist = result.info.details.dns;
+			if(typeof(dnslist)!="undefined"){
+			cachePPPoE['dnscount']=dnslist.length;
+			}else{
+			cachePPPoE['dnscount']=0;
+			}
+        if((dnslist && $.isArray(dnslist) && dnslist.length > 0 )||typeof(service)!="undefined"||typeof(mtu)!="undefined"){
+			cachePPPoE['autoset1']=1;
+			cachePPPoE['service']=service;
+			cachePPPoE['mtu']=mtu;
+			if(typeof(dnslist)!="undefined"){
+			if(dnslist.length==2) {
+			cachePPPoE['dns1']=dnslist[0];
+			cachePPPoE['dns2']=dnslist[1];
+			}else{
+			cachePPPoE['dns1']=dnslist[0];
+			}}
+		    }else{
+			cachePPPoE['autoset1']=0;
+			}
+		}
+		else if(result.info.details.wanType=='dhcp')
+		{
+			cachePPPoE['mac'] = result.info.mac;
+			cachePPPoE['pppoeName'] = result.pppoeName;
+            cachePPPoE['pppoePassword'] = result.pppoePassword;
+			var dnslist = result.info.details.dns;
+			if(typeof(dnslist)!="undefined"){
+			cachePPPoE['dnscount']=dnslist.length;
+			}else{
+			cachePPPoE['dnscount']=0;
+			}
+			if ( dnslist && $.isArray( dnslist ) && dnslist.length > 0 ) {
+			cachePPPoE['autoset2']=1;
+			if(dnslist.length==2) {
+			cachePPPoE['dns3']=dnslist[0];
+			cachePPPoE['dns4']=dnslist[1];
+			}else{
+			cachePPPoE['dns3']=dnslist[0];
+			}
+		    }else{
+			cachePPPoE['autoset2']=0;
+			}
+		}
+		else if(result.info.details.wanType=='static')
+		{
+			cachePPPoE['mac'] = result.info.mac;
+			cachePPPoE['pppoeName'] = result.pppoeName;
+            cachePPPoE['pppoePassword'] = result.pppoePassword;
+		    cachePPPoE['IP']=result.info.ipv4[0].ip;
+			cachePPPoE['mask']=result.info.ipv4[0].mask;
+			cachePPPoE['gateWay']=result.info.gateWay;
+			var dnslist = result.info.details.dns;
+			cachePPPoE['dnscount']=dnslist.length;
+			if ( dnslist && $.isArray( dnslist ) && dnslist.length==2 ) {
+			cachePPPoE['dns5']=dnslist[0];
+			cachePPPoE['dns6']=dnslist[1];
+			}else{
+			cachePPPoE['dns5']=dnslist[0];
+			}
+		}
+		$("#sel_l").find("option[value='"+result.info.details.wanType+"']").attr("selected",true);
+		drpList();
+		if(result.info.details.wanType=='pppoe'){$('#InternetTypeDiv').html($('#pppoeType').html());drpListtiao();ppponeTypeForm2();$("#btnLog").show();}
+		else if(result.info.details.wanType=='dhcp'){$('#InternetTypeDiv').html($('#dhcpType').html());dhcpTypeForm();$("#btnLog").hide();}
+		else if(result.info.details.wanType=='static'){$('#InternetTypeDiv').html($('#staticType').html());staticTypeForm();$("#btnLog").hide();}
+		checkDIv();
+	}else
+	{
+	     layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	}
+});
+}
+
+//绑定联网方式下拉框
+function drpList(){
+	$('#sel_l').selectlist({
+		zIndex: 9999999,
+		width: 259,
+		height: 39,
+		borderRadius: 5,
+		onChange: function() {
+			var value = $("input[name='sel_l']").val();
+			if (value == 'pppoe') {
+				$('#InternetTypeDiv').html($('#pppoeType').html());
+				drpListtiao();
+				ppponeTypeForm2();
+				$("#btnLog").show();
+			} else if (value == 'dhcp') {
+				$('#InternetTypeDiv').html($('#dhcpType').html());
+				dhcpTypeForm();
+				$("#btnLog").hide();
+			} else {
+				$('#InternetTypeDiv').html($('#staticType').html());
+				staticTypeForm();	
+				$("#btnLog").hide();
+			}
+			checkDIv();
+			
+		}
+	});
+	}
+
+//绑定联网方式下拉框
+function drpListtiao(){
+	$('#sel_tiao').selectlist({
+		zIndex: 9999999,
+		width: 259,
+		height: 39,
+		borderRadius: 5,
+		onChange: function() {
+		var value = $("input[name='sel_tiao']").val();
+			if (value == '1') {
+				$('#tiao2').hide();
+			}else {
+				$('#tiao2').show();
+			}
+		}
+	});
+	}
+
+//绑定dns是否手动自动设置开关
+function checkDIv(){
+			GetDHCP(true);
+
+			var selectedvalue = $("input[name='functions']").is(':checked');
+			if (selectedvalue) {
+				$("#waiinternet").stop().slideDown(0);
+			} else {
+				$("#waiinternet").stop().slideUp(0);
+				$('#serverName').val('');
+				$('#transmissionUnit').val('');
+				$('#masterServer').val('');
+				$('#journeyServer').val('');
+			}
+			
+			var selectedvalue = $("input[name='deployDNS']").is(':checked');
+			if (selectedvalue) {
+				$("#deployDNSDiv").stop().slideDown(0);
+			} else {
+				$("#deployDNSDiv").stop().slideUp(0);
+				$('#masterDNSServer').val('');
+				$('#journeyDNSServer').val('');
+			}
+			
+		$("input[name='function']").bind("click",function(e) {
+			var theEvent = window.event || e;
+			var theObj = theEvent.target || theEvent.srcElement;
+			var selectedvalue = $(this).is(':checked');
+			if (selectedvalue) {
+				GetDHCP(false);
+				$("#neiinternet").stop().slideDown(0);
+				$("#jinDiv").stop().slideDown(0);
+			} else {
+				checkDHCP();
+				$("#neiinternet").stop().slideUp(0);
+				$("#jinDiv").stop().slideUp(0);
+			}
+		});
+
+		$("input[name='functions']").bind("click",
+		function(e) {
+			var theEvent = window.event || e;
+			var theObj = theEvent.target || theEvent.srcElement;
+			var selectedvalue = $(this).is(':checked');
+			if (selectedvalue) {
+				$("#waiinternet").stop().slideDown(0);
+			} else {
+				$("#waiinternet").stop().slideUp(0);
+				$('#masterServer').val('');
+				$('#journeyServer').val('');
+			}
+		});
+		
+		$("input[name='deployDNS']").bind("click",
+		function(e) {
+			var theEvent = window.event || e;
+			var theObj = theEvent.target || theEvent.srcElement;
+			var selectedvalue = $(this).is(':checked');
+			if (selectedvalue) {
+				$("#deployDNSDiv").stop().slideDown(0);
+			} else {
+				$("#deployDNSDiv").stop().slideUp(0);
+				$('#masterDNSServer').val('');
+				$('#journeyDNSServer').val('');
+			}
+		});
+	}
+	
+	function refresh(){
+    window.location.reload();//刷新当前页面.
+	}
+	
+	function checkDHCP()
+	{
+	 $.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/set_lan_dhcp",{ignore:1},function(result)
+     {
+	   if(result.code=='0') 
+	   {
+		$('#StartIP').val('');
+		$('#EndIP').val('');
+		$('#LeaseTime').val('');
+	   }
+	   else{
+	     layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	   }
+     });
+	}
+	
+	function GetDHCP(state)
+	{
+	$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/get_lan_dhcp",function(result)
+     {
+	   if(result.code=='0') 
+	   {
+		if(result.info.ignore==0){
+		$("input[name='function']").attr("checked", true);
+		}
+		var selectedvalue = $("input[name='function']").is(':checked');
+		if (selectedvalue) {
+		 $("#neiinternet").stop().slideDown(0);
+		 $("#jinDiv").stop().slideDown(0);
+		} else {
+		 $("#neiinternet").stop().slideUp(0);
+		 $("#jinDiv").stop().slideUp(0);
+		}
+		startIP=setIp(result.info.lanIp[0].ip);
+		$('#serverIP').val(result.info.lanIp[0].ip);
+		$('#Subnet').val(result.info.lanIp[0].mask);
+		$('#StartIP').val(result.info.start);
+		$('#Startlab').html(setIp(result.info.lanIp[0].ip));
+		$('#Endlab').html(setIp(result.info.lanIp[0].ip));
+		var total=parseInt(result.info.start)+parseInt(result.info.limit)-1;
+		$('#EndIP').val(total);
+		var timeValue=(result.info.leasetimeUnit=='h'? 60 : 1)*parseInt(result.info.leasetimeNum);
+		$('#LeaseTime').val(timeValue);
+	   }
+	   else{
+	     layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	   }
+     });
+	}
+	function setIp(ip)
+	{
+		var ipSplit=[];
+		var strs = ip.split(".");
+		
+        for (var i=0;i<strs.length-1;i++ )
+        {
+           ipSplit.push(strs[i]);
+        }
+        return ipSplit.join('.') + '.';
+	}
+	
+	function dhcpList(state)
+	{
+		if(state){$('#dhcpService').hide();}
+		$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/mac_bind_info",function(result)
+     {
+	   if(result.code=='0') 
+	   {
+		   $('#dhcpService').show();
+		   $('#dhcpListDiv').empty();
+		   $('#dhcpList').tmpl(result).appendTo('#dhcpListDiv')
+	   }
+	   else{
+	     layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	   }
+	  });
+	}
+	</script>
+    <!--弹层界面-->
+    <div id="SetInternetdialogtable" style="display:none"></div>
+    <div id="Resdialogtable" style="display:none"></div>
+    <div id="AddTable" style="display:none">
+    </div>
+	<!--#include file="tmpl/settest.layerDialog.js.htm"-->
+	<!--#include file="include/valid.js.htm"-->
+    <!--#include file="include/xiaocheng.js.htm"-->
+</body>
+
+</html>

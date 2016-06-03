@@ -1,0 +1,112 @@
+<!--#include file="../include/head2.htm"-->
+<script src="../js/jquery.md5.js"></script>
+
+<script>
+var encrypt = {
+    key: 'a2ffa5c9be07488bbb04a3a47d3c5f6a',
+    iv: '64175472480004614961023454661220',
+    nonce: null,
+    init: function(){
+        var nonce = this.nonceCreat();
+        this.nonce = nonce;
+        return this.nonce;
+    },
+    nonceCreat: function(){
+        var type = 0;
+        var deviceId = '00:E0:4C:36:49:87';
+        var time = Math.floor(new Date().getTime() / 1000);
+        var random = Math.floor(Math.random() * 10000);
+        return [type, deviceId, time, random].join('_');
+    },
+    encPwd : function(pwd){
+          var md5pwd=$.md5(pwd);
+          return $.md5(this.nonce + md5pwd);
+    },
+    newPwd: function(pwd, newpwd){
+        var md5pwd = $.md5(newpwd)
+        return md5pwd;
+    }
+};
+</script>
+<style type="text/css">
+.uppwdcontext lable{border:0px;color:red; padding-left:15px}
+</style>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			系统设置
+		</a>
+		>> 修改管理员密码
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				修改管理员密码
+			  
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="uppwdcontext pt30">
+			<form id="PasswordForm" method="post" action="">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="20%">
+										<span>
+											原密码:
+										</span>
+									</td>
+									<td width="80%">
+										<input id="oldPwd" name="oldPwd" class="{required:true,messages:{required:'请输入原密码'},checkDigits:true,checkChinese:true,maxlength:63,minlength:8} textinput5" type="password" />
+                                    </td>
+								</tr>
+								<tr>
+									<td>
+										<span>
+											新密码:
+										</span>
+									</td>
+									<td>
+										<input id="newPwd" name="newPwd" class="{required:true,messages:{required:'请输入新密码'},checkoNpwd:true,checkDigits:true,checkChinese:true,maxlength:63,minlength:8} textinput5" type="password" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>
+											确认密码:
+										</span>
+									</td>
+									<td>
+										<input id="newPwd2" name="newPwd2" class="{required:true,messages:{required:'请输入确认密码'},checkpwd:true,checkDigits:true,checkChinese:true,maxlength:63,minlength:8} textinput5" type="password" />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<div class="wifibut">
+											<div class="inxiaobut">
+												<button type="submit" class="xiaobtn">
+													更新密码
+												</button>
+											</div>
+											<div class="clear">
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+                            </form>
+						</div> 
+	</div>
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+</body>
+
+</html>

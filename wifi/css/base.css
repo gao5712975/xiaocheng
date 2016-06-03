@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document */
+/*标签样式*/
+body{font-family:微软雅黑; padding:0px; margin:0px; font-size:12px; background-color:#428bef}
+ul,li{margin:0px; padding:0px; list-style:none}
+a{text-decoration:none;}
+label{cursor:pointer;}
+input{padding-left:5px; outline:none;}
+textarea{padding-left:5px;}
+img{border:0px}
+h1,h2,h3,h4,h5{font-weight:100; margin:0px; padding:0px;}
+em{font-style:normal;}
+button{cursor:pointer;}
+<!--button:focus{outline:0;}-->
+
+/*浮动*/
+.left{float:left}
+.right{float:right}
+.clear{clear:both;}
+.auto{margin:auto}
+.text-r{text-align:right}
+.text-l{text-align:left}
+.p-l-10{padding-left:10}
+.p-r-10{padding-right:10}
+.FD007D{color:#FD007D}	
+.btn-a{ display:block;width:120px; height:30px; color:#fff; background:#0498FF; font-size:18px; font-family:微软雅黑; text-align:center; line-height:30px;  cursor:pointer;}	
+.btn-a-gray{ display:block;width:120px; height:30px; color:#fff; background:#ddd; font-size:18px; font-family:微软雅黑; text-align:center; line-height:30px;  cursor:pointer;}
+span.one-size{ letter-spacing:28px;}
+span.two-size{ letter-spacing:7px;}
+/*背景色*/
+.back-fff{background:#fff;}
+.back-gray{background:gray;}
+
+/*宽度*/
+.w140{width:140px}
+.w150{width:150px}
+.w190{width:190px}
+.w146{width:146px}
+.w250{width:250px}
+.w270{width:270px}
+.w400{width:400px}
+.w500{width:500px}
+.w672{width:672px}
+.w680{width:680px}
+.w685{width:685px}
+.w700{width:700px}
+.w800{width:800px}
+.w880{width:880px}
+.w930{width:930px}
+.w980{width:980px}
+.w1300{width:1300px;}
+/*显示隐藏*/
+.zhu-show{display:block}
+.zhu-hide{display:none}
+
+/*高度*/
+.h10{height:10px}
+.h25{height:25px;}
+.h38{height:38px}
+.h50{height:50px}
+.h117{height:117px}
+.h170{height:170px}
+.h237{height:237px}
+.h360{height:360px}
+.h400{height:400px;}
+.h420{height:420px}
+.h650{height:650px}
+.h750{height:750px}
+.h930{height:930px}
+
+/*外边距*/
+.mt10{margin-top:10px}
+.mt20{margin-top:20px}
+.mt30{margin-top:30px}
+.mt40{margin-top:40px}
+.mt50{margin-top:50px}
+.mt60{margin-top:60px}
+.mt88{margin-top:88px}
+
+.ml10{margin-left:10px}
+.ml15{margin-left:15px}
+.ml20{margin-left:20px}
+.ml30{margin-left:30px}
+.ml40{margin-left:40px}
+.ml50{margin-left:50px}
+.ml60{margin-left:60px}
+.ml70{margin-left:70px}
+.ml90{margin-left:90px}
+.ml155{margin-left:155px}
+.ml255{margin-left:255px}
+
+.mb30{margin-bottom:30px}
+.mb50{margin-bottom:50px}
+.mb75{margin-bottom:75px}
+.mb100{margin-bottom:100px}
+.mb20{margin-bottom:20px}
+.mb10{margin-bottom:10px}
+
+.pt50{padding-top:50px}
+.pt30{padding-top:30px}
+.pt58{padding-top:58px}
+.pt33{padding-top:33px}
+
+.pb30{padding-bottom:30px}
+.pb50{padding-bottom:50px}
+
+/*字体大小*/
+.font-s14{font-size:14px;}
+.red{ color:red}
+
+
+
+input[type="checkbox"] {
+	display: none;
+}
+
+input[type="checkbox"] + label {
+	cursor: pointer;
+	font-size: 1em;
+}
+
+input[type="checkbox"] + label {
+	background-color: #fafbfa;
+	padding: 9px;
+	border-radius: 50px;
+	display: inline-block;
+	position: relative;
+	margin-right: 30px;
+	-webkit-transition: all 0.1s ease-in;
+	transition: all 0.1s ease-in;
+	width: 40px;
+	height: 10px;
+	top:10px;
+}
+
+input[type="checkbox"] + label:after {
+	content: ' ';
+	position: absolute;
+	top: 0;
+	-webkit-transition: box-shadow 0.1s ease-in;
+	transition: box-shadow 0.1s ease-in;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 100px;
+	box-shadow: inset 0 0 0 0 #eee, 0 0 1px rgba(0,0,0,0.4);
+}
+
+input[type="checkbox"] + label:before {
+	content: ' ';
+	position: absolute;
+	background: white;
+	top: 0px;
+	left: 0px;
+	z-index: 999999;
+	width: 27px;
+	-webkit-transition: all 0.1s ease-in;
+	transition: all 0.1s ease-in;
+	height: 27px;
+	border-radius: 100px;
+	box-shadow: 0 3px 1px rgba(0,0,0,0.05), 0 0px 1px rgba(0,0,0,0.3);
+}
+
+input[type="checkbox"]:active + label:after {
+	box-shadow: inset 0 0 0 20px #eee, 0 0 1px #eee;
+}
+
+input[type="checkbox"]:active + label:before {
+	width: 37px;
+}
+
+input[type="checkbox"]:checked:active + label:before {
+	width: 37px;
+	left: 20px;
+}
+
+input[type="checkbox"] + label:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+input[type="checkbox"]:checked + label:before {
+	content: ' ';
+	position: absolute;
+	left: 31px;
+	border-radius: 100px;
+}
+
+input[type="checkbox"]:checked + label:after {
+	content: ' ';
+	font-size: 1.5em;
+	position: absolute;
+	background: #428bef;
+	box-shadow: 0 0 1px #428bef;
+}
+
+
+
+
+
+

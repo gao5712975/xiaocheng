@@ -1,0 +1,164 @@
+<!--#include file="../include/head2.htm"-->
+<script type="text/javascript" src="../js/WdatePicker.js"></script>
+<style>
+.uppwdcontext tr td .crossspan{ width:140px; padding-right:0px;}
+.uppwdcontext lable{border:0px;color:red; padding-left:15px}
+</style>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			系统设置
+		</a>
+		>> 时间设置
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				时间设置
+			  
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="uppwdcontext" id="settimeDiv">
+			<form id="settimeForm" method="post" action="">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="20%">
+										<span class="crossspan">
+											当前系统时间:
+										</span>
+									</td>
+									<td width="80%">
+										<label id="settime"></label>
+									</td>
+								</tr>
+                                <tr>
+									<td>
+										<span>
+											设置方式:
+										</span>
+									</td>
+									<td>
+										<select id="sel_f" name="sel_f">
+											<option value="1">
+												手动设置
+											</option>
+											<option value="2">
+												同步网络时间
+											</option>
+										</select>
+									</td>
+								</tr>
+								<tr id="uptimetr">
+									<td>
+										<span>
+											修改为:
+										</span>
+									</td>
+									<td align="left" valign="middle">
+										<input id="uptime" name="uptime" class="{checkSetTime:true,checkDateTime:true} textinput5" type="text" size="4" dateFmt="yyyy-MM-dd HH:mm:ss" onClick="uptimes();" />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<div class="wifibut">
+											<div class="inxiaobut">
+												<button type="submit" class="xiaobtn">
+													确认修改
+												</button>
+											</div>
+											<div class="clear">
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+                            </form>
+						</div>
+        
+        
+        
+        
+	</div>
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+    <script src="../js/jquery.selectlist.js">
+	</script>
+    <script type="text/javascript">
+	var	code,auto;
+    $('#sel_f').selectlist({
+				zIndex: 9,
+				width: 259,
+				height: 39,
+				borderRadius: 5,
+				onChange: function(){
+			var value=$("input[name='sel_f']").val();
+			if(value=='1'){
+				$("#uptimetr").show();
+				}
+			else{
+				$("#uptimetr").hide();
+				}
+			}
+			});
+			
+	$(document).ready(function() {
+	   TimeLoad(true);
+	   GetNtpdauto();
+	})
+	setinterl=setInterval(function(){TimeLoad(false)},1000);
+	function TimeLoad(state)
+	{
+	if(state){$('#settimeDiv').hide();}
+	$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/get_and_set_clock",function(result)
+	{
+		if(state){$('#settimeDiv').show();}
+		$('#settime').html(ChangeDateFormat(result.timestring));
+	});
+	}
+	
+	function GetNtpdauto()
+	{
+	$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/systeminfo/is_ntpd_auto",function(result)
+	{
+		code=result.code
+		if(code==0){auto=2;}else{auto=1;}
+		$("#sel_f").find("[data-value='"+auto+"']").click();
+	});
+    }
+	
+	//Json时间转换
+    function ChangeDateFormat(dateTime) {
+            var date = new Date();
+            if (dateTime != null) {
+                if (dateTime.indexOf("Date(") > 0) {
+                    date = new Date(parseInt(dateTime.replace("/Date(", "").replace(")/", ""), 10));
+                } else {
+                    date = new Date(dateTime);
+                }
+            }
+            //var date = new Date(parseInt(dateTime.replace("/Date(", "").replace(")/", ""), 10));
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            var hour = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+            var min = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+            var sec = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+            return date.getFullYear() + "-" + month + "-" + currentDate + " " + hour + ":" + min + ":" + sec;
+     }
+	 function uptimes(){
+	 //$('#uptime').attr('value','');
+	 WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'});
+		 }
+    </script>
+</body>
+
+</html>

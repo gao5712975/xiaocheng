@@ -1,0 +1,63 @@
+<!--#include file="../include/head2.htm"-->
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			网络管理
+		</a>
+		>> 端口转发
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				端口转发
+			  
+			</div>
+			<div class="zk">
+				收起
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="blacktitle">
+			  端口转发，当外部网络访问转发规则中指定的外部端口号时，请求将自动被转发至内部指定ip的对应端口，实现外网访问内部局域网服务和数据的功能。
+多端口范围转发有时也被称为端口映射。
+	  </div>
+        <div class="vpnbiaodan">
+		  <div id="portListDiv"></div>
+          <div id="scopeListDiv"></div>
+          <input type="hidden" id="gateway" />
+		</div>
+	</div>
+    <!--弹层界面-->
+    <div id="Portdialogtable" style="display:none"></div>
+    <div id="scopedialogtable" style="display:none"></div>
+	<!--#include file="../tmpl/Port.layerDialog.js.htm"-->
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+	<script type="text/javascript">
+		$(function() {
+			GetPortList();
+			GetScopeList();
+			$(".blacktitle").show();
+			$(".zk").click(function() {
+				if ($(".zk").text() == "展开") {
+					$(".zk").text("收起");
+					$(".blacktitle").stop().slideDown(500);
+				} else {
+					$(".zk").text("展开");
+					$(".blacktitle").stop().slideUp(500);
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

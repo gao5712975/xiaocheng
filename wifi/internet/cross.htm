@@ -1,0 +1,235 @@
+<!--#include file="../include/head2.htm"-->
+<style>
+.vistbiaodan tr td .crossspan{ width:140px; padding-right:0px;}
+</style>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			网络管理
+		</a>
+		>> 穿越
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				穿越
+			  
+			</div>
+			<div class="zk">
+				收起
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="blacktitle">
+			  VPN穿越：设置对L2TP、IPSec，以及PPTP等客户端的穿越进行控制，以允许或禁止它们使用VPN。  FTP穿越：设置允许通过NAT的非标准FTP端口号，以支持某些使用非标准FTP协议端口的服务器。
+	  </div>
+        <div class="vistbiaodan">
+          <div class="crosstitle">
+			VPN穿越
+			</div>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td width="20%">
+						<span>
+							L2TF穿越:
+						</span>
+					</td>
+					<td width="80%" align="left">
+						<input type="radio" value="0" name="l2tf" id="l2tfj" />
+						<font>
+							禁用
+						</font>
+						<input type="radio" value="1" name="l2tf" id="l2tfq" />
+						<font>
+							启用
+						</font>
+					</td>
+				</tr>
+                <tr>
+					<td width="20%">
+						<span>
+							IPSec穿越:
+						</span>
+					</td>
+					<td width="80%" align="left">
+						<input type="radio" value="0" name="IPSec" id="IPSecj" />
+						<font>
+							禁用
+						</font>
+						<input type="radio" value="1" name="IPSec" id="IPSecq" />
+						<font>
+							启用
+						</font>
+					</td>
+				</tr>
+                <tr>
+					<td width="20%">
+						<span>
+							PPTP穿越:
+						</span>
+					</td>
+					<td width="80%" align="left">
+						<input type="radio" value="0" name="PPTP" id="PPTPj" />
+						<font>
+							禁用
+						</font>
+						<input type="radio" value="1" name="PPTP" id="PPTPq" />
+						<font>
+							启用
+						</font>
+					</td>
+				</tr>
+                <tr>
+									<td colspan="2">
+										<div class="cross">
+												<a id="shengxiao" class="xiaobtn">
+													保存生效
+												</a>
+										</div>
+									</td>
+								</tr>
+			</table>
+		</div>
+	</div>
+    <!--#include file="../include/bottom.htm"-->
+	<script type="text/javascript">
+	var l2tp,ipsec,pptp;
+		$(function() {
+			$(".blacktitle").show();
+			$(".zk").click(function() {
+				if ($(".zk").text() == "展开") {
+					$(".zk").text("收起");
+					$(".blacktitle").stop().slideDown(500);
+				} else {
+					$(".zk").text("展开");
+					$(".blacktitle").stop().slideUp(500);
+				}
+			});
+			GetCross();
+		});
+		
+		function GetCross()
+		{
+			index = layer.load(0, {shade: [0.5,'#252525']});
+		$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/get_through_status",function(result)
+            {
+	            if(result.code=='0') 
+	            {
+					layer.close(index);
+					$("input[name='l2tf']").each(function(){
+					 if($(this).attr("value")==result.l2tp_status){
+						 l2tp=result.l2tp_status;
+                        $(this).attr("checked",true)
+						}
+					});
+					$("input[name='IPSec']").each(function(){
+					 if($(this).attr("value")==result.ipsec_status){
+						 ipsec=result.ipsec_status;
+                        $(this).attr("checked",true)
+						}
+					});
+					$("input[name='PPTP']").each(function(){
+					 if($(this).attr("value")==result.pptp_status){
+						 pptp=result.pptp_status;
+                        $(this).attr("checked",true)
+						}
+					});
+				}
+				else
+				{
+					layer.close(index);
+	                layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	            }
+	        });
+		}
+		
+$('#shengxiao').click(function() {
+	index = layer.load(0, {
+		shade: [0.5, '#252525']
+	});
+
+$.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/enable_ipsec_through",
+	data: {
+		value: $('input[name="IPSec"]:checked ').val()
+	},
+	dataType: "json",
+	success: function(result) {
+		if (result.code == '0') {
+        
+		
+		$.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/enable_pptp_through",
+	data: {
+		value: $('input[name="PPTP"]:checked ').val()
+	},
+	dataType: "json",
+	success: function(result) {
+		if (result.code == '0') {
+           
+		   
+		   $.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/enable_l2tp_through",
+	data: {
+		value: $('input[name="l2tf"]:checked ').val()
+	},
+	dataType: "json",
+	success: function(result) {
+		if (result.code == '0') {
+		layer.close(index);
+		layer.alert('生效成功');
+        GetCross();
+} else {
+			layer.close(index);
+			layer.alert('错误码:' + result.code + "/错误信息：" + result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息：" + errmsg);
+	}
+});
+		   
+		   
+		   
+		   
+} else {
+			layer.close(index);
+			layer.alert('错误码:' + result.code + "/错误信息：" + result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息：" + errmsg);
+	}
+});
+
+		
+		
+		
+} else {
+			layer.close(index);
+			layer.alert('错误码:' + result.code + "/错误信息：" + result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息：" + errmsg);
+	}
+});
+});
+	</script>
+</body>
+
+</html>

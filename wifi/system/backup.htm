@@ -1,0 +1,66 @@
+<!--#include file="../include/head2.htm"-->
+<script src="../js/ajaxfileupload.js" type="text/javascript"></script>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			系统设置
+		</a>
+		>> 备份与恢复
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				备份与恢复<font>恢复备份或恢复出厂设置成功后路由会自动重启</font>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="backupcontext">
+        <div class="backuptitle">
+			系统设置备份
+		</div>
+        <div class="backuptab pt58 pb50">
+        <div class="backupinfo pb30">将路由器恢复到备份文件的配置</div>
+        <a class="xiaobtn" id="backupxuanbtn">选择文件</a>
+        <input type="file" name="archive" id="archive" style="display:none" />
+        </div>
+        <div class="backuptab pt33 pb50 ml20">
+        <div class="backupinfo pb30">保存当前的配置文件<br/>重置路由器后可用来恢复</div>
+        <a class="xiaobtn" id="createbackup">新建备份</a>
+        </div>
+        <div class="clear"></div>
+        <div class="backuptitle2">
+			恢复出厂设置
+		</div>
+        <div class="backuptab pt33 pb50 mb100">
+        <div class="backupinfo pb30">还原系统到出厂状态<br/>
+建议先对当前设置进行备份</div>
+        <a class="xiaobtn" id="backupbtn">恢复出厂设置</a>
+        </div>
+        <div class="clear"></div>
+        </div>
+	</div>
+    <!--弹层界面-->
+    <div id="Backupdialogtable" style="display:none"></div>
+	<!--#include file="../tmpl/xiaocheng.layerDialog.js.htm"-->
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+    <script type="text/javascript">
+    $("#backupxuanbtn").click(function () {$("#archive").click();})
+	$("#beifen").click(function () {window.location.href = "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/config_backup";})
+	
+	$('#createbackup').click(function () {
+	window.location.href = "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/config_backup";
+	});
+    </script>
+</body>
+
+</html>

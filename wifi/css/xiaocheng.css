@@ -1,0 +1,787 @@
+@charset "utf-8";
+/* CSS Document */
+/*显示隐藏密码*/
+  .hideShowPassword-toggle {
+    background-image:url(../image/wink.svg);
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    height: 100%;
+    overflow: hidden;
+    text-indent: -9999em;
+    width: 44px;
+  }
+  .hideShowPassword-toggle-hide {
+    background-position: -44px center;
+  }
+/*按钮样式*/
+.btn{width:310px; height:42px; color:#fff; background-image:url(../image/btn_m.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:42px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+.btn:hover{
+	width: 310px;
+	height: 42px;
+	color: #fff;
+	background-image: url(../image/btn_x.png);
+	font-size: 16px;
+	font-family: 微软雅黑;
+	text-align: center;
+	line-height: 42px;
+	cursor: pointer;
+	display: block;
+	margin:0 auto;
+	 border:0px;
+}
+.btn2{width:310px; height:42px; color:#fff; background-image:url(../image/btn_m.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:42px;  cursor:pointer; display:block; border:0px}
+.btn2:hover{
+	width: 310px;
+	height: 42px;
+	color: #fff;
+	background-image: url(../image/btn_x.png);
+	font-size: 16px;
+	font-family: 微软雅黑;
+	text-align: center;
+	line-height: 42px;
+	cursor: pointer;
+	display: block;
+	 border:0px
+}
+.btn3{width:310px; height:42px; color:#fff; background-image:url(../image/btn_b.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:42px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+
+.btn6{width:310px; height:42px; color:#fff; background-image:url(../image/btn_b.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:42px;  cursor:pointer; display:block; border:0px}
+
+.xiaobtn{width:150px; height:38px; color:#fff; background-image:url(../image/xiao_m.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:38px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+.xiaobtn:hover{
+	width: 150px;
+	height: 38px;
+	color: #fff;
+	background-image: url(../image/xiao_x.png);
+	font-size: 16px;
+	font-family: 微软雅黑;
+	text-align: center;
+	line-height: 38px;
+	cursor: pointer;
+	display: block;
+	margin:0 auto;
+	border:0px
+}
+
+.xiaobtn2{width:150px; height:38px; color:#fff; background-image:url(../image/xiao_m.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:38px;  cursor:pointer; display:block; border:0px}
+.xiaobtn2:hover{
+	width: 150px;
+	height: 38px;
+	color: #fff;
+	background-image: url(../image/xiao_x.png);
+	font-size: 16px;
+	font-family: 微软雅黑;
+	text-align: center;
+	line-height: 38px;
+	cursor: pointer;
+	display: block;
+	border:0px
+}
+
+.xiaobtn3{width:150px; height:38px; color:#fff; background-image:url(../image/xiao_m.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:38px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+.xiaobtn3:hover{
+	width: 150px;
+	height: 38px;
+	color: #fff;
+	background-image: url(../image/xiao_x.png);
+	font-size: 16px;
+	font-family: 微软雅黑;
+	text-align: center;
+	line-height: 38px;
+	cursor: pointer;
+	display: block;
+	margin:0 auto;
+	 border:0px
+}
+
+.xiaobtn4{width:150px; height:38px; color:#fff; background-image:url(../image/xiao_m.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:38px;  cursor:pointer; display:block; border:0px}
+.xiaobtn4:hover{
+	width: 150px;
+	height: 38px;
+	color: #fff;
+	background-image: url(../image/xiao_x.png);
+	font-size: 16px;
+	font-family: 微软雅黑;
+	text-align: center;
+	line-height: 38px;
+	cursor: pointer;
+	display: block;
+	border:0px
+}
+
+
+.xiaobtn_m{width:150px; height:38px; color:#fff; background-image:url(../image/xiao_b.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:38px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+
+.xbtn{width:70px; height:25px; color:#fff; background-image:url(../image/sbtn_m.png); font-size:12px; font-family:微软雅黑; text-align:center; line-height:25px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+.xbtn:hover{
+	width: 70px;
+	height: 25px;
+	color: #fff;
+	background-image:url(../image/sbtn_x.png);
+	font-size: 12px;
+	font-family: 微软雅黑;
+	text-align: center;
+	line-height: 25px;
+	cursor: pointer;
+	display: block;
+	margin:0 auto;
+	 border:0px
+}
+
+.xbtnhui{width:70px; height:25px; color:#fff; background-color:#CCC; font-size:12px; font-family:微软雅黑; text-align:center; line-height:25px;  cursor:pointer; display:block; margin:0 auto; border:0px; border-radius:2px}
+
+.xbtn2{width:106px; height:25px; color:#fff; background-image:url(../image/huibtn.png); font-size:12px; font-family:微软雅黑; text-align:center; line-height:25px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+
+.xbtn_m{width:70px; height:25px; color:#fff; background-image:url(../image/sbtn_b.png); font-size:12px; font-family:微软雅黑; text-align:center; line-height:25px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+	
+/*文本框*/
+.textinput{ height:40px; line-height:40px; width:300px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px;  text-indent:76px; background-color:#fff; height:39px}
+.textinputindent{ height:40px; line-height:40px; width:300px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px;  text-indent:95px; background-color:#fff; height:39px;box-sizing:border-box}
+.textinputpwd{ height:40px; line-height:40px; width:309px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px;  text-indent:80px; background-color:#fff; height:39px;box-sizing:border-box}
+.textinputpwd2{ height:40px; line-height:40px; width:209px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px;  text-indent:10px; background-color:#fff; height:39px}
+.textinputpwdindent{ height:40px; line-height:40px; width:302px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px;  text-indent:95px; background-color:#fff; height:39px;box-sizing:border-box}
+.textinput2{ border:none; height:40px; line-height:40px; width:200px; color:#999999;}
+.textinput3{ border:none; height:40px; line-height:40px; width:160px; color:#999999;}
+.textinput3 a{ float:right; color:#3366cc}
+.textinput4{ height:40px; line-height:40px; width:300px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px;  text-indent:5px; background-color:#fff; height:39px }
+.textinput5{line-height:39px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:251px; text-indent:2px; background-color:#fff; height:39px }
+.textinput6{height:37px; line-height:37px; width:255px; color:#999999;margin:0 auto; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; }
+.textinput7{ border:none; height:40px; line-height:40px; width:180px; color:#999999;}
+.textinput8{line-height:39px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:35px; text-indent:2px; background-color:#fff; height:39px }
+.textinput9{line-height:25px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:64px; text-indent:2px; background-color:#fff; height:25px; margin-right:10px }
+.textinput10{line-height:39px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:80px; text-indent:2px; background-color:#fff; height:39px; margin-right:10px; margin-left:10px }
+.textinput11{line-height:39px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:80px; text-indent:2px; background-color:#fff; height:39px; margin-right:10px;  }
+.textinput12{line-height:39px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:260px; text-indent:2px; background-color:#fff; height:39px;box-sizing:border-box }
+.textinput13{line-height:39px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:190px; text-indent:2px; background-color:#fff; height:39px }  
+.textinput14{line-height:39px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:193px; text-indent:2px; background-color:#fff; height:39px }
+.textinput15{line-height:39px; color:#999999;margin:0 auto;font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:80px; text-indent:2px; background-color:#fff; height:39px; margin-right:10px}
+.textarea{line-height:25px; color:#333333;margin:0 auto;font-size:12px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:560px; background-color:#fff; height:324px; margin-right:10px; padding:10px; margin-top:88px;overflow-y:auto}
+.textarea1{text-align:left;overflow-x:auto;line-height:25px; color:#333333;margin:0 auto;font-size:12px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:785px; background-color:#fff; height:324px; padding:10px;overflow-y:auto}
+.chbDiv{ position:relative;}
+.chbDiv #chbcheck{display:block; position:absolute;left:-4px; top:16px}
+.chbDiv #chbchecks{display:block; position:absolute;left:1px; top:26px}
+.chbDiv #chbchecks2{display:block; position:absolute;left:1px; top:26px}
+.chbDiv #chbchecks3{display:block; position:absolute;left:1px; top:26px}
+.chbDiv span{ padding-left:20px}
+
+.text1{ font-size:14px; font-family:微软雅黑; color:#333333; width:305px; float:left; position:relative}
+.text1 a{ font-size:14px; font-family:微软雅黑; color:#3366cc; cursor:pointer}
+.text2{ font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid red 1px; width:305px; text-indent:10px; float:left;}
+.text3{ width:310px; margin:0 auto}
+.text4{ font-size:14px; font-family:微软雅黑; color:#333333; border-radius:5px; border:solid #e5e5e5 1px; width:250px; text-indent:10px; background-color:#fff; float:left; height:39px}
+#upRouter{position:absolute;top:12px;left:262px; z-index:1}
+.texttitle{position:absolute;top:1px;left:3px; z-index:1; height:37px; line-height:37px;background-color:#FFF;border-right:5px;padding-left:8px}
+.Prompt{color:red; font-size:12px; font-family:宋体; height:40px; line-height:40px; text-indent:17px}
+.Prompt2{color:red; font-size:12px; font-family:宋体; height:40px; line-height:40px; text-indent:17px;}
+.Prompt3{}
+.Prompt4{ position:absolute; left:0px; top:49px}
+.setbiaodan lable{ border:none; color:#F00; padding-left:15px;}
+.vistbiaodan lable{ border:none; color:#F00; padding-left:15px;}
+.error{border:solid red 1px;}
+.Prompt .error{border:0px;}
+.Prompt2 .error{border:0px;}
+.Prompt3 .error{border:0px;color:red; font-size:12px; font-family:宋体; line-height:25px; height:25px; border-radius:5px; background:#FFF2F5 none repeat scroll 0% 0%; padding:0px 12px; display:block;width:235px}
+.Prompt4 .error{border:0px;color:red; font-size:12px; font-family:宋体; line-height:25px; height:25px; border-radius:5px; background:#FFF2F5 none repeat scroll 0% 0%; padding:0px 12px; display:block;width:84px}
+
+.updatefont{margin: 0px; padding-right: 44px;}
+.wifigao{ height:80px;}
+
+/*导航条*/
+.menu{ height:81px; float:left; margin-left:80px}
+.menu ul{ list-style:none}
+.menu li{ float:left;}
+.menu li a{ width:144px; height:81px; line-height:81px; cursor:pointer; display:block; font-family:微软雅黑; color:#ffffff; font-size:18px}
+.menu li a:hover{ width:144px; height:81px; line-height:81px; cursor:pointer; display:block; font-family:微软雅黑; color:#ffffff; font-size:18px; font-weight:600}
+.menu li.currer a{ /*background-image:url(../image/menu_bg.png)*/ background-color:#3f7ee0; border-radius:5px;font-weight:600}
+
+
+/*底部*/
+.bottom{width:1002px; margin:0 auto; text-align:center; padding-top:30px; color:#a9cdff; font-size:12px; font-family:微软雅黑; padding-bottom:30px}
+
+/*面包屑*/
+.Breadcrum{ font-size:12px; font-family:宋体; color:#fff;width:1002px; margin:0 auto; padding-top:35px; padding-bottom:15px}
+.Breadcrum a{ font-size:12px; font-family:宋体; color:#fff}
+
+/*欢迎页*/
+.welcome{width:1002px; margin:0 auto; text-align:center; margin-top:193px}
+.welcome .lab1{ font-size:42px; color:#fff;font-family:微软雅黑;}
+.welcome .logo{ margin-top:58px; margin-bottom:13px}
+.welcome .lab2{ font-size:14px; color:#fff;font-family:宋体; margin-top:13p}
+.welcome .divpadding { text-align:center; margin-top:64px; margin-bottom:17px}
+.btn4{width:310px; height:42px; color:#fff; font-size:16px; font-family:微软雅黑; text-align:center; line-height:42px;   cursor:pointer; display:block; margin:0 auto;background-color:#5a9bf5; border-radius:5px;}
+.btn4:hover{width:310px; height:42px; color:#fff; font-size:16px; font-family:微软雅黑; text-align:center; line-height:42px;   cursor:pointer; display:block; margin:0 auto;background-color:#2779ea; border-radius:5px;}
+
+.ie{padding:10px; background-color:#fffdef; border: solid #ffe69b 1px; margin-top:15px; width:570px; margin:0 auto; text-align:center; margin-top:10px}
+.ie p{font-size:12px; font-family:宋体; color:#333333;}
+.welcome .xieyi {font-size:12px; font-family:宋体; color:#fff; position:relative}
+.welcome .xieyi .che{ position:absolute; left:396px; top:-2px;}
+.welcome .xieyi span{ font-size:12px; font-family:宋体; color:#3366cc;}
+
+/*网络检测错误*/
+.networktop{width:1002px; margin:0 auto; text-align:center }
+.networktop .logo{ background-image:url(../image/logo2.png); background-repeat:no-repeat; background-position:0px 20px; height:80px; width:85px; float:left}
+.networktop .logo a{height:80px; width:85px;display:block}
+.networktop .logo_right{ float:right; margin-top:40px}
+.networktop .logo_right ul{ list-style:none}
+.networktop .logo_right ul li{ float:left;}
+.networktop .logo_right ul li .home{width:65px; display:block; font-size:14px; color:#fff; font-family:微软雅黑; cursor:pointer;background-image:url(../image/home.png); background-repeat:no-repeat; background-position:0px 3px; text-align:right; margin-right:25px}
+.networktop .logo_right ul li .exti{width:50px; display:block; font-size:14px; color:#fff; font-family:微软雅黑; cursor:pointer;background-image:url(../image/exti.png); background-repeat:no-repeat; background-position:0px 3px; text-align:right; margin-right:10px}
+
+.networkcontext{width:1002px; margin:0 auto; text-align:center; margin-top:40px;background-color:#fff;border-radius:5px; display:none;}
+.networkcontext .title{ padding-top:75px; padding-bottom:5px; font-size:16px; font-family:微软雅黑; color:#3366cc}
+.networkcontext .hr1{ width:895px; border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+.networkcontext .networkimg{ margin-top:22px}
+.networkcontext .networkbtn{ margin-top:50px;}
+.networkcontext .networktiao{ margin-top:45px; text-align:right; width:980px;padding-bottom:20px}
+.networkcontext .networktiao a{font-size:12px; font-family:宋体; color:#999999;}
+
+
+/*设置上网方式*/
+.Internet{width:1002px; margin:0 auto; text-align:center; margin-top:40px;background-color:#fff;border-radius:5px; display:none;}
+.Internet .Intitle{font-size:42px; color:#2c3643; font-family:微软雅黑; padding-top:45px}
+.Internet .Ince{font-size:12px; color:#999999; font-family:宋体; margin-top:8px;}
+.Internet .Ince font{font-size:12px; color:#3366cc; font-family:宋体;}
+.Internet .Ince #lableType{font-size:12px; color:#3366cc; font-family:宋体;}
+.Internet .tab{ width:940px; margin-top:30px; margin-left:30px}
+.Internet .tab .tableft{ width:24px; height:60px; float:left;border-bottom: solid #e5e5e5 1px;}
+.Internet .tab .tabright{ width:23px; height:60px; float:left;border-bottom: solid #e5e5e5 1px;}
+.Internet .tab .tabmenus{text-align:center; float:left}
+.Internet .tab .tabmenus ul{ list-style:none}
+.Internet .tab .tabmenus li{ float:left;}
+.Internet .tab .tabmenus li a{ float:left; width:295px; height:60px; line-height:60px;font-size:18px; color:#333333; font-family:微软雅黑; border-radius: 5px 5px 0px 0px; border: solid #e5e5e5 1px; background-color:#f8f8f8}
+.Internet .tab .tabmenus li.curr a{ float:left; width:295px; height:60px; line-height:60px;font-size:18px; color:#333333; font-family:微软雅黑;border-radius: 5px 5px 0px 0px; border-top: solid #e5e5e5 1px; border-left: solid #e5e5e5 1px; border-right: solid #e5e5e5 1px; border-bottom: solid #e5e5e5 0px; background-color:#fff}
+
+.Internet .tab  .context1{ width:940px;}
+.Internet .tab  .context1 .intitle{ font-size:12px; color:#999999; font-family:宋体; text-align:left; margin-left:315px; margin-top:60px}
+.Internet .tab  .context1 .intitle .textisp{height:40px; margin-top:15px}
+.Internet .tab  .context1 .intitle .inbut{margin-top:30px}
+.Internet .tab  .context1 .intitle .tiaobtn{ margin-top:20px; text-align:left; padding-left:113px; padding-bottom:40px}
+.Internet .tab  .context1 .intitle .tiaobtn a{font-size:12px; font-family:宋体; color:#999999; cursor:pointer}
+
+
+.Internet .tab  .context2{ width:940px;}
+.Internet .tab  .context2 .intitle2{ font-size:16px; color:#3366cc; font-family:微软雅黑; margin:0 auto; margin-top:98px}
+.Internet .tab  .context2 .inbut2{margin-top:96px}
+.Internet .tab  .context2 .tiaobtn{ margin-top:20px; text-align:center; padding-bottom:20px}
+.Internet .tab  .context2 .tiaobtn a{font-size:12px; font-family:宋体; color:#999999;cursor:pointer}
+
+.Internet .tab  .context3{ width:940px;}
+.Internet .tab  .context3 .intitle3{ font-size:12px; color:#999999; font-family:宋体; text-align:left; margin-left:315px; margin-top:60px}
+.Internet .tab  .context3 .intitle3 .textisp3{height:40px; margin-top:15px}
+.Internet .tab  .context3 .intitle3 .inbut3{margin-top:30px}
+.Internet .tab  .context3 .intitle3 .tiaobtn3{ margin-top:20px; text-align:left;padding-left:113px; padding-bottom:20px}
+.Internet .tab  .context3 .intitle3 .tiaobtn3 a{font-size:12px; font-family:宋体; color:#999999; cursor:pointer}
+
+/*设置WiFi名称及密码*/
+.wificontext{width:1002px; margin:0 auto; text-align:center; margin-top:40px;background-color:#fff;border-radius:5px;}
+.wificontext .wifititle{ padding-top:57px; padding-bottom:25px; font-size:42px; font-family:微软雅黑; color:#2c3643}
+.wificontext .hr2{ width:895px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+
+.wificontext .wifihead{ font-size:12px; color:#999999; font-family:宋体; text-align:left; margin-left:344px; margin-top:60px}
+.wificontext .wifihead .textisp{height:40px; margin-top:15px}
+.wificontext .wifihead .inbut{margin-top:30px}
+.wificontext .wifihead .tiaobtn{ margin-top:90px; text-align:right; padding-bottom:20px; padding-right:45px}
+.wificontext .wifihead .tiaobtn a{font-size:12px; font-family:宋体; color:#999999;}
+.wificontext .tiaobtn{ margin:0 auto;margin-top:20px;  text-align:center; padding-bottom:40px; }
+.wificontext .tiaobtn a{font-size:12px; font-family:宋体; color:#999999; cursor:pointer}
+
+
+
+.router{width:1002px; margin:0 auto; text-align:center; margin-top:40px;background-color:#fff;border-radius:5px;}
+.router .wifititle{ padding-top:57px; padding-bottom:25px; font-size:42px; font-family:微软雅黑; color:#2c3643}
+.router .hr2{ width:895px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+
+.router .wifihead{ font-size:12px; color:#999999; font-family:宋体; text-align:left; margin-left:344px; margin-top:60px}
+.router .wifihead .textisp{height:40px; margin-top:15px}
+.router .wifihead .inbut{margin-top:30px}
+.router .wifihead .tiaobtn{ margin-top:90px; text-align:right; padding-bottom:20px; padding-right:45px}
+.router .wifihead .tiaobtn a{font-size:12px; font-family:宋体; color:#999999;}
+.router .tiaobtn{ margin:0 auto;margin-top:20px;  text-align:center; padding-bottom:40px; }
+.router .tiaobtn a{font-size:12px; font-family:宋体; color:#999999; cursor:pointer}
+
+.wifihead .wifipwd {font-size:12px; font-family:宋体; color:#333333; margin-top:10px; margin-left:5px}
+.wifihead .wifipwd .che{ vertical-align:middle}
+
+/*设置初始化*/
+.loadcontext{width:1002px; margin:0 auto; text-align:center; margin-top:40px;background-color:#fff;border-radius:5px; display:none;}
+.loadcontext .loadimg{ padding-top:48px}
+.loadcontext .loads{ color:#333333; font-size:16px; font-family:微软雅黑; padding-top:10px; padding-bottom:27px}
+.loadcontext .hr1{ width:895px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+.loadcontext .Information{  background-color:#eeeeee; width:310px; margin-top:20px; margin:0 auto; font-size:14px; color:#333333; border-radius:5px; padding-top:15px; padding-bottom:15px; margin-top:25px; text-align:left; padding-left:70px; padding-right:70px; font-family:微软雅黑; line-height:20px}
+.loadcontext .Information .fontbao{ padding-bottom:15px;}
+.loadcontext .Information .fontleft{ width:90px; float:left}
+.loadcontext .Information .fontspan{ color:#3366cc; font-size:14px;word-wrap: break-word; font-weight:normal; float:left;width:218px;}
+.loadcontext .loadbut{ padding-top:20px; padding-bottom:80px}
+
+/*重启成功*/
+.successcontext{width:1002px; margin:0 auto; text-align:center; margin-top:40px;background-color:#fff;border-radius:5px; display:none}
+.successcontext .loadimg{ padding-top:48px}
+.successcontext .loads{ color:#333333; font-size:16px; font-family:微软雅黑; padding-top:10px; padding-bottom:27px}
+.successcontext .hr1{ width:895px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+.successcontext .Information{ background-color:#eeeeee; width:310px; margin-top:20px; margin:0 auto; font-size:14px;color:#333333; border-radius:5px; padding-top:15px; padding-bottom:15px; margin-top:25px; text-align:left; padding-left:70px; padding-right:70px; font-family:微软雅黑; line-height:20px}
+.successcontext .Information .fontbao{ padding-bottom:15px;}
+.successcontext .Information .fontleft{ width:90px; float:left}
+.successcontext .Information .fontspan{ color:#3366cc; font-size:14px;word-wrap: break-word; font-weight:normal; float:left;width:218px;}
+.successcontext .loadbut{ padding-top:20px; padding-bottom:80px}
+
+
+/*登录页*/
+.login{width:1002px; margin:0 auto; text-align:center; margin-top:242px; position:relative}
+.login .logo{ margin-bottom:90px}
+.login .btn { text-align:center; margin-top:15px;}
+.login .btn button{border:0px;width:310px; height:42px; color:#fff; background-color:#5a9bf5; font-size:16px; font-family:微软雅黑; text-align:center; line-height:42px;   cursor:pointer; display:block; margin:0 auto;}
+.login .btn button:hover{border:0px;width:310px; height:42px; color:#fff; background-color:#2779ea; font-size:16px; font-family:微软雅黑; text-align:center; line-height:42px;   cursor:pointer; display:block; margin:0 auto;}
+
+/*wifi设置*/
+.setwificontext{width:1002px; margin:0 auto; text-align:center;background-color:#fff;border-radius:5px; padding-bottom:15px;}
+.setwificontext .setwifilab{font-size:18px; font-family:微软雅黑; color:#3366cc; text-align:left; padding-top:70px; padding-left:38px;padding-bottom:15px;}
+.setwificontext .setwifilab font{ font-family:宋体; font-size:12px; color:#999999; padding-left:15px}
+.setwificontext .hr2{ width:930px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+.setwificontext .setbiaodan{ width:760px; margin:0 auto; padding-top:12px; text-align:left; padding-bottom:135px}
+.setwificontext .setbiaodan .setwifibiaodan{/* display:none*/}
+.setwificontext table tr{ height:70px; line-height:70px;}
+.setwificontext span{ font-family:宋体; font-size:12px; color:#333333; padding-right:90px; float:left; width:60px}
+.setwificontext font{ font-family:宋体; font-size:12px; color:#333333; padding-right:30px}
+.setwificontext .setbiaodan .wifibut{ margin-top:73px;}
+.setwificontext .setbiaodan .wifibut .inxiaobut{ float:left; padding-right:10px}
+.seltd{ padding-left:100px; padding-bottom:80px}
+.cross{margin-top:50px; width:150px}
+.setwificontext .vistbiaodan{ width:760px; margin:0 auto; padding-top:20px; text-align:left; padding-bottom:135px}
+.setwificontext .vistbiaodan .wifibut{ margin-top:73px;}
+.setwificontext .vistbiaodan .wifibut .inxiaobut{ float:left; padding-right:10px}
+
+.setwificontext .upnpbiaodan{ width:800px; margin:0 auto; padding-top:20px; text-align:center; padding-bottom:135px}
+.setwificontext .upnpblackbai{ width:800px; margin:0 auto; margin-top:20px}
+.setwificontext .upnpblackbai .blacktr{ border:solid #e2e2e2 1px; background-color:#f8f8fa; height:40px; line-height:40px}
+
+.setwificontext .ddnsbiaodan{ width:800px; margin:0 auto; padding-top:20px; text-align:center; padding-bottom:135px}
+.setwificontext .ddnsblackbai{ width:800px; margin:0 auto;}
+.setwificontext .ddnsblackbai .blacktr{ border:solid #e2e2e2 1px; background-color:#f8f8fa; height:40px; line-height:40px}
+.setwificontext .ddnsblackbai .blackbaititle{ font-size:14px; color:#3366cc; text-align:left; font-family:宋体; padding-bottom:10px}
+.ddnsfont{ font-size:12px; color:#2779ea; font-family:宋体; cursor:pointer}
+.ddnsbut{ text-align:left; width:150px; margin-top:62px}
+.ddnsbut2{ text-align:left; width:450px; margin-top:62px}
+.logsbut{ margin:0 auto;margin-top:62px}
+.portbut{ text-align:left; width:150px;}
+
+.setwificontext .qosblackbai{ width:800px; margin:0 auto; padding-top:35px}
+.setwificontext .qosblackbai .blacktr{ border:solid #e2e2e2 1px; background-color:#f8f8fa; height:40px; line-height:40px}
+.setwificontext .qosblackbai .blackbaititle{ font-size:14px; color:#3366cc; text-align:left; font-family:宋体; padding-bottom:10px}
+
+
+.setwificontext .qosbiaodan{ width:800px; margin:0 auto; padding-top:55px; padding-bottom:62px; font-size:12px; font-family:宋体; color:#333333; text-align:left}
+.setwificontext .qosbiaodan .qostitle{font-size:12px; font-family:宋体; color:#333333;  float:left}
+.setwificontext .qosbiaodan .qosshang{font-size:12px; font-family:宋体; color:#333333; font-weight:bold; padding-left:120px; float:left; background-image:url(../image/shang.png); background-repeat:no-repeat; background-position:40% 30%}
+.setwificontext .qosbiaodan .qosshang font{font-size:12px; font-family:宋体; color:#3366cc; font-weight:bold;}
+.setwificontext .qosbiaodan .qosxia{font-size:12px; font-family:宋体; color:#333333; font-weight:bold; padding-left:65px; float:left;background-image:url(../image/xia.png); background-repeat:no-repeat; background-position:23% 30%}
+.setwificontext .qosbiaodan .qosxia font{font-size:12px; font-family:宋体; color:#3366cc; font-weight:bold;}
+
+
+.crosstitle{ font-size:14px; color:#3366cc; text-align:left; font-family:宋体; padding-bottom:10px}
+
+.setwificontext .uppwdcontext{ width:760px; margin:0 auto; padding-top:30px; text-align:left; padding-bottom:135px}
+.setwificontext .uppwdcontext .setwifibiaodan{/* display:none*/}
+.setwificontext .uppwdcontext .wifibut{ margin-top:73px;}
+.setwificontext .uppwdcontext .wifibut .inxiaobut{ float:left; padding-right:10px}
+
+
+
+.setwificontext .vpnbiaodan{ width:800px; margin:0 auto; padding-top:40px; text-align:center; padding-bottom:135px}
+.setwificontext .vpnblackbai{ width:800px; margin:0 auto;}
+.setwificontext .vpnblackbai .blacktr{ border:solid #e2e2e2 1px; background-color:#f8f8fa; height:40px; line-height:40px}
+.setwificontext .vpnblackbai .blacktr2{ border:solid #e2e2e2 1px; background-color:#f8f8fa; height:40px; line-height:40px}
+.setwificontext .vpnblackbai .blackbaititle{ font-size:14px; color:#3366cc; text-align:left; font-family:宋体; padding-bottom:10px}
+
+.setwificontext .relaybiaodan{ width:800px; margin:0 auto; padding-top:100px; text-align:center; padding-bottom:135px}
+
+.setwificontext .blacktitle{ line-height:22px; color:#333333; font-size:12px; font-family:宋体; padding-top:25px; padding-bottom:25px; padding-left:40px; background-color:#fffdef; border: solid #ffe69b 1px; margin-top:15px; width:850px; margin:0 auto; text-align:left; padding-right:40px}
+.setwificontext .laleft{ float:left}
+.setwificontext .zk{ float:right; color:#3366cc; font-size:12px; font-family:宋体;  margin-right:40px; padding-top:10px; cursor:pointer}
+.setwificontext .blackbai{ width:800px; margin:0 auto; margin-top:45px}
+.setwificontext .blackbai .blackbaititle{ font-size:14px; color:#3366cc; text-align:left; font-family:宋体; padding-bottom:10px}
+.setwificontext .blackbai .blackbaititle font{ font-size:12px; color:#999999; text-align:left; font-family:宋体}
+.setwificontext .blackbai .blacktr{ border:solid #e2e2e2 1px; background-color:#f8f8fa; height:40px; line-height:40px}
+.blacktr tr td{ font-size:12px; color:#333333; font-family:宋体; font-weight:bold}
+.blacktr2 tr td{ font-size:12px; color:#333333; font-family:宋体;}
+.blacktr3 tr td{ font-size:12px; color:#333333; font-family:宋体;}
+.blacktr4 tr td{ font-size:12px; color:#333333; font-family:宋体; border-bottom:solid #e2e2e2 1px;}
+.baixian tr td{border-bottom:#e2e2e2 solid 1px;}
+.baixian tr td .pic_pc{font-size:12px; color:#333333; font-family:宋体; background-image:url(../image/pc.png); background-repeat:no-repeat; height:20px; line-height:20px; background-position:30px 0px; width:200px;margin:0 auto;}
+.baixian tr td .pic_iphoen{font-size:12px; color:#333333; font-family:宋体; background-image:url(../image/iphoen.png); background-repeat:no-repeat; height:20px; line-height:20px; background-position:30px 0px; width:200px;margin:0 auto;}
+.baixian tr td .pic_ask{font-size:12px; color:#333333; font-family:宋体; background-image:url(../image/ask.png); background-repeat:no-repeat; height:20px; line-height:20px; background-position:30px 0px; width:200px; margin:0 auto;}
+.setwificontext .blackheng{ text-align:left;width:760px; margin:0 auto; padding-top:20px}
+.setwificontext .blackheng a{ font-size:16px; font-family:微软雅黑; color:#428bef}
+.setwificontext .blackheng .blackbtn{width:150px; height:38px; color:#fff; background-image:url(../image/xiao_m.png); font-size:16px; font-family:微软雅黑; text-align:center; line-height:38px;  cursor:pointer; display:block; margin:0 auto; border:0px}
+.setwificontext .blacks{ width:800px; margin:0 auto; padding-top:70px; padding-bottom:123px}
+
+.shoubtn{ width:150px; padding-top:60px; padding-bottom:60px;}
+.shoubtn a{ font-size:16px; font-family:微软雅黑; color:#428bef;}
+
+/*上网设置*/
+.tabmenu{text-align:center; width:1002px; margin:0 auto;}
+.tabmenu ul{ list-style:none}
+.tabmenu li{ float:left;}
+.tabmenu li a{ float:left; width:499px; height:60px; line-height:60px;font-size:18px; color:#333333; font-family:微软雅黑; border-radius: 5px 5px 0px 0px; border: solid #e5e5e5 1px; border-right:solid #e5e5e5 1px; background-color:#f8f8f8}
+.tabmenu li.curr a{ float:left; width:499px; height:60px; line-height:60px;font-size:18px; color:#333333; font-family:微软雅黑;border-radius: 5px 5px 0px 0px; border-top: solid #e5e5e5 1px; border-left: solid #e5e5e5 1px; border-right: solid #e5e5e5 1px; border-bottom: solid #fff 1px; background-color:#fff}
+
+.setinternetcontext{width:1002px; margin:0 auto; text-align:center; background-color:#fff;border-radius: 0px 0px 5px 5px;padding-bottom:15px;}
+.setinternetcontext .setwifilab{font-size:18px; font-family:微软雅黑; color:#3366cc; text-align:left; padding-top:70px; padding-left:38px;padding-bottom:15px;}
+.setinternetcontext .hr2{ width:930px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+.setinternetcontext .setwifilab2{font-size:16px; font-family:微软雅黑; color:#333333; text-align:left; padding-bottom:15px; width:800px; margin:0 auto;}
+.setinternetcontext .hr3{ width:800px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+
+.setinternetcontext .setbiaodan{ width:800px; margin:0 auto; padding-top:40px; text-align:left; /*padding-bottom:20px*/}
+.setinternetcontext table tr{ height:50px; line-height:50px;}
+.setinternetcontext span{ font-family:宋体; font-size:12px; color:#333333; padding-right:70px; float:left; width:90px}
+.setinternetcontext font{ font-family:宋体; font-size:12px; color:#333333; padding-right:30px}
+.setinternetcontext .setbiaodan .inxiaobut{ margin-top:35px;}
+.setinternetcontext .setbiaodan .inxiaobut span{ color:#999999; font-size:12px; font-family:宋体; width:165px; padding-left:17px}
+.setinternetcontext .setbiaodan .inxiaobut .xiaobtn{ float:left;}
+.setinternetcontext .blackbai{ width:800px; margin:0 auto; margin-top:45px}
+.setinternetcontext .blackbai .blackbaititle{ font-size:14px; color:#3366cc; text-align:left; font-family:宋体; padding-bottom:10px}
+.setinternetcontext .blackbai .blackbaititle font{ font-size:12px; color:#999999; text-align:left; font-family:宋体}
+.setinternetcontext .blackbai .blacktr{ border:solid #e2e2e2 1px; background-color:#f8f8fa; height:40px; line-height:40px}
+.setinternetcontext .blacks{ width:800px; margin:0 auto; padding-top:70px; padding-bottom:123px}
+
+
+
+.statebtn{ padding-left:20px; color:#3366cc; font-size:12px; cursor:pointer}
+
+.setwifi2{width:1002px; margin:0 auto; text-align:center; background-color:#fff;border-radius: 0px 0px 5px 5px;}
+.setwinternetcontext{width:1002px; margin:0 auto; text-align:center; background-color:#fff;border-radius: 0px 0px 5px 5px; padding-bottom:15px;}
+.setwinternetcontext .setwifilab{font-size:18px; font-family:微软雅黑; color:#3366cc; text-align:left; padding-top:70px; padding-left:38px;padding-bottom:15px;}
+.setwinternetcontext .setwifilab2{font-size:18px; font-family:微软雅黑; color:#3366cc; text-align:left; padding-top:20px; padding-left:38px;padding-bottom:15px;}
+.setwinternetcontext .hr2{ width:930px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2;}
+
+.setwinternetcontext .setbiaodan{ width:760px; margin:0 auto; padding-top:65px; text-align:left; padding-bottom:20px}
+.setwinternetcontext .setbiaodan2{ width:760px; margin:0 auto; padding-top:20px; text-align:left; padding-bottom:20px}
+.setwinternetcontext table tr{ height:50px; line-height:50px;}
+.setwinternetcontext span{ font-family:宋体; font-size:12px; color:#333333; padding-right:10px; float:left; width:140px}
+.setwinternetcontext font{ font-family:宋体; font-size:12px; color:#333333; padding-right:30px}
+.setwinternetcontext .setbiaodan .inxiaobut span{ color:#999999; font-size:12px; font-family:宋体; width:165px; padding-left:17px}
+.setwinternetcontext .setbiaodan .inxiaobut .xiaobtn{ float:left;}
+.setwinternetcontext .setbiaodan .wifibut2{ margin-top:30px;}
+.setwinternetcontext .setbiaodan .wifibut2 .inxiaobut{ float:left; padding-right:10px}
+.setwinternetcontext .setbiaodan .wifibut{ margin-top:0px;}
+.setwinternetcontext .setbiaodan .wifibut .inxiaobut{ float:left; padding-right:10px}
+.setwinternetcontext .setbiaodan .setwifidan{ color:#999999; font-size:12; font-family:微软雅黑}
+.setwinternetcontext .setbiaodan .wifibutd{ margin-top:30px; margin-bottom:163px}
+.setwinternetcontext .setbiaodan .wifibutd .inxiaobut{ float:left; padding-right:10px}
+
+.homewifi{width:1002px; margin:0 auto; text-align:center; background-color:#fff;border-radius: 5px; margin-top:15px}
+.homewifi .hometop{ padding-top:20px; padding-bottom:14px}
+.homewifi .hometop .wifileft{ float:left; font-size:12px; color:#333333; font-family:微软雅黑; padding-left:18px; font-weight:bold;}
+.homewifi .hometop .wifileft font{font-size:12px; color:#999999; font-family:宋体; font-weight:normal}
+.homewifi .hometop .wifiright{ float:right; padding-right:22px;}
+.homewifi .hometop .wifiright a{font-size:12px; color:#3366cc; background-image:url(../image/chongqi.png); background-repeat:no-repeat; background-position:0px 1px; padding-left:15px; height:15px; line-height:15px; display:block; cursor:pointer}
+.homewifi .hr2{ width:970px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+.homewifi .homecenter{ padding-top:45px}
+.homewifi .homecenter .homewifileft{ float:left; margin-left:133px; width:497px; padding-right:20px; border-right:solid #e2e2e2 1px;}
+.homewifi .homecenter .homewifileft2{ float:left; margin-left:25px; width:367px; margin-top:25px}
+.homewifi .homecenter .homewifileft2 .imghome{ padding-left:24px; float:left}
+.homewifi .homecenter .homewifileft2 .imgright{ float:left; color:#333333; font-size:26px; font-family:微软雅黑; height:98px; line-height:98px; padding-left:27px}
+.homewifi .homecenter .homewifileft .imghome{ padding-left:24px; float:left}
+.homewifi .homecenter .homewifileft .imgright{ float:left; color:#333333; font-size:26px; font-family:微软雅黑; height:98px; line-height:98px; padding-left:27px}
+.homewifi .homecenter .homewifileft2 .imgright2{ float:left; color:#333333; font-size:26px; font-family:微软雅黑; height:98px; line-height:27px; text-align:left; padding-left:27px;padding-top:20px}
+.homewifi .homecenter .homewifileft2 .imgright2 font{ float:left; color:#999999; font-size:12px; font-family:宋体; }
+.homewifi .homecenter .homewifileft2 .imgright2 .wlanerror{ font-size:12px; color:#3366cc; font-family:宋体}
+.homewifi .homecenter .wlanerrorimg{ float:left; margin-left:17px}
+.homewifi .homecenter .errorinfo{ float:left; margin-left:17px; font-size:12px; color:#333333; font-family:宋体; border-radius:5px; background-color:#f8f8fa; width:496px; height:179px; padding-left:50px; padding-top:25px; text-align:left; line-height:35px}
+.homewifi .homecenter .homewifileft .wifiinfo{width:497px; margin-top:30px;}
+.homewifi .homecenter .homewifileft .wifiinfo .wifiinfoceng1{ float:left; width:211px; font-size:14px; color:#333333; font-family:宋体; text-align:left; line-height:30px}
+.homewifi .homecenter .homewifileft .wifiinfo .wifiinfoceng1 font{font-size:14px; color:#3366cc; font-family:宋体}
+.homewifi .homecenter .homewifileft .wifiinfo .wifiinfoceng2{ float:left; width:183px; font-size:14px; color:#333333; font-family:宋体; text-align:left; line-height:30px}
+.homewifi .homecenter .homewifileft .wifiinfo .wifiinfoceng2 font{font-size:14px; color:#3366cc; font-family:宋体}
+.homewifi .homecenter .homewifileft .wifiinfo .wifiinfoceng3{ float:left;font-size:12px; color:#333333; font-family:宋体; padding-left:67px; padding-top:37px}
+.homewifi .homecenter .homewifileft .wifiinfo .wifiinfoceng3 a { color:#36C}
+
+
+.homewifi .homecenter .homewifileft3{ float:left; margin-left:119px; width:436px; padding-right:20px; border-right:solid #e2e2e2 1px; margin-bottom:83px}
+.homewifi .homecenter .homewifileft3 .imghome{float:left}
+.homewifi .homecenter .homewifileft3 .relayimg{ float:left; margin-top:28px; margin-left:25px}
+.homewifi .homecenter .homewifileft3 .imgright{ float:left; color:#333333; font-size:26px; font-family:微软雅黑; height:98px; line-height:98px; padding-left:27px}
+.homewifi .homecenter .homewifileft3 .Relayinfo{width:436px; margin-top:30px;}
+.homewifi .homecenter .homewifileft3 .Relayinfo .wifiinfoceng1{ float:left; width:200px; font-size:14px; color:#333333; font-family:宋体; text-align:left; line-height:30px}
+.homewifi .homecenter .homewifileft3 .Relayinfo .wifiinfoceng1 font{font-size:14px; color:#ef7d00; font-family:宋体}
+.homewifi .homecenter .homewifileft3 .Relayinfo .wifiinfoceng2{ float:left; width:200px; font-size:14px; color:#333333; font-family:宋体; text-align:left; line-height:30px}
+.homewifi .homecenter .homewifileft3 .Relayinfo .wifiinfoceng2 font{font-size:14px; color:#3366cc; font-family:宋体}
+.homewifi .homecenter .homewifileft3 .Relayinfo .wifiinfoceng3{ float:left;font-size:12px; color:#333333; font-family:宋体; padding-left:85px; padding-top:37px}
+.homewifi .homecenter .homewifileft3 .Relayinfo .wifiinfoceng3 a { color:#36C}
+
+
+.homewifi .homecenter .homewifiright2{ float:left; margin-left:55px; width:230px;}
+.homewifi .homecenter .homewifiright{ float:left; margin-left:55px; width:245px; margin-top:37px}
+.homewifi .homecenter .homewifiright .xiaxing{ color:#333333; font-size:12px; font-family:宋体; text-align:left; background-image:url(../image/xia.png); background-repeat:no-repeat; background-position:0px 3px; padding-left:15px;}
+.homewifi .homecenter .homewifiright .xiaxingshu{ color:#ff6600; font-size:46px; font-family:微软雅黑; text-align:left}
+.homewifi .homecenter .homewifiright .xiaxingshu font{ color:#333333; font-size:14px; font-family:微软雅黑}
+.homewifi .homecenter .homewifiright .shangxing{ color:#333333; font-size:12px; font-family:宋体; text-align:left; background-image:url(../image/shang.png); background-repeat:no-repeat; background-position:0px 3px; padding-left:15px;}
+.homewifi .homecenter .homewifiright .shangxingshu{ color:#333333; font-size:14px; font-family:微软雅黑; text-align:left; padding-top:10px; text-indent:5px}
+.homewifi .homecenter .homewifiright .shangxingshu .shang1{ color:#999999; font-size:12px; font-family:宋体; padding-left:20px}
+.homewifi .homecenter .homewifiright .shangxingshu .shang2{ color:#999999; font-size:12px; font-family:宋体}
+.homewifi .homecenter .homewifiright .shangxingshu font{ color:#ef7d00; font-size:12px; font-family:微软雅黑}
+
+.homewifi .homecenterxia{ padding-top:60px; padding-bottom:45px}
+.homewifi .homecenterxia .shangwangsz{ float:left; background-image:url(../image/shangwang.png); width:232px; height:134px; display:block; margin-left:42px}
+.homewifi .homecenterxia .shangwangsz:hover{ float:left; background-image:url(../image/shangwang_on.png); width:232px; height:134px; display:block; margin-left:42px}
+.homewifi .homecenterxia .dangqian{ background-color:#f8f8fa; width:161px; height:84px; border-radius:5px; float:left; padding-left:45px; padding-top:50px; text-align:left; line-height:20px; color:#333333; font-size:14px; font-family:宋体}
+.homewifi .homecenterxia .dangqianerror{ background-color:#f8f8fa; width:161px; height:84px; border-radius:5px; float:left; padding-left:45px; padding-top:50px; text-align:left; line-height:20px; color:#ff0000; font-size:14px; font-family:宋体}
+.homewifi .homecenterxia .dangqian font{ color:#3366cc; font-size:14px; font-family:宋体}
+.homewifi .homecenterxia .wifisz{ float:left; background-image:url(../image/wifi.png); width:232px; height:134px; display:block; margin-left:45px}
+.homewifi .homecenterxia .wifisz:hover{ float:left; background-image:url(../image/wifi_on.png); width:232px; height:134px; display:block; margin-left:45px}
+.homewifi .homecenterxia .mingcheng{ background-color:#f8f8fa; width:161px; height:84px; border-radius:5px; float:left; padding-left:45px; padding-top:50px; text-align:left; line-height:20px; color:#333333; font-size:14px; font-family:宋体}
+.homewifi .homecenterxia .mingcheng font{ color:#3366cc; font-size:14px; font-family:宋体}
+
+
+.homewifidown{width:1002px; margin:0 auto; text-align:center; background-color:#fff;border-radius: 5px; margin-top:15px; padding-bottom:111px}
+.homewifidown .blackbai{ width:907px; margin:0 auto; /*margin-top:45px*/}
+.homewifidown .Relaybai{ width:907px; margin:0 auto;}
+.homewifidown .Relaybai .RelayTitle{ font-size:18px; color:#3366cc; font-family:微软雅黑; text-align:left; padding-top:50px; padding-bottom:15px; text-indent:20px}
+.homewifidown .hr2{ width:907px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+
+.homewifidown .uppwdcontext{ width:760px; margin:0 auto; padding-top:30px; text-align:left;}
+.homewifidown .uppwdcontext .setwifibiaodan{/* display:none*/}
+.homewifidown .uppwdcontext .wifibut{ margin-top:73px;}
+.homewifidown .uppwdcontext .wifibut .inxiaobut{ float:left; padding-right:10px}
+
+.homewifidown .blackbai .blackbaititle{ padding-top:50px; padding-bottom:18px}
+.homewifidown .blackbai .blackbaititle .homewifidownleft{ float:left; color:#333333; font-size:18px; font-family:微软雅黑}
+.homewifidown .blackbai .blackbaititle .homewifidownright{ float:right;}
+.homewifidown .blackbai .blackbaititle .homewifidownright a{ font-size:12px; font-family:宋体; color:#3366cc;line-height:35px; height:20px; display:block}
+.homewifidown .blackbai .blackbaititle font{ font-size:12px; color:#999999; text-align:left; font-family:宋体}
+.homewifidown .blackbai .blacktr{ border:solid #e2e2e2 1px; background-color:#f8f8fa; height:40px; line-height:40px}
+.homewifidown table tr{ height:50px; line-height:50px;}
+
+.VPNDialogTable{ width:400px; padding-top:31px; margin-left:75px}
+.VPNDialogTable tr td{ height:50px; line-height:50px}
+.VPNDialogTable tr td font{ font-size:12px; color:#333333}
+.VPNDialogbut{ margin:0 auto; padding-top:20px; padding-bottom:30px}
+
+.zishiyDialogbut{ margin:0 auto; padding-top:40px; padding-bottom:25px}
+
+.rescontext{ width:850px; margin:0 auto;}
+.rescontext .reslab{ margin:0 auto; padding-top:100px; font-size:16px; color:#333333; font-family:微软雅黑; line-height:25px}
+.rescontext .reslab2{ margin:0 auto; font-size:12px; color:#333333; font-family:微软雅黑; line-height:25px}
+.rescontext .reslab3{ margin:0 auto; padding-top:30px; padding-bottom:100px}
+.rescontext .reslab4{ margin:0 auto; font-size:12px; color:#428bef; font-family:微软雅黑; line-height:25px}
+.rescontext .reslab5{ margin:0 auto; font-size:14px; color:#333333; font-family:宋体; line-height:23px; padding-top:44px;text-align:left; margin-left:278px}
+.rescontext .reslab6{ margin:0 auto;font-size:12px; color:#333333; font-family:宋体; line-height:23px; text-align:left; margin-left:278px}
+.rescontext .reslab7{ margin:0 auto; padding-top:60px; padding-bottom:100px; padding-left:270px}
+.resDialog{margin-left:50px; text-align:left;margin-right:50px;}
+
+.resDialog .reshen{margin:0 auto; line-height:25px; font-size:14px; font-family:微软雅黑; color:#333333; font-weight:bold; text-align:center; padding-top:56px}
+.resDialog .reshen2{margin:0 auto; line-height:25px; font-size:12px; font-family:微软雅黑; color:#333333; text-align:center}
+.resDialog .reshen3{margin:0 auto; line-height:25px; text-align:center;}
+.resDialog .reshen4{margin:0 auto; line-height:25px; font-size:14px; font-family:微软雅黑; color:#333333; font-weight:bold; text-align:center; padding-top:15px}
+.resDialog .reshen5{margin:0 auto; line-height:25px; font-size:14px; font-family:微软雅黑; color:#333333; font-weight:bold; text-align:center; padding-top:80px}
+.resDialog .reshen6{margin:0 auto; line-height:25px; font-size:14px; font-family:微软雅黑; color:#333333; font-weight:bold; text-align:center; padding-top:20px}
+.resDialog .reshen7{margin:0 auto; line-height:25px; font-size:14px; font-family:微软雅黑; color:#333333; font-weight:bold; text-align:left; padding-top:54px; padding-bottom:25px;}
+.resDialog .reshen8{margin:0 auto; line-height:25px; font-size:12px; font-family:微软雅黑; color:#333333; text-align:center;padding-bottom:50px}
+.resDialog .reshen9{line-height:25px; font-size:12px; font-family:微软雅黑; color:#333333; text-align:left; width:237px; float:left;}
+.resDialog .reshen10{line-height:25px; font-size:12px; font-family:微软雅黑; color:#333333; text-align:left; width:123px;float:left}
+.resloading{ padding-left:125px; padding-top:30px}
+.resloading2{ padding-left:153px; padding-top:30px}
+.firmwarediv{ width:150px; float:left; padding-left:10px}
+
+.chengIndex{ width:1002px; margin:0 auto; ;height:60px}
+
+.backupcontext{ width:850px; margin:0 auto; }
+.backupcontext .backuptitle{ padding-top:20px; padding-bottom:40px; color:#3366cc; font-size:14; font-family:宋体; text-align:left}
+.backupcontext .backuptitle2{ padding-top:86px; padding-bottom:40px; color:#3366cc; font-size:14; font-family:宋体; text-align:left}
+.backupcontext .backuptab{ border:1px solid #e5e5e5; border-radius:5px; width:412px; float:left}
+.backupcontext .backuptab .backupinfo{ color:#333333; font-size:16px; font-family:微软雅黑; line-height:25px}
+.gan{ padding-top:30px; padding-left:125px}
+
+.AddTableDiaLog{ width:580px; padding-top:35px; margin:0 auto;}
+.setDiaLog{ width:435px; padding-top:35px; margin:0 auto;}
+#dynamicTable tr td{ line-height:35px; height:35px; font-size:12px; color:#333333; font-weight:bold}
+#dynamicTable tr td font{ font-size:12px; color:#333333; font-weight:normal}
+#deltrs{ border:0px; background-color:#fff; cursor:pointer; color:#3366cc; font-size:12px }
+#btn_addtr{cursor:pointer; color:#3366cc; font-size:12px}
+.Deviceinput{ line-height: 25px; height:25px; width:100px; border:solid #e5e5e5 1px}
+.IPinput{ line-height: 25px; height:25px; width:60px; border:solid #e5e5e5 1px}
+.Macinput{ line-height: 25px; height:25px; width:195px; border:solid #e5e5e5 1px}
+.inertonebtn{width:435px; padding-top:40px; text-align:center;line-height: 25px; height:25px; padding-bottom:30px}
+.inertonebtn2{width:580px; padding-top:40px; text-align:center;line-height: 25px; height:25px; padding-bottom:30px}
+.bangding{width:435px;padding-bottom:30px}
+.bangding2{width:580px;padding-bottom:30px}
+.IpErrorMsg{ height:35px; line-height:35px;width:1002px; margin:0 auto; text-indent:20px; background-color:#fffdef; border-radius:5px;margin-top:15px; position:relative}
+
+.InternetErrorMsg{ height:35px; line-height:35px;width:1002px; margin:0 auto; text-indent:20px; background-color:#fffdef; border-radius:5px;margin-top:15px; margin-bottom:15px; position:relative; text-align:center}
+
+.IpErrorMsg a{ font-size:12px; color:#3366cc;}
+.IpErrorMsg .cuocha{ background-image:url(../image/cha.png); position:absolute; top:10px; left:975px; width:12px; height:12px; display:block; cursor:pointer}
+.Common{ width:930px; margin:0 auto; padding-top:37px; padding-bottom:85px}
+.Common .fanSpeedy{ background-image:url(../image/fan.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .fanSpeedy:hover{ background-image:url(../image/fan_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .gongSpeedy{ background-image:url(../image/gong.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .gongSpeedy:hover{ background-image:url(../image/gong_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+.Common .keSpeedy{ background-image:url(../image/ke.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .keSpeedy:hover{ background-image:url(../image/ke_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+.Common .upnpSpeedy{ background-image:url(../image/upnp.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .upnpSpeedy:hover{ background-image:url(../image/upnp_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+
+.Common .qosSpeedy{ background-image:url(../image/qos.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .qosSpeedy:hover{ background-image:url(../image/qos_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .ddnsSpeedy{ background-image:url(../image/ddns.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .ddnsSpeedy:hover{ background-image:url(../image/ddns_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+.Common .duanSpeedy{ background-image:url(../image/duan.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .duanSpeedy:hover{ background-image:url(../image/duan_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+.Common .vpnSpeedy{ background-image:url(../image/vpn.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .vpnSpeedy:hover{ background-image:url(../image/vpn_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .dmzSpeedy{ background-image:url(../image/dmz.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .dmzSpeedy:hover{ background-image:url(../image/dmz_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+.Common .chuanSpeedy{ background-image:url(../image/chuan.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .chuanSpeedy:hover{ background-image:url(../image/chuan_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+
+
+
+
+
+
+
+.Common .luSpeedy{ background-image:url(../image/chong.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .luSpeedy:hover{ background-image:url(../image/chong_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .guSpeedy{ background-image:url(../image/gu.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .guSpeedy:hover{ background-image:url(../image/gu_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+.Common .beiSpeedy{ background-image:url(../image/bei.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .beiSpeedy:hover{ background-image:url(../image/bei_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+.Common .xiSpeedy{ background-image:url(../image/xi.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .xiSpeedy:hover{ background-image:url(../image/xi_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .shiSpeedy{ background-image:url(../image/shi.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .shiSpeedy:hover{ background-image:url(../image/shi_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+
+
+.Common .tongSpeedy{ background-image:url(../image/tong.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .tongSpeedy:hover{ background-image:url(../image/tong_on.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-top:19px; margin-left:19px}
+.Common .yunSpeedy{ background-image:url(../image/yun.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .yunSpeedy:hover{ background-image:url(../image/yun_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+.Common .riSpeedy{ background-image:url(../image/ri.png); background-repeat:no-repeat; width:288px; height:167px; float:left; cursor:pointer; margin-left:19px; margin-top:19px}
+.Common .riSpeedy:hover{ background-image:url(../image/ri_on.png); background-repeat:no-repeat; width:288px; height:167px;; float:left; cursor:pointer;margin-left:19px; margin-top:19px}
+
+.velocity{ margin:0 auto;}
+.velocity .shangtr{ margin:0 auto; width:75px; color:#333333; font-size:12px;background-image:url(../image/shang.png); background-repeat:no-repeat; background-position:25% 50%; float:left; padding-left:23px}
+.velocity .xiatr{ margin:0 auto; width:75px; color:#333333; font-size:12px;background-image:url(../image/xia.png); background-repeat:no-repeat; background-position:25% 50%; float:left; padding-left:23px}
+
+.velocity .shangclick{ margin:0 auto; width:105px; color:#333333; font-size:12px;background-image:url(../image/shang.png),url(../image/pencil.png); background-repeat:no-repeat; background-position:25% 50%,100% 50%; float:left; padding-left:23px;cursor:pointer}
+.velocity .xiaclick{ margin:0 auto; width:105px; color:#333333; font-size:12px;background-image:url(../image/xia.png),url(../image/pencil.png);; background-repeat:no-repeat; background-position:25% 50%,100% 50%; float:left; padding-left:23px; cursor:pointer}
+.velocity .shanginput{background-image:url(../image/shang.png); background-repeat:no-repeat; background-position:10% 50%;float:left; padding-left:27px; position:relative}
+.velocity .xiainput{background-image:url(../image/xia.png); background-repeat:no-repeat; background-position:10% 50%;float:left; padding-left:27px; position:relative}
+.moshi{ font-size:16px; color:#333333; font-family:微软雅黑; line-height:25px; height:25px;}
+.moshi2{ font-size:14px; color:#3366cc; font-family:微软雅黑; line-height:25px; height:25px;}
+.raleyImg{ padding-top:40px; padding-bottom:48px}
+
+.relayDialogTable{ width:410px; margin:0 auto; padding-top:30px}
+.wuxian{ width:195px; float:left}
+.wuxian span{ font-size:12px; color:#4a4a4a; font-family:宋体}
+.wuxian .wuxianW{ width:190px; height:93px; background-image:url(../image/wirelessRelay.jpg); background-repeat:no-repeat; display:block; margin-top:15px}
+.wuxian .wuxiancrru{ width:190px; height:93px; background-image:url(../image/wirelessRelay_on.jpg); background-repeat:no-repeat; display:block; margin-top:15px}
+.youxian{ width:195px; float:right}
+.youxian span{ font-size:12px; color:#4a4a4a; font-family:宋体}
+.youxian .youxianY{ width:190px; height:93px; background-image:url(../image/relayedWire.jpg); background-repeat:no-repeat; display:block; margin-top:15px}
+.youxian .youxiancrru{ width:190px; height:93px; background-image:url(../image/relayedWire_on.jpg); background-repeat:no-repeat; display:block; margin-top:15px}
+.relayDialogbut{ margin:0 auto; padding-top:37px; padding-bottom:30px}
+.patterndiv{ line-height:22px; font-size:12px; color:#4a4a4a; padding-bottom:30px}
+
+.patternDialogTable{ width:320px; margin:0 auto; padding-top:30px;}
+.patternDialogTable .hr2{ width:320px;border-bottom:solid 1px #e2e2e2; border-top:solid 0px #e2e2e2;border-left:solid 0px #e2e2e2;border-right:solid 0px #e2e2e2}
+
+.wirelessDialogTable{ width:420px; margin-left:60px}
+.wirelessDialogTable .wirelesstab{ padding-top:30px; padding-bottom:30px; text-align:center;color:#333333; font-size:14px; font-family:微软雅黑}
+.wirelessDialogTable .wirelesstabs{text-align:center;color:#333333; font-size:14px; font-family:微软雅黑}
+.wirelessDialogTable tr td{ height:50px; line-height:50px}
+.wirelessDialogTable tr td font{ font-size:12px; color:#333333}
+.chequan{padding-left:80px; height:20px; position:relative}
+.chewifi{ color:#333333; font-size:12px; font-family:宋体; text-align:center;height:20px; position:absolute; top:-18px;left:105px;}
+#checkwifi{ display:block; }
+.biaoqianwifi{color:#3366cc; font-size:12px; font-family:宋体; cursor:pointer}
+.switchbtn{ border-radius:5px; width:240px; height:106px; font-size:26px; color:#ffffff; font-family:微软雅黑; display:block; background-color:#2779ea;text-align:center; margin-bottom:28px; padding-top:30px}
+.switchbtn:hover{ border-radius:5px; width:240px; height:106px; font-size:26px; color:#ffffff; font-family:微软雅黑; display:block; background-color:#448aff; text-align:center;  margin-bottom:28px; padding-top:30px}
+
+.Logrank{text-align:left; margin-bottom:36px}
+.Logrank font{font-size:12px; color:#333333; font-family:宋体; padding-right:10px}
+.setwificontext .settitle{ font-family:宋体; font-size:12px; color:#333333; padding-right:90px; float:left; width:100px}
+.operationheng{ font-size:14px; color:#3366cc; text-align:left; margin-top:27px; margin-bottom:10px}
+
+.po{ position:relative}
+.wifipwddiv{ position:absolute; left:20px; top:-1px}
+.loadingImg{ padding-top:50px; padding-bottom:50px}
+.pattern2{ display:none}
+.routerType{ cursor:pointer}
+.wurouterType{ cursor:pointer}
+.wurouterbtn{ cursor:pointer}
+
+
+
+
+/********修改后************/
+.top_head{ margin-top:47px; margin-left:40px; margin-right:37px; margin-bottom:36px}
+.top_head_left{ float:left; font-size:24px; font-family:微软雅黑; color:#333333; line-height:25px; height:25px}
+.top_head_right{ float:right; font-size:12px; font-family:微软雅黑; color:#999999; line-height:25px; height:25px}
+.top_bottom{ height:240px; padding-bottom:110px }
+.top_bottom_left{ float:left;margin-left:40px; margin-right:37px; width:640px}
+.top_bottom_left_title{font-size:12px; font-family:宋体; color:#999999; text-align:left; margin-bottom:39px; }
+.top_bottom_left_div1{ float:left; width:155px; height:122px; vertical-align:bottom; padding-top:40px}
+.top_bottom_left_div1_text{ font-size:12px;color:#333333; font-family:宋体; margin-top:20px; width:155px; overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+.top_bottom_left_div1_text a{ font-size:12px;  color:#3366cc; font-family:Arial, Helvetica, sans-serif; cursor:pointer}
+
+.top_bottom_left_link1{float:left; width:65px; height:91px; vertical-align:bottom; padding-top:72px;}
+
+.top_bottom_left_div2{ float:left; width:155px; height:122px; vertical-align:bottom; padding-top:25px}
+.top_bottom_left_div2_text{ font-size:12px;color:#333333; font-family:宋体; margin-top:20px;width:155px; overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+.top_bottom_left_div2_text a{ font-size:12px;  color:#3366cc; font-family:Arial, Helvetica, sans-serif; cursor:pointer}
+
+.top_bottom_left_link2{float:left; width:80px; height:91px; vertical-align:bottom; padding-top:72px}
+.hr3{ width:80px;border-bottom:solid 2px #2779e9; border-top:solid 0px #2779e9;border-left:solid 0px #2779e9;border-right:solid 0px #2779e9}
+
+.top_bottom_left_div3{ float:left; width:155px; height:122px; vertical-align:bottom;}
+.top_bottom_left_div3_text{ font-size:12px;color:#333333; font-family:宋体; margin-top:20px;width:155px; overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+.top_bottom_left_div3_text a{ font-size:12px;  color:#3366cc; font-family:Arial, Helvetica, sans-serif; cursor:pointer}
+
+
+.top_bottom_left_div4{ float:left; width:142px; height:122px; vertical-align:bottom; padding-top:28px}
+.top_bottom_left_div4_text{ font-size:12px;color:#999999; font-family:宋体; margin-top:20px;}
+
+.top_bottom_right{ float:right;margin-right:37px; }
+.top_bottom_right_btn{ width:110px; height:150px; background-color:#428bef; border-radius:10px; border:0px; background-image:url(../image/quan.png); background-repeat:no-repeat; background-position:15% 50%; font-size:20px; font-family:微软雅黑; color:#FFF; display:block; padding-top:90px; padding-left:100px; padding-right:30px; text-align:left}
+
+.top_bottom_right_btn2{ width:110px; height:50px; background-color:#428bef; border-radius:10px; border:0px; background-image:url(../image/quan.png); background-repeat:no-repeat; background-position:15% 50%; font-size:20px; font-family:微软雅黑; color:#FFF; display:block; padding-top:30px; padding-bottom:30px; padding-left:100px; padding-right:30px; text-align:left}
+
+
+.index_top{}
+.index_top_head{ margin-left:40px; margin-right:40px; margin-top:43px}
+.index_top_state{ font-family:微软雅黑; font-size:24px; color:#333333;line-height:25px; height:25px; float:left}
+.index_top_time{ font-family:微软雅黑; font-size:12px; color:#999999;line-height:25px; height:25px; float:right}
+.index_top_center{ margin-top:32px; padding-bottom:59px}
+.index_top_left{width:465px; float:left}
+.index_top_right{width:500px; float:right}
+.index_top_lab{ font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#333333; float:left; margin-left:79px;}
+.tx_rate{font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#ff6600}
+.tx_text{ font-family:微软雅黑;font-size:12px; color:#999999}
+.index_top_rightlab{ float:right; position:relative; width:100px}
+.index_top_rightlab span{font-family:微软雅黑; font-size:12px; color:#999999; position:relative; width:80px; margin-left:15px;}
+.xialab{ width:5px; height:5px; border-radius:5px; background-color:#ff7215; display:block; position:absolute;left:16px; top:7px;}
+.shanglab{width:5px; height:5px; border-radius:5px; background-color:#5392df; display:block; position:absolute;left:59px; top:7px;}
+#trafficChart{ margin-left:40px; margin-top:10px; margin-bottom:15px;}
+.index_buttom{ margin-left:40px; text-align:left}
+.index_buttom span{ font-size:12px; color:#999999}
+
+
+.top_bottom_right_btn3{ width:117px; height:48px; background-color:#c2e0ac; border-radius:10px; border:0px; background-image:url(../image/wifibg.png); background-repeat:no-repeat; background-position:15% 50%; font-size:17px; font-family:微软雅黑; color:#FFF; display:block; padding-top:35px; padding-bottom:30px; padding-left:80px; padding-right:20px; text-align:left}
+.top_bottom_right_btn3 span{font-size:12px; font-family:微软雅黑; color:#FFF;}
+
+.top_bottom_right_btn4{ width:117px; height:48px; background-color:#81e6e6; border-radius:10px; border:0px; background-image:url(../image/swbg.png); background-repeat:no-repeat; background-position:15% 50%; font-size:17px; font-family:微软雅黑; color:#FFF; display:block; padding-top:35px; padding-bottom:30px; padding-left:80px; padding-right:20px; text-align:left}
+.top_bottom_right_btn4 span{font-size:12px; font-family:微软雅黑; color:#FFF;}
+
+.top_bottom_right_btn5{ width:122px; height:48px; background-color:#f9d690; border-radius:10px; border:0px; background-image:url(../image/gzbg.png); background-repeat:no-repeat; background-position:15% 50%; font-size:17px; font-family:微软雅黑; color:#FFF; display:block; padding-top:35px; padding-bottom:30px; padding-left:80px; padding-right:15px; text-align:left}
+.top_bottom_right_btn5 span{font-size:12px; font-family:微软雅黑; color:#FFF;}
+
+.top_bottom_right_btn6{ width:122px; height:48px; background-color:#fbb9b3; border-radius:10px; border:0px; background-image:url(../image/lybg.png); background-repeat:no-repeat; background-position:15% 50%; font-size:17px; font-family:微软雅黑; color:#FFF; display:block; padding-top:35px; padding-bottom:30px; padding-left:80px; padding-right:15px; text-align:left}
+.top_bottom_right_btn6 span{font-size:12px; font-family:微软雅黑; color:#FFF;}
+.index_top_title{ font-family:宋体; font-size:12px; color:#999999; text-align:left; margin-left:40px;}
+
+.index_top_error{ margin-top:36px;}
+.index_top_wlanerrorimg{ float:left; margin-left:40px}
+.index_top_errorinfo{ float:left; margin-left:17px; font-size:12px; color:#3366cc; font-family:宋体; height:139px; padding-top:10px; text-align:left; line-height:35px}
+.index_top_error2{ margin-top:25px; text-align:left; margin-left:40px; font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#999999}
+.index_top_errorimg{ margin-left:40px; margin-top:20px}

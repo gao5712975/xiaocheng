@@ -1,0 +1,294 @@
+<script src="js/jquery.tmpl.min.js" type="text/javascript">
+</script>
+<script type="text/x-jquery-tmpl" id="tabsmenu">
+<div class="title">
+			开始前，请对照下图检查您的WAN口是否已经链接正确！
+		</div>
+		<hr class="hr1" size="1" />
+		<div class="networkimg">
+			<img src="image/networkerror.png" />
+		</div>
+		<div class="networkbtn">
+			<button id="testing" class="btn">
+				没问题，下一步
+			</button>
+		</div>
+		<div class="networktiao">
+		</div>
+		<!--<div class="networktiao"><a>跳过，暂不设置</a></div>-->
+</script>
+<script type="text/x-jquery-tmpl" id="tabsmenu1">
+	<div class = "Intitle"> 设置上网方式 </div> 
+   <div class="Ince">
+   </div> 
+   <div class="tab"> 
+    <div class="tableft"></div> <div class = "tabmenus"> <ul id = "tabs"> <li> <a name = "#tab1"href = "#"> 宽带拨号（PPPoE） </a></li> <li> <a name = "#tab2"href = "#"> 动态IP（DHCP） </a></li> <li> <a name = "#tab3"href = "#"> 静态IP </a></li> </ul> 
+     <div class="clear"></div> </div> 
+    <div class="tabright"></div> <div class = "clear"> </div> 
+    
+    <div id="content"> 
+   <div id="tab1" class="context1"> 
+   <form id="PPPoEForm" method="post" action="">
+      <div class="intitle"> 
+       <span class="red">*</span> 账号密码由网路ISP运营商提供 <div class = "textisp"> <div class = "text1"> <div class = "texttitle"> 上网账号： </div>
+         <input id="internetName" name="internetName" class="{required:true,messages:{required:'请输入上网帐号'},maxlength:127,checkspecial:true,checkChinese:true} textinput" type="text" placeholder="请输入上网账号" /> </div>
+        <div class="Prompt"></div> </div> 
+       <div class="textisp"> 
+        <div class="text1">
+		 <div class="texttitle">上网密码：</div> <input id = "internetpwd"name = "internetpwd"class = "{required:true,messages:{required:'请输入上网密码'},maxlength:127,checkspecial:true,checkChinese:true} textinput"type = "password" /></div>
+        <div class="Prompt"></div> </div> 
+       <div class="inbut">
+        <button type="submit" id="broadband" class="btn2">确定，下一步</button> </div> 
+       <div class="tiaobtn">
+        <a class="last">返回</a> |<a class = "skip"> 跳过 </a>
+       </div> </div> 
+	  </form> <div class = "clear"> </div> 
+     </div> <div id = "tab2"class = "context2"> <div class = "intitle2"> 路由器连接运营商提供的端口即可直接上网！ </div> 
+      <div class="inbut2">
+       <button id="DynamicIP" class="btn">确定，下一步</button> </div> 
+      <div class="tiaobtn">
+       <a class="last">返回</a> |<a class = "skip"> 跳过 </a>
+      </div> </div> 
+     <div id="tab3" class="context3"> 
+	 <form id="JinForm" method="post" action="">
+      <div class="intitle3"> 
+       <span class="red">*</span> 请手动配置您的IP信息 <div class = "textisp3"> <div id = "ipDIV"class = "text1"> <div class = "texttitle"> I P地址： </div>
+         <input id="ip" name="ip" class="{required:true,messages:{required:'请输入IP地址'},checkip:true} textinput" type="text" placeholder="例如：192.168.0.88" /> </div>
+        <div id="ipError" class="Prompt"></div> </div> 
+       <div class="textisp3"> 
+        <div id="maskDIV" class="text1">
+         <div class="texttitle">子网掩码：</div> <input id = "mask"name = "mask"class = "{required:true,messages:{required:'请输入子网掩码'},checkmask:true} textinput"type = "text"placeholder = "例如：255.255.255.0" /></div>
+        <div id="maskError" class="Prompt"></div> </div> 
+       <div class="textisp3"> 
+        <div id="gatewayDIV" class="text1">
+         <div class="texttitle">默认网关：</div> <input id = "gateway"name = "gateway"class = "{required:true,messages:{required:'请输入默认网关'},checkgateway:true} textinput"type = "text"placeholder = "例如：192.168.0.1" /></div>
+        <div id="gatewayError" class="Prompt"></div> </div> 
+       <div class="textisp3"> 
+        <div id="dnsDIV" class="text1">
+         <div class="texttitle">首选DNS：</div> <input id = "dns"name = "dns"class = "{required:true,messages:{required:'请输入首选DNS'},checkdns:true} textinput"type = "text"placeholder = "例如：8.8.8.8" /></div>
+        <div id="dnsError" class="Prompt"></div> </div> 
+       <div class="textisp3"> 
+        <div id="bdnsDIV" class="text1">
+         <div class="texttitle">备选DNS：</div> <input id = "bdns" name = "bdns" class = "{checkbdns:true} textinput"type = "text" /></div>
+        <div id="bdnsError" class="Prompt"></div> </div> 
+       <div class="inbut3">
+        <button type="submit" id="StaticIP" class="btn2">确定，下一步</button> </div> 
+       <div class="tiaobtn3">
+        <a class="last">返回</a> |<a class = "skip"> 跳过 </a>
+       </div> </div> 
+	  </form> <div class = "clear"> </div> 
+     </div> </div> 
+   </div> 
+</script>
+<script type="text/x-jquery-tmpl" id="tabsmenu2">
+<div class="wifititle">
+			设置WiFi名称及密码
+		</div>
+		<hr class="hr2" size="1" />
+		<form id="wifiForm" method="post" action="">
+			<div class="wifihead">
+				<span class="red">
+					*
+				</span>
+				为了安全起见，建议密码为字母和数字的混合形式！
+				<div class="textisp">
+					<div id="wifiNameDIV" class="text1">
+						<div class="texttitle">
+							WiFi名称：
+						</div>
+						<input id="wifiName" name="wifiName" class="{required:true,messages:{required:'请输入wifi名称'},maxlength:32} textinput" type="text" placeholder=" 请您填写WiFi名称!" value="ChengWiFi" />
+					</div>
+					<div id="wifiNameError" class="Prompt">
+					</div>
+				</div>
+				<div class="textisp">
+					<div id="wifipwdDIV" class="text1">
+						<div class="texttitle">
+							WiFi密码：
+						</div>
+						<input id="wifipwd" name="wifipwd" class="{required:true,messages:{required:'请输入WiFi密码'},checkDigits:true,checkChinese:true,maxlength:63,minlength:8} textinputpwd"
+						type="password" />
+					</div>
+					<div id="wifipwdError" class="Prompt">
+					</div>
+				</div>
+				<div class="inbut">
+					<button type="submit" id="Setwifi" class="btn2">
+						下一步
+					</button>
+				</div>
+			</div>
+		</form>
+		<div class="tiaobtn">
+			<a id="wifiReturn" onclick="wifiReturnback()">
+				返回
+			</a>
+		</div>
+</script>
+<script type="text/x-jquery-tmpl" id="tabsmenu3">
+<div class="wifititle">
+			设置后台登陆密码
+		</div>
+		<hr class="hr2" size="1" />
+		<form id="routerForm" method="post" action="">
+			<div class="wifihead">
+				请设置路由器后台管理的登陆密码
+				<div class="textisp">
+					<div id="routerNameDIV" class="text1">
+						<div class="texttitle">
+							路由器名称：
+						</div>
+						<input id="routerName" name="routerName" class="{required:true,messages:{required:'请输入路由器名称'},maxlength:32} textinputindent updatefont" type="text" placeholder=" 请您填路由器名称!" value="ChengWiFi" readonly />
+						<a id="upRouter">
+							修改
+						</a>
+					</div>
+					<div id="routerNameError" class="Prompt">
+					</div>
+				</div>
+				<div class="textisp">
+					<div id="routerpwdDIV" class="text1">
+						<div class="texttitle">
+							管理员密码：
+						</div>
+						<input id="routerpwd" name="routerpwd" class="{required:true,messages:{required:'请输入管理员密码'},checkDigits:true,checkChinese:true,maxlength:63,minlength:8} textinputpwdindent"
+						type="password" />
+						<input type="hidden" id="routerpwdHidden" value="" />
+					</div>
+					<div id="routerpwdError" class="Prompt">
+					</div>
+				</div>
+				<div class="wifipwd po">
+					<input id="wificheck" class="che" type="checkbox" checked="checked" style="display:block" />
+                    <div class="wifipwddiv">
+					与WiFi密码相同
+                    </div>
+				</div>
+				<div class="inbut">
+					<button type="submit" id="SetRouter" class="btn2">
+						完成设置
+					</button>
+				</div>
+			</div>
+		</form>
+		<div class="tiaobtn">
+			<a id="RouterReturn" onclick="routerreturnback()">
+				返回
+			</a>
+		</div>
+</script>
+<script type="text/x-jquery-tmpl" id="tabsmenu4">
+<div class="loadimg">
+			<img src="image/loading.gif" />
+		</div>
+		<div class="loads">
+			路由器正在初始化，请稍等...
+		</div>
+		<hr class="hr1" size="1" />
+		<div class="Information">
+		<div class="fontbao">
+			<div class="fontleft">WiFi名称：</div>
+			<div class="fontspan" id="SSID"></div><br/>
+		    <div class="clear"></div>
+		</div>
+		<div class="fontbao">
+			<div class="fontleft">WiFi密码：</div>
+			<div class="fontspan" id="WIFIPWD"></div><br/>
+		<div class="clear"></div>
+		</div>
+		<div class="fontbao">
+			<div class="fontleft">管理员密码：</div>
+			<div class="fontspan" id="ADMINPWD"></div><br/>
+		<div class="clear"></div>
+		</div>
+		</div>
+		<div class="loadbut">
+			<a class="btn3">
+				请稍等...
+			</a>
+		</div>
+</script>
+<script type="text/x-jquery-tmpl" id="tabsmenu5">
+<div class="loadimg">
+			<img src="image/suerss.png" />
+		</div>
+		<div class="loads">
+			初始化成功,您可以畅快上网了！
+		</div>
+		<hr class="hr1" size="1" />
+		<div class="Information">
+		<div class="fontbao">
+			<div class="fontleft">WiFi名称：</div>
+			<div class="fontspan" id="SSID_FIN"></div><br/>
+			<div class="clear"></div>
+		</div>
+		<div class="fontbao">
+			<div class="fontleft">WiFi密码：</div>
+			<div class="fontspan" id="WIFIPWD_FIN"></div><br/>
+		    <div class="clear"></div>
+		</div>
+		<div class="fontbao">
+			<div class="fontleft">管理员密码：</div>
+			<div class="fontspan" id="ADMINPWD_FIN"></div><br/>
+			<div class="clear"></div>
+		</div>
+		</div>
+		<div class="loadbut">
+			<a id="gohome" class="btn">
+				进入管理后台
+			</a>
+		</div>
+</script>
+<script type="text/javascript">
+var routerpwdHidden;
+    $(".networkcontext").html($("#tabsmenu").html());
+	$(".Internet").html($("#tabsmenu1").html());
+	$(".wificontext").html($("#tabsmenu2").html());
+	$(".router").html($("#tabsmenu3").html());
+	hideShowPassword();
+	$(".wificontext").attr("style","display:none");
+	$(".router").attr("style","display:none");
+	$(".loadcontext").html($("#tabsmenu4").html());
+	$(".successcontext").html($("#tabsmenu5").html());
+	$().ready(function() {
+		
+		guided();
+		jQuery.jqtab = function(tabtit, tab_conbox, shijian, index) {
+			$(tab_conbox).find("li").hide();
+
+			$(tabtit).find("li:eq(" + index + ")").addClass("curr").show();
+
+			for (var i = 1; i <= 3; i++) {
+				if (index == (i - 1)) {
+					$(tab_conbox).find("#tab" + i).show();
+				} else {
+					$(tab_conbox).find("#tab" + i).hide();
+				}
+			}
+
+			$(tabtit).find("li").bind(shijian,
+			function() {
+				$(this).addClass("curr").siblings("li").removeClass("curr");
+				var activeindex = $(tabtit).find("li").index(this);
+				$(tab_conbox).children().eq(activeindex).show().siblings().hide();
+				return false;
+			});
+
+		};
+	});
+	
+	function hideShowPassword(){
+	$('#wifipwd').hideShowPassword({
+		innerToggle: true,
+		touchSupport: Modernizr.touch
+	});
+	
+	$('#routerpwd').hideShowPassword({
+		innerToggle: true,
+		touchSupport: Modernizr.touch
+	});
+	}
+	$("#upRouter").click(function() {
+		$('#routerName').removeAttr("readonly");
+	})
+</script>

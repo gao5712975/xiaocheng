@@ -1,0 +1,72 @@
+<!--#include file="../include/head2.htm"-->
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="../include/top2.htm"-->
+	<div class="Breadcrum">
+		<a href="index.htm">
+			网络管理
+		</a>
+		>> VPN
+	</div>
+	<!--内容-->
+	<div class="setwificontext">
+		<div class="setwifilab">
+			<div class="laleft">
+				VPN
+			  
+			</div>
+			<div class="zk">
+				收起
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+		<div class="blacktitle">
+			  端口转发，当外部网络访问转发规则中指定的外部端口号时，请求将自动被转发至内部指定ip的对应端口，实现外网访问内部局域网服务和数据的功能。
+多端口范围转发有时也被称为端口映射。
+	  </div>
+        <div id="VpnServer" class="vpnbiaodan">
+			<div id="VpnlistDiv"></div>
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+             <tr>
+									<td>
+											<div class="ddnsbut">
+												<a id="vpnbtn" class="xiaobtn">
+													添加服务
+												</a>
+											</div>
+									</td>
+								</tr>
+                                </table>
+		</div>
+	</div>
+    <!--弹层界面-->
+    <div id="vpndialogtable" style="display:none"></div>
+	<!--#include file="../tmpl/xiaocheng.layerdialog.js.htm"-->
+    <!--#include file="../include/bottom.htm"-->
+    <!--#include file="../include/valid.js.htm"-->
+    <!--#include file="../include/xiaocheng.js.htm"-->
+	<script type="text/javascript">
+		$(function() {
+			GetVpnList();
+			vpnStatus();
+			setInterval(function(){vpnStatus();}, 3000);
+			$(".blacktitle").show();
+			$(".zk").click(function() {
+				if ($(".zk").text() == "展开") {
+					$(".zk").text("收起");
+					$(".blacktitle").stop().slideDown(500);
+				} else {
+					$(".zk").text("展开");
+					$(".blacktitle").stop().slideUp(500);
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>

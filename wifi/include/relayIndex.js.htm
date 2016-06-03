@@ -1,0 +1,545 @@
+<script src="js/jquery.tmpl.min.js" type="text/javascript">
+</script>
+<script type="text/x-jquery-tmpl" id="chengwuxian">
+<div id="chengrelayDiv">
+        <div class="top_head">
+        <div class="top_head_left">
+        正在使用无线中继模式！
+        </div>
+         <div class="top_head_right">已连续工作{{= (uptime/86400+"").split('.')[0]}}天{{= (uptime%86400/3600+"").split('.')[0]}}小时{{= (uptime%86400%3600/60+"").split('.')[0]}}分</div>
+        <div class="clear"></div>
+        </div> 
+        <div class="top_bottom">
+        <div class="top_bottom_left">
+        <div class="top_bottom_left_title">网络拓扑示意图：</div>
+        <div class="top_bottom_left_div1">
+        <img src="image/dn.png" />
+        <div class="top_bottom_left_div1_text">
+        管理地址：<a title='{{= laninfo[0].ip}}'>{{= laninfo[0].ip}}</a>
+        </div>
+        </div>
+        
+        <div class="top_bottom_left_link1">
+        <img src="image/xh.png" />
+        </div>
+        
+        
+        <div class="top_bottom_left_div2">
+        <img src="image/zj.png" />
+        <div class="top_bottom_left_div2_text">
+        当前WiFi：<a title='{{= wifiinfo.ssid}}'>{{= wifiinfo.ssid}}</a>
+        </div>
+        </div>
+        <div class="top_bottom_left_link2">
+        <img src="image/wifiright.png" />
+        </div>
+        
+        
+        <div class="top_bottom_left_div3">
+        <img src="image/ly.png" />
+        <div class="top_bottom_left_div3_text">
+        中继WiFi：<a title='{{= wifiClientinfo.ssid}}'>{{= wifiClientinfo.ssid}}</a>
+        </div>
+        </div>
+        
+        </div>
+        
+        <div class="top_bottom_right">
+        <a class="top_bottom_right_btn2 mb20 wurouterbtn">切换中继路由器</a>
+        <a class="top_bottom_right_btn2 wurouterType">切换路由器模式</a>
+        </div>
+        </div>
+       </div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="chengwuxianerror">
+<div id="chengrelayDiv">
+        <div class="top_head">
+        <div class="top_head_left">
+        找不到无线中继路由器！
+        </div>
+        
+        <div class="clear"></div>
+        </div>
+        <div class="top_bottom">
+        <div class="top_bottom_left">
+        <div class="top_bottom_left_title">网络拓扑示意图：</div>
+        <div class="top_bottom_left_div1">
+        <img src="image/dn.png" />
+        <div class="top_bottom_left_div1_text">
+        管理地址：<a title='{{= laninfo[0].ip}}'>{{= laninfo[0].ip}}</a>
+        </div>
+        </div>
+        
+        <div class="top_bottom_left_link1">
+        <img src="image/xh.png" />
+        </div>
+        
+        
+        <div class="top_bottom_left_div2">
+        <img src="image/zj.png" />
+        <div class="top_bottom_left_div2_text">
+        当前WiFi：<a title='{{= wifiinfo.ssid}}'>{{= wifiinfo.ssid}}</a>
+        </div>
+        </div>
+        <div class="top_bottom_left_link2">
+        <img src="image/errorcuo.png" />
+        </div>
+        
+        
+        <div class="top_bottom_left_div4">
+        <img src="image/lyerror.png" />
+        <div class="top_bottom_left_div4_text">
+        中继WiFi：--
+        </div>
+        </div>
+        
+        </div>
+        
+        <div class="top_bottom_right">
+        <a class="top_bottom_right_btn2 mb20 wurouterbtn">切换中继路由器</a>
+        <a class="top_bottom_right_btn2 wurouterType">切换路由器模式</a>
+        </div>
+        </div>
+       </div>
+</script>
+<script type="text/x-jquery-tmpl" id="chengyouxian">
+<div id="chengrelayDiv">
+        <div class="top_head">
+        <div class="top_head_left">
+        正在使用有线中继模式！
+        </div>
+         <div class="top_head_right">已连续工作{{= (uptime/86400+"").split('.')[0]}}天{{= (uptime%86400/3600+"").split('.')[0]}}小时{{= (uptime%86400%3600/60+"").split('.')[0]}}分</div>
+        <div class="clear"></div>
+        </div>
+        <div class="top_bottom">
+        <div class="top_bottom_left">
+        <div class="top_bottom_left_title">网络拓扑示意图：</div>
+        <div class="top_bottom_left_div1">
+        <img src="image/dn.png" />
+        <div class="top_bottom_left_div1_text">
+        管理地址：<a title='{{= laninfo[0].ip}}'>{{= laninfo[0].ip}}</a>
+        </div>
+        </div>
+        
+        <div class="top_bottom_left_link1">
+        <img src="image/xh.png" />
+        </div>
+        
+        
+        <div class="top_bottom_left_div2">
+        <img src="image/zj.png" />
+        <div class="top_bottom_left_div2_text">
+        当前WiFi：<a title='{{= wifiinfo.ssid}}'>{{= wifiinfo.ssid}}</a>
+        </div>
+        </div>
+        <div class="top_bottom_left_link2">
+        <hr class="hr3" size="2" />
+        </div>
+        
+        
+        <div class="top_bottom_left_div3">
+        <img src="image/ly.png" />
+        <div class="top_bottom_left_div3_text">
+        中继WiFi：<a>--</a>
+        </div>
+        </div>
+        
+        </div>
+        
+        <div class="top_bottom_right">
+        <a class="top_bottom_right_btn routerType">切换路由器模式</a>
+        </div>
+        </div>
+       </div>
+</script>
+<script type="text/x-jquery-tmpl" id="chengyouxianError">
+<div id="chengrelayDiv">
+        <div class="top_head">
+        <div class="top_head_left">
+        找不到有线中继路由器！
+        </div>
+        
+        <div class="clear"></div>
+        </div>
+        <div class="top_bottom">
+        <div class="top_bottom_left">
+        <div class="top_bottom_left_title">网络拓扑示意图：</div>
+        <div class="top_bottom_left_div1">
+        <img src="image/dn.png" />
+        <div class="top_bottom_left_div1_text">
+        管理地址：<a title='{{= laninfo[0].ip}}'>{{= laninfo[0].ip}}</a>
+        </div>
+        </div>
+        
+        <div class="top_bottom_left_link1">
+        <img src="image/xh.png" />
+        </div>
+        
+        
+        <div class="top_bottom_left_div2">
+        <img src="image/zj.png" />
+        <div class="top_bottom_left_div2_text">
+        当前WiFi：<a title='{{= wifiinfo.ssid}}'>{{= wifiinfo.ssid}}</a>
+        </div>
+        </div>
+        <div class="top_bottom_left_link2">
+        <img src="image/errorcuo.png" />
+        </div>
+        
+        
+        <div class="top_bottom_left_div4">
+        <img src="image/lyerror.png" />
+        <div class="top_bottom_left_div4_text">
+        中继WiFi：--
+        </div>
+        </div>
+        
+        </div>
+        
+        <div class="top_bottom_right">
+        <a class="top_bottom_right_btn routerType">切换路由器模式</a>
+        </div>
+        </div>
+       </div>
+</script>
+<script type="text/x-jquery-tmpl" id="relaycheck">
+  <div class="resDialog">
+  <div class="reshen">
+  确定是否切换到路由器工作模式？
+  </div>
+    <div class="reshen2">
+  (该操作需要重启路由器)
+  </div>
+   <div class="reshen3 pt50">
+   <div class="wifibut">
+								<div class="inxiaobut left w150 ml20">
+									<a class="xiaobtn" id="resque">
+										确定
+									</a>
+								</div>
+								<div class="inxiaobut left w150 ml10" id="rescolose">
+									<a class="xiaobtn">
+										取消
+									</a>
+								</div>
+								<div class="clear">
+								</div>
+							</div>
+   </div>
+  </div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="wurelaycheck">
+  <div class="resDialog">
+  <div class="reshen">
+  确定是否切换到路由器工作模式？
+  </div>
+    <div class="reshen2">
+  (该操作需要重启路由器)
+  </div>
+   <div class="reshen3 pt50">
+   <div class="wifibut">
+								<div class="inxiaobut left w150 ml20">
+									<a class="xiaobtn" id="wuresque">
+										确定
+									</a>
+								</div>
+								<div class="inxiaobut left w150 ml10" onclick="closeIndex()" id="rescolose">
+									<a class="xiaobtn">
+										取消
+									</a>
+								</div>
+								<div class="clear">
+								</div>
+							</div>
+   </div>
+  </div>
+</script>
+<script type="text/x-jquery-tmpl" id="Resloading">
+ <div class="resDialog">
+	<img src="../image/loading.gif" width="99" height="99" class="resloading2"
+	/>
+	<div class="reshen4">
+		切换生效中
+	</div>
+	<div class="reshen8">
+		请不要关闭浏览器或断开路由器
+	</div>
+</div>
+</script>
+<script type="text/x-jquery-tmpl" id="Ressuress">
+<div class="resDialog">
+	<div class="reshen7">
+		恭喜，小橙路由器一键路由器模式设置成功！
+	</div>
+	<div class="reshen10">
+		路由器的IP地址为：
+	</div>
+	<div class="reshen9">
+	<label style="color:#ffa37d;font-size:16px;" id="relayIp"></label>
+	</div>
+	<div class="reshen10">
+		或域名地址：
+	</div>
+	<div class="reshen9">
+	<label style="color:#ffa37d;font-size:16px;">i.chengwifi.com</label></div>
+	</div>
+	<div class="clear"></div>
+	<div class="zishiyDialogbut">
+		<a id="quedingbtn" class="xiaobtn">
+			确定
+		</a>
+	</div>
+</div>
+</script>
+<script type="text/x-jquery-tmpl" id="Ressuresslen">
+  <div class="resDialog">
+	<div class="reshen7">
+		恭喜，小橙路由器一键路由器模式设置成功！
+	</div>
+	<div class="reshen10">
+		网络名称为：
+	</div>
+	<div class="reshen9">
+	<label style="color:#ffa37d;font-size:16px;" id="relayssid"></label>
+	</div>
+	<div class="reshen10">
+		路由器的IP地址为：
+	</div>
+	<div class="reshen9">
+	<label style="color:#ffa37d;font-size:16px;" id="relayIp"></label>
+	</div>
+	<div class="reshen10">
+		或域名地址：
+	</div>
+	<div class="reshen9">
+	<label style="color:#ffa37d;font-size:16px;">i.chengwifi.com</label></div>
+	</div>
+	<div class="clear"></div>
+	<div class="zishiyDialogbut">
+		<a id="quedingbtn" class="xiaobtn">
+			确定
+		</a>
+	</div>
+</div>
+</script>
+
+<script type="text/javascript">
+var index;
+var count;
+$(document).ready(function() {
+	chengList();
+	Getwifisetting();
+});
+
+setinterl=setInterval(function(){chengList();}, 5000);
+
+
+
+function chengList(){
+$.getJSON("http://192.168.0.196/cgi-bin/luci/cheng/orangesystem/cheng_status",function(result)
+	{
+		if(result.code=='0'){
+		$('#chengrelayDiv').empty();
+		if(result.mode=='1'){
+			if(result.wifiClientinfo.status==1){$('#chengwuxian').tmpl(result).appendTo('#chengrelayDiv')}else{$('#chengwuxianerror').tmpl(result).appendTo('#chengrelayDiv')}
+			wurouterType();
+			wurouterbtn();
+		}else if(result.mode=='2'){
+		if(result.portstatus==1){$('#chengyouxian').tmpl(result).appendTo('#chengrelayDiv')}else{$('#chengyouxianError').tmpl(result).appendTo('#chengrelayDiv')}
+		routerType();
+		}
+		}else
+	    {
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+		
+		
+	});
+}
+
+function Getwifisetting(){
+$.getJSON("http://192.168.0.196/cgi-bin/luci/cheng/networkmanager/get_wifi_setting",{index:1},function(result)
+	{
+		if(result.code=='0'){
+			$("#wifiName").val(result.wifiinfo.ssid);
+			$("#way").find("[data-value='"+result.wifiinfo.encryption+"']").click();
+			$("#wifipwd").val(result.wifiinfo.password);
+			if(result.wifiinfo.hidden==1){
+			$("input[name='chbcheck']").attr("checked", true);
+			}
+		}else
+	    {
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	});
+}
+$('#relayIndextable').html($("#relaycheck").html());
+$('#wurelayIndextable').html($("#wurelaycheck").html());
+$('#schemadialogtable').html($("#wireless").html());
+function routerType(){
+$(".routerType").click(function() {
+		index=layer.open({
+			type: 1,
+			title: '操作提示',
+			area: ['460px', '262px'],
+			shadeClose: false,
+			content: $('#relayIndextable')
+		});
+	})
+}
+
+function wurouterType(){
+$(".wurouterType").click(function() {
+		index=layer.open({
+			type: 1,
+			title: '操作提示',
+			area: ['460px', '262px'],
+			shadeClose: false,
+			content: $('#wurelayIndextable')
+		});
+	})
+}
+
+function closeIndex() {layer.close(index);}
+
+$("#rescolose").click(function() {
+		layer.close(index);
+	})
+	
+
+$("#resque").click(function() {
+	clearInterval(setinterl);
+	layer.close(index);
+		checklyouqi();
+	})
+	
+$("#wuresque").click(function() {
+	clearInterval(setinterl);
+	layer.close(index);
+		checklwuqi();
+	})
+	
+function checklyouqi()
+{
+	index=layer.open({
+			type: 1,
+			title: '操作提示',
+			area: ['460px', 'auto'],
+			shadeClose: false,
+			closeBtn:0,
+			content: $('#Resloading').html()
+		});
+		  $.ajax({
+	type: "post",
+	url: "http://192.168.1.215/cgi-bin/luci/cheng/networkmanager/disable_lan_repeater",
+	data: {
+	},
+	dataType: "json",             
+	success: function(result) {
+		 relayIp=result.ip;
+		 layer.close(index);
+		index = layer.open({
+						type: 1,
+						title: '操作提示',
+						area: ['460px', '320px'],
+						shadeClose: false,
+						closeBtn: 0,
+						content: $('#Ressuress').html()
+					})
+					$('#relayIp').html(relayIp);
+					$("#quedingbtn").click(function() {
+						layer.close(index);
+					    index=layer.open({
+			                  type: 1,
+			                  title: '操作提示',
+		                   	  area: ['460px', '262px'],
+			                  shadeClose: false,
+			                  content: $('#relayJump').html()
+		                });
+						
+					$("#Jumpqu").click(function() {
+						layer.close(index);
+					});
+					$("#Jumpque").click(function() {
+						location.href = 'http://'+relayIp;
+					});
+					})
+		   
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});	
+}
+
+
+function checklwuqi()
+{
+	index=layer.open({
+			type: 1,
+			title: '操作提示',
+			area: ['460px', 'auto'],
+			shadeClose: false,
+			closeBtn:0,
+			content: $('#Resloading').html()
+		});
+    $.ajax({
+	type: "post",
+	url: "http://192.168.0.209/cgi-bin/luci/cheng/networkmanager/switch_to_router",
+	data: {},
+	dataType: "json",             
+	success: function(result) {
+		 relayssid=result.ssid;
+		 relayIp=result.lanip;
+		 relaypwd=result.password;
+		 layer.close(index);
+		 index = layer.open({
+						type: 1,
+						title: '操作提示',
+						area: ['460px', '360px'],
+						shadeClose: false,
+						closeBtn: 0,
+						content: $('#Ressuresslen').html()
+					})
+					$('#relayssid').html(relayssid);
+					$('#relayIp').html(relayIp);
+					//$('#relaypwd').html(relaypwd);
+					$("#quedingbtn").click(function() {
+						layer.close(index);
+					    index=layer.open({
+			                  type: 1,
+			                  title: '操作提示',
+		                   	  area: ['460px', '262px'],
+			                  shadeClose: false,
+			                  content: $('#relayJump').html()
+		                });
+						
+					$("#Jumpqu").click(function() {
+						layer.close(index);
+					});
+					$("#Jumpque").click(function() {
+						location.href = 'http://'+relayIp;
+					});
+					})
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}});	
+}
+
+function wurouterbtn(){
+$(".wurouterbtn").click(function(){
+        index = layer.open({
+				type: 1,
+				title: '无线中继模式',
+				area: ['500px', 'auto'],
+				shadeClose: false,
+				content: $('#schemadialogtable')
+		});
+		$('#layui-layer' + index).height('auto');
+	$('.layui-layer-content').height('auto');
+});}
+</script>

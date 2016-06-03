@@ -1,0 +1,143 @@
+<!--#include file="include/head.htm"-->
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<!--#include file="include/top2.htm"-->
+    <script src="js/raphael.js"></script>
+<script src="js/class.linechart.js"></script>
+	<!--内容-->
+    <div class="IpErrorMsg" style="display:none">您的路由器地址与外网IP地址冲突，可能导致无法正常上网，您可以 <a href="internet/Relay.htm">切换工作模式</a> 或 <a href="setinter.htm?Type=Intranet">修改路由器地址</a> 使网络恢复正常。<a class="cuocha"></a></div>
+	<div class="homewifi">
+		<div class="hometop">
+			<div class="wifileft">
+				ChengC7
+				<font>
+					版本1.1.0
+				</font>
+			</div>
+			<div class="wifiright">
+				<a id="resbtn">
+					重启路由
+				</a>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<hr class="hr2" size="1" />
+        <div id="routerState">
+        <div class="index_top">
+        <div class="index_top_head">
+        <div class="index_top_state">联网状态：-</div>
+        <div class="index_top_time">已连续工作-天-小时-分</div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="index_top_center">
+        <div class="index_top_left">
+        <div class="index_top_lab">
+		<span class="tx_rate">-</span>KB/s
+		<span class="tx_text">当前下载速度</span></div>	
+        <div class="index_top_rightlab"><a class="xialab"></a><span>下行</span> <a class="shanglab"></a><span>上行</span></div>
+        <div class="clear"></div>
+        <div id="trafficChart"></div>
+        <div class="index_buttom"><span>当前在线连接数：0</span><span class="ml40">外网IP：-</span></div>
+        </div>
+        <div class="index_top_right">
+        <a href="setwifi.htm" class="top_bottom_right_btn3 left ml10 mb20">WiFi设置<br/><span></span></a>
+        <a href="setinter.htm?Type=Extranet" class="top_bottom_right_btn4 left ml10 mb20">上网设置<br/>
+		<span>
+		-
+		</span></a>
+        <a href="internet/Relay.htm" class="top_bottom_right_btn5 left ml10 mb20">工作模式<br/>
+		<span>
+		-
+		</span></a>
+        <a href="setinter.htm?Type=Intranet" class="top_bottom_right_btn6 left ml10 mb20">路由器地址<br/><span>-</span></a>
+        </div>
+        <div class="clear"></div>
+        </div>
+        </div>
+
+        </div>
+	</div>
+    
+    
+    
+    
+    
+	<div class="homewifidown">
+		<div class="blackbai">
+			<div class="blackbaititle">
+				<div class="homewifidownleft">
+					正在连接的设备
+				</div>
+				<div class="homewifidownright">
+					<a href="internet/Blacklist.htm">
+						管理黑名单 >>
+					</a>
+				</div>
+				<div class="clear">
+				</div>
+			</div>
+			<div id="onnectingDevice">
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr">
+							<tr>
+								<td width="25%">
+									设备名
+								</td>
+								<td width="25%">
+									IP地址
+								</td>
+								<td width="25%">
+									MAC地址
+								</td>
+								<td width="25%">
+									操作
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+			</table>
+            </div>
+		</div>
+	</div>
+     <!--弹层界面-->
+    <div id="Resdialogtable" style="display:none"></div>
+	<!--#include file="include/bottom.htm"-->
+    <!--#include file="include/chengIndex.js.htm"-->
+    <!--#include file="tmpl/xiaocheng.layerDialog.js.htm"-->
+    <script type="application/javascript">
+    $('.cuocha').click(function(){ipcount=1;$(".IpErrorMsg").hide();});
+	
+	
+	//获取建议上网方式
+function getWanType(){
+$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/detect_wan_type",function(result)
+	{
+		
+	if(result.code=='0') 
+	{
+	      if ( result.wanType == 1 ) {$('#wanType').html('（小橙检测到您使用的是PPPoE方式连接）');} 
+	   else if ( result.wanType == 2 ){$('#wanType').html('（小橙检测到您使用的是DHCP方式连接）');}
+	   else if ( result.wanType == 3 ) {$('#wanType').html('（小橙检测到您使用的是静态IP方式连接）');}
+	   else if ( result.wanType == 99 ) {$('#wanType').html('小橙检测到您的WAN口网线没插好');}
+	   else {$('#wanType').html('小橙无法识别你的上网类型');}
+	}else
+	{
+	   layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+	}
+	});
+}
+
+
+    </script>
+</body>
+
+</html>

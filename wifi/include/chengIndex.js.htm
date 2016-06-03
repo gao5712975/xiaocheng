@@ -1,0 +1,353 @@
+<script src="js/jquery.tmpl.min.js" type="text/javascript">
+</script>
+<script type="text/x-jquery-tmpl" id="chengNormal">
+<div class="index_top">
+        <div class="index_top_head">
+        <div class="index_top_state">联网状态：正常</div>
+        <div class="index_top_time">已连续工作{{= (uptime/86400+"").split('.')[0]}}天{{= (uptime%86400/3600+"").split('.')[0]}}小时{{= (uptime%86400%3600/60+"").split('.')[0]}}分</div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="index_top_center">
+        <div class="index_top_left">
+        <div class="index_top_lab">
+		{{if (waninfo.rx_rate/1000)>=1024}}
+		<span class="tx_rate">{{= (waninfo.rx_rate/1000/1024).toFixed(2)}}</span>MB/s
+		{{else}}
+		<span class="tx_rate">{{= (waninfo.rx_rate/1000).toFixed(2)}}</span>KB/s
+		{{/if}}
+		<span class="tx_text">当前下载速度</span></div>	
+        <div class="index_top_rightlab"><a class="xialab"></a><span>下行</span> <a class="shanglab"></a><span>上行</span></div>
+        <div class="clear"></div>
+        <div id="trafficChart"></div>
+        <div class="index_buttom"><span>当前在线连接数：<label id="LinkNumber">0</label></span><span class="ml40">外网IP：{{= waninfo.ip[0].ip}}</span></div>
+        </div>
+        <div class="index_top_right">
+        <a href="setwifi.htm" class="top_bottom_right_btn3 left ml10 mb20">WiFi设置<br/><span>{{= wifiinfo.ssid}}</span></a>
+        <a href="setinter.htm?Type=Extranet" class="top_bottom_right_btn4 left ml10 mb20">上网设置<br/>
+		<span>
+		{{if waninfo.wanType=='static'}}静态IP{{else waninfo.wanType=='dhcp'}}动态IP(DHCP){{else}}宽带拨号(PPPOE){{/if}}
+		</span></a>
+        <a href="internet/Relay.htm" class="top_bottom_right_btn5 left ml10 mb20">工作模式<br/>
+		<span>
+		{{if mode=='0'}}路由器模式{{else mode=='1'}}无线中继器模式{{else}}有线中继器模式{{/if}}
+		</span></a>
+        <a href="setinter.htm?Type=Intranet" class="top_bottom_right_btn6 left ml10 mb20">路由器地址<br/><span>{{= laninfo[0].ip}}</span></a>
+        </div>
+        <div class="clear"></div>
+        </div>
+        </div>
+</script>
+
+<script type="text/x-jquery-tmpl" id="chengNetworkError">
+<div class="index_top">
+        <div class="index_top_head">
+        <div class="index_top_state">网络连接错误！</div>
+        <div class="index_top_time"></div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="index_top_center">
+        <div class="index_top_left">
+        <div class="index_top_title">请按照下图提示检查网线连接是否正确!</div>
+        
+        <img src="image/errorimg.jpg" class="index_top_errorimg" />
+        </div>
+        <div class="index_top_right">
+        <a href="setwifi.htm" class="top_bottom_right_btn3 left ml10 mb20">WiFi设置<br/><span>{{= wifiinfo.ssid}}</span></a>
+        <a href="setinter.htm?Type=Extranet" class="top_bottom_right_btn4 left ml10 mb20">上网设置<br/>
+		<span>
+		{{if waninfo.wanType=='static'}}静态IP{{else waninfo.wanType=='dhcp'}}动态IP(DHCP){{else}}宽带拨号(PPPOE){{/if}}
+		</span></a>
+        <a href="internet/Relay.htm" class="top_bottom_right_btn5 left ml10 mb20">工作模式<br/>
+		<span>
+		{{if mode=='0'}}路由器模式{{else mode=='1'}}无线中继器模式{{else}}有线中继器模式{{/if}}
+		</span></a>
+        <a href="setinter.htm?Type=Intranet" class="top_bottom_right_btn6 left ml10 mb20">路由器地址<br/><span>{{= laninfo[0].ip}}</span></a>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        </div>
+</script>
+<script type="text/x-jquery-tmpl" id="chengInternetError">
+<div class="index_top">
+        <div class="index_top_head">
+        <div class="index_top_state">网络连接错误！</div>
+        <div class="index_top_time"></div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="index_top_center">
+        <div class="index_top_left">
+        <div class="index_top_title">您的小橙未能与运营商正确链接，可能有一下原因：</div>
+        
+        <div class="index_top_error">
+        <img class="index_top_wlanerrorimg" src="image/error.png" />
+			<div class="index_top_errorinfo">
+				宽带拨号PPPoE：检查账号密码是否输入正确!
+				<br/>
+				动态IP：无法正确获取到动态IP，请联系运营商。
+				<br/>
+				静态IP：检查IP及DNS设置是否正确!
+			</div>
+			<div class="clear">
+			</div>
+        </div>
+        <div class="index_top_error2"><font id="wanType"></font></div>
+        </div>
+        <div class="index_top_right">
+        <a href="setwifi.htm" class="top_bottom_right_btn3 left ml10 mb20">WiFi设置<br/><span>{{= wifiinfo.ssid}}</span></a>
+        <a href="setinter.htm?Type=Extranet" class="top_bottom_right_btn4 left ml10 mb20">上网设置<br/>
+		<span>
+		{{if waninfo.wanType=='static'}}静态IP{{else waninfo.wanType=='dhcp'}}动态IP(DHCP){{else}}宽带拨号(PPPOE){{/if}}
+		</span></a>
+        <a href="internet/Relay.htm" class="top_bottom_right_btn5 left ml10 mb20">工作模式<br/>
+		<span>
+		{{if mode=='0'}}路由器模式{{else mode=='1'}}无线中继器模式{{else}}有线中继器模式{{/if}}
+		</span></a>
+        <a href="setinter.htm?Type=Intranet" class="top_bottom_right_btn6 left ml10 mb20">路由器地址<br/><span>{{= laninfo[0].ip}}</span></a>
+        </div>
+        <div class="clear"></div>
+        </div>
+        
+        </div>
+</script>
+<script type="text/x-jquery-tmpl" id="chengIpError">
+<div class="index_top">
+        <div class="index_top_head">
+        <div class="index_top_state">IP地址冲突</div>
+        <div class="index_top_time">已连续工作{{= (uptime/86400+"").split('.')[0]}}天{{= (uptime%86400/3600+"").split('.')[0]}}小时{{= (uptime%86400%3600/60+"").split('.')[0]}}分</div>
+        <div class="clear"></div>
+        </div>
+        
+        <div class="index_top_center">
+        <div class="index_top_left">
+        <div class="index_top_lab">
+		{{if (waninfo.rx_rate/1000)>=1024}}
+		<span class="tx_rate">{{= (waninfo.rx_rate/1000/1024).toFixed(2)}}</span>MB/s
+		{{else}}
+		<span class="tx_rate">{{= (waninfo.rx_rate/1000).toFixed(2)}}</span>KB/s
+		{{/if}}
+		<span class="tx_text">当前下载速度</span></div>	
+        <div class="index_top_rightlab"><a class="xialab"></a><span>下行</span> <a class="shanglab"></a><span>上行</span></div>
+        <div class="clear"></div>
+        <div id="trafficChart"></div>
+        <div class="index_buttom"><span>当前在线连接数：<label id="LinkNumber">0</label></span><span class="ml40">外网IP：{{= waninfo.ip[0].ip}}</span></div>
+        </div>
+        <div class="index_top_right">
+        <a href="setwifi.htm" class="top_bottom_right_btn3 left ml10 mb20">WiFi设置<br/><span>{{= wifiinfo.ssid}}</span></a>
+        <a href="setinter.htm?Type=Extranet" class="top_bottom_right_btn4 left ml10 mb20">上网设置<br/>
+		<span>
+		{{if waninfo.wanType=='static'}}静态IP{{else waninfo.wanType=='dhcp'}}动态IP(DHCP){{else}}宽带拨号(PPPOE){{/if}}
+		</span></a>
+        <a href="internet/Relay.htm" class="top_bottom_right_btn5 left ml10 mb20">工作模式<br/>
+		<span>
+		{{if mode=='0'}}路由器模式{{else mode=='1'}}无线中继器模式{{else}}有线中继器模式{{/if}}
+		</span></a>
+        <a href="setinter.htm?Type=Intranet" class="top_bottom_right_btn6 left ml10 mb20">路由器地址<br/><span>{{= laninfo[0].ip}}</span></a>
+        </div>
+        <div class="clear"></div>
+        </div>
+        </div>
+</script>
+<script type="text/x-jquery-tmpl" id="device">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="blacktr">
+							<tr>
+								<td width="25%">
+									设备名
+								</td>
+								<td width="25%">
+									IP地址
+								</td>
+								<td width="25%">
+									MAC地址
+								</td>
+								<td width="25%">
+									操作
+								</td>
+							</tr>
+						</table>
+						<td>
+				</tr>
+				<tr>
+					<td>
+						<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"
+						class="baixian">
+						
+						{{each(i,device) devicelist}}
+							<tr>
+								<td width="25%">
+									${device.name}
+								</td>
+								<td width="25%">
+									${device.ip}
+								</td>
+								<td width="25%">
+									${device.mac}
+								</td>
+								<td width="25%">
+								    {{if device.type=='wifi'}}
+									<a class="xbtn" onclick="Defriendlistclick('${device.mac}')" href="javascript:;">
+										拉黑
+									</a>
+									{{else}}
+						            <a class="xbtnhui" href="javascript:;">
+										拉黑
+									</a>
+						            {{/if}}	
+								</td>
+							</tr>
+							{{/each}}
+						</table>
+					</td>
+				</tr>
+			</table>
+</script>
+
+<script type="text/javascript">
+var index,ipcount=0;
+var count;
+$.chartLineSpeedDB = [
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0]
+    ];
+$(document).ready(function() {
+	chartlineInit();
+	chartspeedUpdate2();
+	
+	DefriendList();
+    chengrelayshowstate();
+});
+
+setInterval(function(){DefriendList();}, 5000);
+setInterval(function(){chengrelayshowstate()}, 5000);
+
+
+
+
+function chartlineInit(){
+    
+    $.chartLineSpeed = new Linechart({
+        container: document.getElementById('trafficChart'),
+        width: 410,
+        height: 185,
+        maxYval: 250,
+        maxYnum: 5,
+        labelUnit: 'KB/s',
+        lineColor: ["#5392df","#ff7215"],
+        dotColor: ["#5392df","#ff7215"],
+        areaColor: ["#ecf3fc","#ffefe5"]
+    });
+}
+
+function chartspeedUpdate(data){
+    var speed = data.rx_rate || 0,
+        speed = parseFloat(speed),
+        upspeed = data.tx_rate || 0,
+        upspeed = parseFloat(upspeed);
+
+    $.chartLineSpeedDB[0].push(upspeed);
+    $.chartLineSpeedDB[1].push(speed);
+    
+    var len = $.chartLineSpeedDB[0].length;
+    var _linedata = $.chartLineSpeedDB[0].slice(-10);
+    var _linedata2 = $.chartLineSpeedDB[1].slice(-10);
+    $.chartLineSpeed.updateTraffic(_linedata, _linedata2);
+}
+
+function chartspeedUpdate2(){
+    var speed =  0,
+        speed = parseFloat(speed),
+        upspeed = 0,
+        upspeed = parseFloat(upspeed);
+
+    $.chartLineSpeedDB[0].push(upspeed);
+    $.chartLineSpeedDB[1].push(speed);
+    
+    var len = $.chartLineSpeedDB[0].length;
+    var _linedata = $.chartLineSpeedDB[0].slice(-10);
+    var _linedata2 = $.chartLineSpeedDB[1].slice(-10);
+    $.chartLineSpeed.updateTraffic(_linedata, _linedata2);
+}
+
+function chengrelayshowstate() {
+	
+}
+
+function chengshowstate() {
+	$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/orangesystem/cheng_status",function(result)
+	{
+	if(result.code=='0'){
+	if(result.mode=='0') 
+	{
+	   $('#routerState').empty();
+	   if(result.waninfo.linked=='0'){$('#chengNetworkError').tmpl(result).appendTo('#routerState')}
+	   else if(result.waninfo.status=='0'){$('#chengInternetError').tmpl(result).appendTo('#routerState');getWanType();}
+	   else if(result.ipconflict=='1'){$('#chengIpError').tmpl(result).appendTo('#routerState');if(ipcount==0){$(".IpErrorMsg").show()
+	   $('#LinkNumber').html(count);
+	   chartlineInit();
+	   chartspeedUpdate(result.waninfo);
+	   }}
+	   else{$('#chengNormal').tmpl(result).appendTo('#routerState');
+	   $('#LinkNumber').html(count);
+	   chartlineInit();
+	   chartspeedUpdate(result.waninfo);
+	   }
+	   
+	}
+	else{location.href = "relayindex.htm";}}else
+	{
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	});
+}
+
+function DefriendList(){
+$.getJSON("http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/get_device_list",function(result)
+	{
+		if(result.code=='0'){
+		$('#onnectingDevice').empty();
+		$('#device').tmpl(result).appendTo('#onnectingDevice')
+		count=result.count;
+		chengshowstate();
+		}else
+	    {
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	});
+}
+
+function Defriendlistclick(mac){
+	index = layer.load(0, {shade: [0.5,'#252525']});
+	$.ajax({
+	type: "post",
+	url: "http://192.168.1.3/cgi-bin/luci/cheng/networkmanager/modify_mac_filter",
+	data: {
+		option: '0',
+		mode: '0',
+		mac:mac
+	},
+	dataType: "json",             
+	success: function(result) {
+		if(result.code=='0'){
+		DefriendList();
+		layer.close(index);
+		layer.alert('操作成功!');
+		}else
+		{
+		layer.close(index);
+		layer.alert('错误码:'+result.code+"/错误信息："+result.errmsg);
+		}
+	},
+	error: function(errmsg) {
+		layer.close(index);
+		layer.alert("错误信息："+errmsg);
+	}
+});
+	}
+</script>

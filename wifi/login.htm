@@ -1,0 +1,40 @@
+<!--#include file="include/head.htm"-->
+ 
+<style>
+.promptpo{position:absolute;top:165px;left:660px;}	
+.Prompt .error{color:red; font-size:12px; font-family:宋体; height:40px; line-height:40px; text-indent:17px; border-radius:5px; background-color:#fff; display:block; padding-right:17px}
+</style>
+<title>
+	小橙路由
+</title>
+</head>
+<body>
+	<div class="login">
+    <form id="loginForm" method="post" action="">
+		<div class="logo">
+			<img src="image/logo.png" />
+		</div>
+		<div class="text3">
+			<input id="routerName" class="{required:true,messages:{required:'请输入管理员密码'},maxlength:63,minlength:8,checkChinese:true} textinput4" type="password" placeholder="管理员密码" />
+		</div>
+        <div class="Prompt promptpo"></div>
+		<div class="btn">
+			<button id="logbut" type="submit" class="btn4">
+				管理登陆
+			</button>
+		</div>
+        <div id="browser_ie" class="ie" style="display:none">
+            <P>你的浏览器版本过低，可能导致网站不能正常访问！为了你能正常使用网站功能，请使用这些浏览器。</P>
+            <p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+        </div>
+     </form>
+	</div>
+<!--#include file="include/valid.js.htm"-->
+<!--#include file="include/xiaocheng.js.htm"-->
+<script type="text/javascript">
+//浏览器版本检测
+	if (!$.support.leadingWhitespace) {$("#browser_ie").show();}
+</script>
+</body>
+
+</html>

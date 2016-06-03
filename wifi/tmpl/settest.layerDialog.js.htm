@@ -1,0 +1,290 @@
+<script src="js/jquery.tmpl.min.js" type="text/javascript">
+</script>
+
+<script type="text/x-jquery-tmpl" id="pppoeType">
+<form id="ppponeTypeForm2" method="post" action="">
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td width="20%">
+								<span>
+									上网帐号:
+								</span>
+							</td>
+							<td width="80%" align="left">
+								<input id="internetName" name="internetName" class="{required:true,messages:{required:'请输入上网帐号'},maxlength:127,checkspecial:true,checkChinese:true} textinput5"
+								maxlength="25" type="text"  />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+									上网密码:
+								</span>
+							</td>
+							<td align="left">
+								<input id="internetpwd" name="internetpwd" class="{required:true,messages:{required:'请输入上网密码'},maxlength:127,checkspecial:true,checkChinese:true} textinput12"
+								type="password" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+									高级选项：
+								</span>
+							</td>
+							<td align="left" style="height:10px">
+								<input type="checkbox" id="functions" name="functions" />
+								<label for="functions">
+								</label>
+							</td>
+						</tr>
+						<tr id="waiinternet">
+							<td colspan="2">
+								<div class="setwifibiaodan">
+									<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									    <tr>
+							<td>
+								<span>
+									服务名称:
+								</span>
+							</td>
+							<td align="left">
+								<input id="serverName" name="serverName" class="{maxlength:127,checkspecial:true,checkChinese:true} textinput5"
+								type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+									最大传输单元（MTU）:
+								</span>
+							</td>
+							<td align="left">
+								<input id="transmissionUnit" name="transmissionUnit" class="{checkmtu:true} textinput5" type="text" />
+							</td>
+						</tr>
+										<tr>
+											<td width="20%">
+												<span>
+													首选DNS:
+												</span>
+											</td>
+											<td width="80%">
+												<input id="masterServer" name="masterServer" class="{checkbdns:true} textinput5" type="text" />
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<span>
+													备选DNS:
+												</span>
+											</td>
+											<td>
+												<input id="journeyServer" name="journeyServer" class="{checkbdns:true} textinput5" type="text" />
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+						<tr>
+						<td colspan="2">
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									    <tr>
+							<td width="20%">
+								<span>
+									调试方式:
+								</span>
+							</td>
+							<td align="left">
+								<select id="sel_tiao" name="sel_tiao">
+						<option value="1">
+							内部调试
+						</option>
+						<option value="2">
+							外部调试
+						</option>
+					</select>
+							</td>
+						</tr>
+						 <tr id="tiao2" style="display:none">
+							<td width="20%">
+								<span>
+									Log服务器IP地址:
+								</span>
+							</td>
+							<td align="left">
+								<input id="LogIP" name="LogIP" class="{checkLogIP:true,checkip:true} textinput5" type="text" placeholder="例如：192.168.0.88" />
+							</td>
+						</tr>
+						</table>
+						</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div class="wifibut2">
+									<div class="inxiaobut">
+										<button type="submit" id="ppponebtn" class="xiaobtn">
+											应用
+										</button>
+									</div>
+									<div class="inxiaobut">
+										<a class="xiaobtn" onclick="refresh()" href="javascript:;">
+											取消
+										</a>
+									</div>
+									<div class="clear">
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+                    </form>
+</script>
+<script type="text/x-jquery-tmpl" id="dhcpType">
+<form id="dhcpTypeForm" method="post" action="">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td width="20%">
+			<span>
+				高级选项：
+			</span>
+		</td>
+		<td width="80%" align="left" style="height:10px">
+			<input type="checkbox" id="deployDNS" name="deployDNS" />
+			<label for="deployDNS">
+			</label>
+		</td>
+	</tr>
+	<tr id="deployDNSDiv">
+		<td colspan="2">
+			<div class="setwifibiaodan">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<td width="20%">
+							<span>
+								首选DNS:
+							</span>
+						</td>
+						<td width="80%">
+							<input id="masterDNSServer" name="masterDNSServer" class="{checkbdns:true} textinput5" type="text" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span>
+								备选DNS:
+							</span>
+						</td>
+						<td>
+							<input id="journeyDNSServer" name="journeyDNSServer" class="{checkbdns:true} textinput5" type="text" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<div class="wifibut2">
+				<div class="inxiaobut">
+					<button type="submit" class="xiaobtn">
+						应用
+					</button>
+				</div>
+				<div class="inxiaobut">
+					<a class="xiaobtn" onclick="refresh()" href="javascript:;">
+						取消
+					</a>
+				</div>
+				<div class="clear">
+				</div>
+			</div>
+		</td>
+	</tr>
+</form>
+</script>
+</script>
+<script type="text/x-jquery-tmpl" id="staticType">
+<form id="staticTypeForm" method="post" action="">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td width="20%">
+								<span>
+									IP地址：
+								</span>
+							</td>
+							<td width="80%" align="left" style="height:10px">
+								<input id="ipAddress" name="ipAddress" class="{required:true,messages:{required:'请输入IP地址'},checkip:true} textinput5" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+									子网掩码：
+								</span>
+							</td>
+							<td align="left" style="height:10px">
+								<input id="subnetMask" name="subnetMask" class="{required:true,messages:{required:'请输入子网掩码'},checkmask:true} textinput5" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+									默认网关：
+								</span>
+							</td>
+							<td align="left" style="height:10px">
+								<input id="gateway" name="gateway" class="{required:true,messages:{required:'请输入默认网关'},checkgateway:true} textinput5" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+									首选DNS：
+								</span>
+							</td>
+							<td align="left" style="height:10px">
+								<input id="masterstaticServer" name="masterstaticServer" class="{required:true,messages:{required:'请输入首选DNS'},checkdns:true} textinput5" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>
+									备选DNS：
+								</span>
+							</td>
+							<td align="left" style="height:10px">
+								<input id="journeystaticServer" name="journeystaticServer" class="{checkbdns:true} textinput5" type="text" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<div class="wifibut2">
+									<div class="inxiaobut">
+										<button type="submit" class="xiaobtn">
+											应用
+										</button>
+									</div>
+									<div class="inxiaobut">
+										<a class="xiaobtn" onclick="refresh()" href="javascript:;">
+											取消
+										</a>
+									</div>
+									<div class="clear">
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+					</form>
+</script>
+<script type="text/javascript">
+    var index;
+function hideShowPwd(){
+$('#internetpwd').hideShowPassword({
+		innerToggle: true,
+		touchSupport: Modernizr.touch
+	});
+}
+</script>

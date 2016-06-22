@@ -1,0 +1,7 @@
+﻿$axure.loadCurrentPage(
+(function() {
+    var _ = function() { var r={},a=arguments; for(var i=0; i<a.length; i+=2) r[a[i]]=a[i+1]; return r; }
+    var _creator = function() { return _(b,c,d,e,f,g,h,i,j,[k,l,m,n,o,p,q,r,s,t,u,v,w,x,y],z,_(A,B,C,D,E,F,G,_(),H,_(I,J,K,L,M,_(N,O,P,Q),R,null,S,L,T,L,U,V,W,null,X,Y,Z,ba,bb,bc,bd,Y),be,_(bf,_()),bg,_(),bh,_(bi,[])),bj,_(),bk,_());}; 
+var b="url",c="帮助中心.html",d="generationDate",e=new Date(1465890820931.32),f="isCanvasEnabled",g=false,h="isAdaptiveEnabled",i=true,j="variables",k="sou",l="U_zidong",m="P_zidong",n="zidong",o="xiaoxishu",p="xianqing",q="biaoqianming",r="youyong",s="user",t="rl_date",u="rl_day",v="zizhi",w="ganli",x="yitianjia",y="kehu",z="page",A="packageId",B="c6dbff46d39a407389de27f2a8e11137",C="type",D="Axure:Page",E="name",F="帮助中心",G="notes",H="style",I="baseStyle",J="627587b6038d43cca051c114ac41ad32",K="pageAlignment",L="near",M="fill",N="fillType",O="solid",P="color",Q=0xFFFFFFFF,R="image",S="imageHorizontalAlignment",T="imageVerticalAlignment",U="imageRepeat",V="auto",W="favicon",X="sketchFactor",Y="0",Z="colorStyle",ba="appliedColor",bb="fontName",bc="Applied Font",bd="borderWidth",be="adaptiveStyles",bf="a",bg="interactionMap",bh="diagram",bi="objects",bj="masters",bk="objectPaths";
+return _creator();
+})());

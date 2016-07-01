@@ -1,0 +1,475 @@
+.affcheIn-contentText > div, .affcheIn-contentText > p, .afficheMa-calendar, .afficheMa-time {
+    float: left
+}
+
+.affcheIn-zhuangtai, .userIn-account, .yc-compile-head {
+    font-weight: 700;
+    font-style: normal
+}
+
+.affcheIn-zhuangtai input, .roleIn-table td input, .roleIn-table td span, .yc-section-state input, .yc-section-state span {
+    vertical-align: middle
+}
+
+.yc-systemManage-table {
+    margin: 10px auto
+}
+
+.yc-pages {
+    margin: 20px auto;
+    text-align: right
+}
+
+.center, .client-judge, .yc-centerform td, .yc-centerform th {
+    text-align: center
+}
+
+.client-judge {
+    height: 80px;
+    line-height: 80px;
+    background-color: #EFF1F5
+}
+
+.clear:after {
+    content: "";
+    display: block;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+    visibility: hidden
+}
+
+.yc-compile {
+    margin-top: 60px;
+    margin-bottom: 20px
+}
+
+.yc-compile-head {
+    font-size: 16px;
+    display: inline-block;
+    border-top: 1px #4AA7EA solid;
+    background-color: #fff;
+    border-bottom: 1px #fff solid;
+    border-right: 1px #E6E6E6 solid;
+    border-left: 1px #E6E6E6 solid;
+    padding: 5px 20px;
+    z-index: 1;
+    margin-left: 20px
+}
+
+.yc-compile-add {
+    height: 31px;
+    border-bottom: 1px #E6E6E6 solid;
+    margin-left: 30px
+}
+
+.yc-compile-articl {
+    margin: 30px 0 0 20px;
+    min-width: 1180px
+}
+
+.yc-compile-bott {
+    margin-left: 160px
+}
+
+.yc-compile-section {
+    margin: 25px 0 0
+}
+
+.yc-compile-bottl {
+    margin-top: 150px;
+    margin-left: 158px
+}
+
+.yc-compile-section-tab {
+    margin: 30px 0 0
+}
+
+.yc-table-trbg th {
+    font-weight: 700
+}
+
+.yc-section-text {
+    padding: 0 10px;
+    height: 30px;
+    line-height: 30px;
+    text-align: right
+}
+
+.yc-section-company, .yc-section-input {
+    height: 30px
+}
+
+.yc-section-input ng-form {
+    width: 300px;
+    height: 30px
+}
+
+.yc-section-company > input, .yc-section-input > input {
+    width: 100%;
+    border: 1px solid #BFC4CD;
+    height: 28px;
+    padding: 0 5px;
+    max-width: 288px
+}
+
+.yc-compile-section .yc-left {
+    padding-left: 0
+}
+
+.yc-compile-bott > p {
+    display: block;
+    float: left
+}
+
+.yc-bott-alter {
+    width: 110px;
+    height: 35px;
+    background-color: #247BD3;
+    text-align: center;
+    line-height: 35px;
+    color: #fff;
+    font-size: 20px;
+    margin: 50px 20px 0 0;
+    cursor: pointer
+}
+
+.yc-bott-alter a {
+    color: #fff
+}
+
+.yc-compile-bott .yc-bott-alter-scal {
+    color: #247BD3;
+    font-size: 16px;
+    margin: 50px 20px 0 0;
+    cursor: pointer;
+    text-decoration: underline
+}
+
+.yc-bott-abolish {
+    margin-top: 70px;
+    color: #247BD3;
+    font-size: 15px
+}
+
+.alert-danger {
+    color: red
+}
+
+.btn-default[disabled] {
+    background-color: #fff;
+    color: #ccc;
+    border: 1px solid #ccc
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #247BD3;
+    border-color: #ccc
+}
+
+.departmentMa-departmentType {
+    width: 300px;
+    height: 30px;
+    border: 1px solid #BFC4CD;
+    line-height: 30px;
+    background-color: #fff
+}
+
+.departmentMa-departmentType .yc-select-current {
+    width: auto
+}
+
+.departmentIn-departmentIn {
+    width: 300px;
+    height: 37px;
+    border: 1px solid #A9A9A9;
+    line-height: 37px
+}
+
+.userIn-account {
+    font-size: 16px;
+    border-bottom: 1px solid #E6E6E6;
+    height: 30px;
+    position: relative;
+    padding-left: 22px;
+    margin: 30px 0 20px 30px
+}
+
+.yc-user-message {
+    position: absolute;
+    width: 105px;
+    height: 2px;
+    background-color: #4AA7EA;
+    left: 0;
+    bottom: 0
+}
+
+.strategys-items, .userRuleSelect label input {
+    position: relative
+}
+
+#departName {
+    width: 296px;
+    height: 217px;
+    border: 1px solid #CCC
+}
+
+.yc-section-state {
+    line-height: 30px
+}
+
+.userRuleSelect {
+    padding-right: 15px;
+    height: 28px
+}
+
+.userRuleSelect label {
+    cursor: pointer
+}
+
+.userRuleArea {
+    width: auto
+}
+
+.roleIn-table {
+    max-width: 920px
+}
+
+.roleIn-table td.first {
+    width: 100px
+}
+
+.yc-roleMa-edit a {
+    margin: 0 5px;
+    max-width: 1180px
+}
+
+#dateRangeAff {
+    border: none
+}
+
+.yc-section-input .afficheIn-gonggaoming {
+    width: 530px
+}
+
+.afficheIn-gonggaozhu {
+    width: 630px
+}
+
+.afficheIn-gonggao-content {
+    width: 542px;
+    border: 1px solid #CCC;
+    height: 260px
+}
+
+.yc-compile-section .afficheIn-gonggao {
+    height: 230px;
+    font-size: 12px;
+    width: 530px
+}
+
+.affcheIn-contentText {
+    margin: 240px 0 0 600px
+}
+
+.affcheIn-zhuangtai {
+    margin-left: 100px;
+    font-family: '宋体 Bold', '宋体';
+    font-size: 14px;
+    color: #666
+}
+
+.affcheIn-zhuangtai span {
+    font-size: 12px;
+    font-weight: 400;
+    vertical-align: middle
+}
+
+.operationMa-calendar, .operationMa-operationType, .operationMa-time {
+    float: right;
+    margin-left: 20px
+}
+
+.operationMa-operationType {
+    width: 170px;
+    height: 30px;
+    border: 1px solid #A9A9A9;
+    margin-left: 20px;
+    line-height: 30px
+}
+
+.strategys-items {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #bfc4cd;
+    height: 39px;
+    font-size: 14px
+}
+
+.strategys-items .strategys-itemsFa {
+    background-color: #fff;
+    border-top: 1px solid #4ba7ea;
+    border-bottom: 1px solid #fff;
+    outline: #fff solid 1px;
+    font-weight: 700
+}
+
+.strategys-items a {
+    float: left;
+    height: 38px;
+    line-height: 38px;
+    border-top: 1px solid #BFC4CD;
+    border-left: 1px solid #bfc4cd;
+    border-right: 1px solid #bfc4cd;
+    padding: 0 30px;
+    background-color: #f9f9fb;
+    position: relative;
+    bottom: 0
+}
+
+.yc-systemManage-table {
+    margin-top: 30px
+}
+
+.operationMa-bott {
+    margin-top: 20px
+}
+
+.dialog-con .yc-col-3 {
+    height: 30px;
+    text-align: right;
+    line-height: 30px
+}
+
+.dialog-bg-pass {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 3000;
+    background: rgba(0, 0, 0, .2);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#7f000000', endColorstr='#7f000000');
+    display: none
+}
+
+.dialog-wraper-pass {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    min-height: 150px;
+    min-width: 800px;
+    margin-left: -200px;
+    margin-top: -150px;
+    background-color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #ccc
+}
+
+.dialog-title-pass {
+    background-color: #F9F9FB;
+    height: 34px;
+    line-height: 34px;
+    border-bottom: 1px solid #E6E6E8;
+    text-indent: 1em;
+    position: relative;
+    font-size: 14px
+}
+
+.dialog-close-pass {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    cursor: pointer;
+    font-size: 16px
+}
+
+.dialog-con-pass .yc-row .yc-col-2 {
+    height: 30px;
+    line-height: 30px;
+    text-align: right
+}
+
+.dialog-con-pass .yc-row .yc-col-5 {
+    height: 30px;
+    line-height: 30px
+}
+
+.dialog-submit-pass {
+    text-align: center;
+    padding: 10px 0 20px
+}
+
+.dialog-submit-pass a {
+    display: inline-block;
+    font-size: 14px;
+    margin: 0 10px;
+    border-radius: 3px;
+    padding: 0 20px;
+    height: 28px;
+    line-height: 28px;
+    color: #fff;
+    letter-spacing: 5px
+}
+
+.dialog-submit-pass a.ok {
+    background-color: #47A4DF
+}
+
+.dialog-submit-pass a.no {
+    background-color: #CCCDD2
+}
+
+.passShow, .passShow2, .passShow6 {
+    font-size: 12px;
+    display: none;
+    color: red;
+    text-align: left
+}
+
+.parentLimit {
+    position: relative
+}
+
+.parentLimit:hover .role-posi {
+    display: block
+}
+
+.role-posi, .yc-main-top .hideDiv {
+    display: none
+}
+
+.role-posi {
+    background: #FFF;
+    border: 1px solid #CCC;
+    position: absolute;
+    left: 70px;
+    top: 0;
+    width: 250px;
+    height: 200px;
+    padding: 0 0 0 20px;
+    z-index: 100
+}
+
+.role-posi div {
+    margin-bottom: 10px
+}
+
+.selectArea dl dd .area-parent, .selectArea dl dd .area-self {
+    width: 200px
+}
+
+span.placeholder {
+    position: absolute;
+    left: 3px;
+    top: 5px
+}
+.yc-contract-trolerant-current{
+    padding: 10px 10px;
+    background: #E6E6E8;
+    margin: 15px 0px;
+}
+.yc-contract-trolerant-current table td.td-value{
+    color:#49A5FD;
+    padding-right:100px;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh-CN" ng-app="WangCheng">
+<head>
+    <meta charset="utf-8">
+    <title>编辑容错率-容错率设置-系统管理</title>
+    <meta name="keywords" content="编辑容错率-容错率设置-系统管理">
+    <meta name="description" content="编辑容错率-容错率设置-系统管理">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="shortcut icon" href="../../static/img/favicon.ico">
+    <link rel="stylesheet" href="../../static/css/ycui.css">
+    <link rel="stylesheet" href="../../static/css/global.css">
+    <link rel="stylesheet" href="../../static/css/SystemManage.css">
+    <script type="text/javascript" src="../../static/lib/angular.min.js"></script>
+    <script type="text/javascript" src="../../static/lib/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../../static/js/ycui.js"></script>
+    <script type="text/javascript" src="../../static/lib/validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="../../static/lib/validation/jquery.validate.messages.js"></script>
+    <script type="text/javascript" src="../../static/js/global.js"></script>
+    <script type="text/javascript" src="../../static/js/application.js"></script>
+    <script type="text/javascript" src="../../static/js/systemManage.js"></script>
+</head>
+<body ng-controller="limitCtrl">
+<div class="yc-main-top clear"><a href="companyManage.html" ng-if="ruleList[16].length>0">公司</a> <a
+        href="departmentManage.html" ng-if="ruleList[17].length>0">部门</a> <a href="roleManage.html"
+                                                                                         ng-if="ruleList[18].length>0">角色</a>
+    <a href="userManage.html" ng-if="ruleList[19].length>0">用户</a> <a href="afficheManage.html"
+                                                                      ng-if="ruleList[20].length>0">公告</a><a
+            href="contractTolerantManage.html" ng-if="ruleList[25].length==0" class="cur">容错率</a></div>
+<div class="yc-compile" ng-controller="contractTolerantAddCtrl">
+    <div class="yc-compile-add">
+        <div class="yc-compile-head">编辑容错率</div>
+    </div>
+    <form class="yc-compile-articl contractTolerantIncreasedForm">
+        <div class="yc-compile-section clear">
+            <div class="yc-section-text yc-col-1"><span class="yc-section-text-symbol">*</span>比率：</div>
+            <div class="yc-search-wraper"><input type="number"  ng-model="tolerant" name="tolerant" class="ng-pristine ng-untouched ng-valid">
+                <i class="yc-icon"> %</i>
+            </div>
+        </div>
+        <div class="yc-compile-section clear">
+            <div class="yc-section-text yc-col-1"><span class="yc-section-text-symbol">*</span>绝对值：</div>
+            <div class="yc-search-wraper"> <input type="number"  ng-model="tolerantMoney" name="tolerantMoney" class="ng-pristine ng-untouched ng-valid">
+                <i class="yc-icon"> 元</i>
+            </div>
+        </div>
+        <div class="yc-compile-section clear">
+            <div class="yc-section-input">
+                <div class="yc-section-text yc-col-1"><span class="yc-section-text-symbol">*</span>容错原则：</div>
+                <div class="yc-section-input yc-col-11">
+                    <div class="yc-select">
+                        <div class="yc-select-current">最低原则</div>
+                        <i class="yc-icon">&#xe605;</i>
+                            <ul class="yc-select-options">
+                                <li data-value="0" ng-click="updateSelect('tolerantRule',0)">最低原则</li>
+                                <li data-value="1" ng-click="updateSelect('tolerantRule',1)">最高原则</li>
+                        </ul>
+                        <input type="hidden" name="tolerantRule" name="tolerantRule" value="0"></div>
+                </div>
+            </div>
+        </div>
+        <div class="yc-compile-bott clear"><input type="submit" class="yc-bott-alter btn-default" value="提 交"> <a
+                class="yc-bott-alter-scal" href="contractTolerantManage.html">取消</a></div>
+    </form>
+</div>
+</body>
+</html>
